@@ -3,7 +3,10 @@
   "description": "An app of group-written novels.",
   "main": "server.js",
   "authors": [
-    "tobecontinued"
+    "Alfredo Maria Milano",
+    "Alicia Pearse",
+    "Ajay Lard",
+    "Sam Younger"
   ],
   "license": "ISC",
   "keywords": [
