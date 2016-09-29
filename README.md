@@ -1,6 +1,6 @@
 # wdi-project-3
 Alicia
-NAVBAR
+NAV BAR
 hey
 SamY
 This is name
