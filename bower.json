@@ -1,0 +1,28 @@
+{
+  "name": "NoveList",
+  "description": "An app of group-written novels.",
+  "main": "server.js",
+  "authors": [
+    "tobecontinued"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "Amazing"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.7",
+    "angular-ui-router": "~0.3.1",
+    "angular-resource": "~1.5.7",
+    "angular-jwt": "^0.0.9",
+    "bootstrap": "^3.3.7"
+  }
+}
