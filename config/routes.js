@@ -1,14 +1,14 @@
 const express  = require("express");
 const router   = express.Router();
 
-const authentication  = require("../controllers/authentication");
-const users           = require("../controllers/users");
-const novels          = require("../controllers/novels");
+const authentications  = require("../controllers/authentications");
+const users            = require("../controllers/users");
+const novels           = require("../controllers/novels");
 
 // router.route("/register")
-//   .post(authentication.register);
+//   .post(authentications.register);
 // router.route("/login")
-//   .post(authentication.login);
+//   .post(authentications.login);
 //
 // router.route('/users')
 //   .get(users.index);
