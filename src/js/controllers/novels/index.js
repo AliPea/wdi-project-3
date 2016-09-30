@@ -1,9 +1,9 @@
 angular
 .module("noveList")
-.controller("PicIndexCtrl", PicIndexCtrl);
+.controller("NovelIndexCtrl", NovelIndexCtrl);
 
-novelIndexCtrl.$inject = ["Novel", '$http', 'Gif'];
-function NovelndexCtrl(Pic, $http, Gif){
+NovelIndexCtrl.$inject = ["Novel", '$http', 'Gif'];
+function NovelIndexCtrl(Novel, $http, Gif){
   const vm = this;
 
   Novel
