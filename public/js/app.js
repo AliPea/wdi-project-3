@@ -49939,13 +49939,13 @@ if (typeof jQuery === 'undefined') {
 
 "use strict";angular.module("noveList",["ui.router","ngResource","angular-jwt"]);
 "use strict";angular.module("noveList").constant("API",window.location.origin+"/api");
-"use strict";
+"use strict";angular.module("noveList").factory("AuthInterceptor",AuthInterceptor);AuthInterceptor.$inject=['API','TokenService'];function AuthInterceptor(API,TokenService){return{request:function request(config){var token=TokenService.getToken();if(config.url.indexOf(API)===0&&token){config.headers.Authorization="Bearer "+token;}return config;},response:function response(res){if(res.config.url.indexOf(API)===0&&res.data.token){console.log('res',res);TokenService.setToken(res.data.token);}return res;}};}
 "use strict";angular.module("noveList").service("CurrentUserService",CurrentUserService);CurrentUserService.$inject=["$rootScope","TokenService"];function CurrentUserService($rootScope,TokenService){var currentUser=TokenService.decodeToken();return{user:currentUser,saveUser:function saveUser(user){currentUser=user;$rootScope.$broadcast("loggedIn");},getUser:function getUser(){return currentUser;},clearUser:function clearUser(){currentUser=null;TokenService.clearToken();$rootScope.$broadcast("loggedOut");}};}
 "use strict";
 "use strict";
 "use strict";angular.module("noveList").controller("usersIndexCtrl",usersIndexCtrl);usersIndexCtrl.$inject=["User"];function usersIndexCtrl(User){var vm=this;User.query(function(data){vm.users=data.users;});}
 "use strict";
-"use strict";
+'use strict';angular.module("noveList").config(SetupInterceptor);SetupInterceptor.$inject=['$httpProvider'];function SetupInterceptor($httpProvider){return $httpProvider.interceptors.push('AuthInterceptor');}
 "use strict";angular.module("noveList").controller("loginCtrl",loginCtrl);loginCtrl.$inject=["User","CurrentUserService"];function loginCtrl(User,CurrentUserService){var vm=this;vm.login=function(){User.login(vm.user).$promise.then(function(data){console.log(data);var user=data.user?data.user:null;if(user){CurrentUserService.saveUser(user);}});};}
 "use strict";angular.module("noveList").controller("mainCtrl",mainCtrl);mainCtrl.$inject=["$rootScope","CurrentUserService","$state"];function mainCtrl($rootScope,CurrentUserService,$state){var vm=this;vm.user=CurrentUserService.getUser();vm.logout=function(){event.preventDefault();CurrentUserService.clearUser();};$rootScope.$on("loggedIn",function(){vm.user=CurrentUserService.getUser();console.log(vm.user);$state.go("home");});$rootScope.$on("loggedOut",function(){vm.user=null;$state.go("home");});}
 "use strict";
