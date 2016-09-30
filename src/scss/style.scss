@@ -5,8 +5,19 @@
 @import '_navbar.scss';
 @import '_novel.scss';
 
-body {
-  font-family: 'NovaSlim';
+navbar-default {
+  font-family: 'NovaSlim', serif;
+  text-align: right;
+  color: #363537;
+}
+navbar-collapse {
+  font-family: 'NovaSlim', serif;
+  text-align: right;
+  color: #363537;
+}
+h1, h2 {
+  font-size: 48px;
+  color: #363537;
+  font-family: 'Goudy Bookletter 1911', serif;
   text-align: center;
-  color: red;
 }
