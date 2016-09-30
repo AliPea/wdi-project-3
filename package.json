@@ -2,7 +2,7 @@
   "name": "NoveList",
   "version": "1.0.0",
   "description": "An app of group-written novels.",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "istanbul cover node_modules/.bin/_mocha"
   },

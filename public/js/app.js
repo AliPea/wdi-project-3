@@ -49946,7 +49946,7 @@ if (typeof jQuery === 'undefined') {
 "use strict";angular.module("noveList").controller("usersIndexCtrl",usersIndexCtrl);usersIndexCtrl.$inject=["User"];function usersIndexCtrl(User){var vm=this;User.query(function(data){vm.users=data.users;});}
 "use strict";
 "use strict";
-"use strict";angular.module("noveList").controller("loginCtrl",loginCtrl);loginCtrl.$inject=["User","CurrentUserService"];function loginCtrl(User,CurrentUserService){var vm=this;vm.login=function(){User.login(vm.user).$promise.then(function(data){var user=data.user?data.user:null;if(user){CurrentUserService.saveUser(user);}});};}
+"use strict";angular.module("noveList").controller("loginCtrl",loginCtrl);loginCtrl.$inject=["User","CurrentUserService"];function loginCtrl(User,CurrentUserService){var vm=this;vm.login=function(){User.login(vm.user).$promise.then(function(data){console.log(data);var user=data.user?data.user:null;if(user){CurrentUserService.saveUser(user);}});};}
 "use strict";angular.module("noveList").controller("mainCtrl",mainCtrl);mainCtrl.$inject=["$rootScope","CurrentUserService","$state"];function mainCtrl($rootScope,CurrentUserService,$state){var vm=this;vm.user=CurrentUserService.getUser();vm.logout=function(){event.preventDefault();CurrentUserService.clearUser();};$rootScope.$on("loggedIn",function(){vm.user=CurrentUserService.getUser();$state.go("usersIndex");});$rootScope.$on("loggedOut",function(){vm.user=null;$state.go("home");});}
 "use strict";
 "use strict";
