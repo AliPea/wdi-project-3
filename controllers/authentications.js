@@ -33,7 +33,7 @@ function authenticationsLogin(req, res){
     let token = jwt.sign({ id: user.id, username: user.username }, config.secret, { expiresIn: 60*60*24 });
 
     return res.status(200).json({
-      message: "Welcome back.",
+      message: `Welcome back, ${user.username}.`,
       user,
       token
     });
