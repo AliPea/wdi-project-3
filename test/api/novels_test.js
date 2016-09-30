@@ -4,28 +4,28 @@ const User = require("../../models/user");
 const Novel = require("../../models/novel");
 
 describe("Novels tests", function() {
-  beforeEach(done => {
-    const novel = new Novel({
-      creator: "testName",
-      title: "testTitle",
-      image: "http://fillmurray.com/200/300",
-      wordCount: 150,
-      entries: 5,
-      status: "active",
-      comments:[{
-        author: "testAuthor",
-        body: "testTestTestTest"
-      }]
-    });
-    novel.save((err, novel) => {
-      api.post("/api/novels")
-      .set("Accept", "application/json")
-      .set("Authorization", `Bearer ${TOKEN}`)
-      .send({
-        // what goes here?
-      });
-    });
-  });
+  // beforeEach(done => {
+  //   const novel = new Novel({
+  //     creator: "testName",
+  //     title: "testTitle",
+  //     image: "http://fillmurray.com/200/300",
+  //     wordCount: 150,
+  //     entries: 5,
+  //     status: "active",
+  //     comments:[{
+  //       author: "testAuthor",
+  //       body: "testTestTestTest"
+  //     }]
+  //   });
+  //   novel.save((err, novel) => {
+  //     api.post("/api/novels")
+  //     .set("Accept", "application/json")
+  //     .set("Authorization", `Bearer ${TOKEN}`)
+  //     .send({
+  //       // what goes here?
+  //     });
+  //   });
+  // });
 
   describe("GET /api/novels", () => {
     it ("Should return a 200 response", function(done) {

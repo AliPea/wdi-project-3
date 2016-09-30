@@ -27,13 +27,13 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
   .state('novelIndex', {
     url: "/novels/index",
     templateUrl: "/js/views/novels/index.html",
-    controller: "NovelNewCtrl as nov"
+    controller: "NovelIndexCtrl as nov"
   })
 
   .state('novelNew', {
     url: "/novels/new",
     templateUrl: "/js/views/novels/new.html",
-    controller: "NovelIndexCtrl as nov"
+    controller: "NovelNewCtrl as nov"
   })
 
   .state('novelShow', {
