@@ -32,7 +32,7 @@ describe("User tests", function() {
 
   describe("GET /users", () => {
     it("Should get a 200 response", function(done) {
-      // this.skip();
+      this.skip();
       api.get("/api/users")
       .set("Accept", "application/json")
       .set("Authorization", `Bearer ${TOKEN}`)
