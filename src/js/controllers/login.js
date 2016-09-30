@@ -3,7 +3,7 @@ angular
   .controller("loginCtrl", loginCtrl);
 
 loginCtrl.$inject = ["User", "CurrentUserService"];
-function loginCtrl(user, CurrentUserService) {
+function loginCtrl(User, CurrentUserService) {
   const vm = this;
   vm.login = () => {
     User
