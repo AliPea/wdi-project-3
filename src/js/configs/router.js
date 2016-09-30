@@ -37,7 +37,7 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
   })
 
   .state('novelShow', {
-    url: "/novels/show",
+    url: "/novels/:id",
     templateUrl: "/js/views/novels/show.html",
     controller: "NovelShowCtrl as nov"
   })
