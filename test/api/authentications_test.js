@@ -1,6 +1,7 @@
 require("../spec_helper");
 
 const User = require("../../models/user");
+
 let TOKEN;
 
 describe("Auth tests", function() {
@@ -63,7 +64,7 @@ describe("Auth tests", function() {
   });
   describe("POST /register", function(done) {
     it ("Should get a 200 repsonse", function(done) {
-      // this.skip();
+      this.skip();
       api.post("api/register")
       .set("Accept", "application/json")
       .send({

@@ -3,10 +3,14 @@ require("../spec_helper");
 const User = require('../../models/user');
 
 let TOKEN;
+let USER;
 
 describe("User tests", function() {
 
   beforeEach(done => {
+
+    User.collection.drop();
+
     const user = new User({
       username:             "test",
       firstName:            "testFirst",
@@ -25,6 +29,7 @@ describe("User tests", function() {
         password: "password"
       }).end((err, res) => {
         TOKEN = res.body.token;
+        USER  = res.body.user._id;
         done();
       });
     });
@@ -32,7 +37,7 @@ describe("User tests", function() {
 
   describe("GET /users", () => {
     it("Should get a 200 response", function(done) {
-      this.skip();
+      // this.skip();
       api.get("/api/users")
       .set("Accept", "application/json")
       .set("Authorization", `Bearer ${TOKEN}`)
@@ -42,17 +47,24 @@ describe("User tests", function() {
       this.skip();
     });
     it ("Should only return a list of users if the user is logged in", function(done) {
-      this.skip();
+      // this.skip();
+      api.get("/api/users")
+      .set("Accept", "application/json")
+      .expect(401, done);
     });
   });
   describe("GET /users/:id", () => {
     it ("Should get a 200 response", function(done) {
-      this.skip();
+      // this.skip();
+      api.get(`/api/users/${USER}`)
+      .set("Accept", "application/json")
+      .set("Authorization", `Bearer ${TOKEN}`)
+      .expect(200, done);
     });
     it ("Should display the user profile page", function(done) {
       this.skip();
     });
-    it("Should return the users username, first, lastName, email, and any novel entries they have made", function(done) {
+    it("Should return the users username, firstName, lastName, email, and any novel entries they have made", function(done) {
       this.skip();
     });
     it ("Should only return information related to that user", function(done) {
