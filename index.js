@@ -35,3 +35,5 @@ app.use("/api", router);
 app.get("/*", (req, res) =>  res.sendFile(__dirname + "/index.html"));
 
 app.listen(config.port, () => console.log(`Express started on port: ${config.port}`));
+
+module.exports = app;
