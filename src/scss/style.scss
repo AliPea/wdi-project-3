@@ -5,16 +5,12 @@
 @import '_navbar.scss';
 @import '_novel.scss';
 
-navbar-default {
+.navbar-default, .navbar-collapse {
   font-family: 'NovaSlim', serif;
   text-align: right;
   color: #363537;
 }
-navbar-collapse {
-  font-family: 'NovaSlim', serif;
-  text-align: right;
-  color: #363537;
-}
+
 h1, h2 {
   font-size: 48px;
   color: #363537;
