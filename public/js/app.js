@@ -49938,21 +49938,21 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 "use strict";angular.module("noveList",["ui.router","ngResource","angular-jwt"]);
+"use strict";angular.module("noveList").constant("API",window.location.origin+"/api");
+"use strict";
+"use strict";angular.module("noveList").service("CurrentUserService",CurrentUserService);CurrentUserService.$inject=["$rootScope","TokenService"];function CurrentUserService($rootScope,TokenService){var currentUser=TokenService.decodeToken();return{user:currentUser,saveUser:function saveUser(user){currentUser=user;$rootScope.$broadcast("loggedIn");},getUser:function getUser(){return currentUser;},clearUser:function clearUser(){currentUser=null;TokenService.clearToken();$rootScope.$broadcast("loggedOut");}};}
 "use strict";
 "use strict";
+"use strict";angular.module("noveList").controller("usersIndexCtrl",usersIndexCtrl);usersIndexCtrl.$inject=["User"];function usersIndexCtrl(User){var vm=this;User.query(function(data){vm.users=data.users;});}
 "use strict";
 "use strict";
+"use strict";angular.module("noveList").controller("loginCtrl",loginCtrl);loginCtrl.$inject=["User","CurrentUserService"];function loginCtrl(user,CurrentUserService){var vm=this;vm.login=function(){User.login(vm.user).$promise.then(function(data){var user=data.user?data.user:null;if(user){CurrentUserService.saveUser(user);}});};}
+"use strict";angular.module("noveList").controller("mainCtrl",mainCtrl);mainCtrl.$inject=["$rootScope","CurrentUserService","$state"];function mainCtrl($rootScope,CurrentUserService,$state){var vm=this;vm.user=CurrentUserService.getUser();vm.logout=function(){event.preventDefault();CurrentUserService.clearUser();};$rootScope.$on("loggedIn",function(){vm.user=CurrentUserService.getUser();$state.go("usersIndex");});$rootScope.$on("loggedOut",function(){vm.user=null;$state.go("home");});}
 "use strict";
 "use strict";
+"use strict";angular.module("noveList").controller("registerCtrl",registerCtrl);registerCtrl.$inject=["User","CurrentUserService"];function registerCtrl(User,CurrentUserService){var vm=this;vm.register=function(){console.log("here");User.register({user:vm.user}).$promise.then(function(data){console.log("hello");var user=data.user?data.user:null;if(user){CurrentUserService.saveUser(user);}});};}
+"use strict";angular.module("noveList").config(Router);Router.$inject=["$stateProvider","$locationProvider","$urlRouterProvider"];function Router($stateProvider,$locationProvider,$urlRouterProvider){$locationProvider.html5Mode(true);$stateProvider.state("home",{url:"/",templateUrl:"/js/views/home.html"}).state("register",{url:"/register",templateUrl:"/js/views/register.html",controller:"registerCtrl as register"}).state("login",{url:"/login",templateUrl:"/js/views/login.html",controller:"loginCtrl as login"});$urlRouterProvider.otherwise("/");}
 "use strict";
 "use strict";
-"use strict";
-"use strict";
-"use strict";
-"use strict";
-"use strict";
-"use strict";
-"use strict";
-"use strict";
-"use strict";
-"use strict";
+"use strict";angular.module("noveList").service("TokenService",TokenService);TokenService.$inject=["$window","jwtHelper"];function TokenService($window,jwtHelper){var self=this;self.setToken=setToken;self.getToken=getToken;self.decodeToken=decodeToken;self.clearToken=clearToken;function setToken(token){return $window.localStorage.setItem("auth-token",token);}function getToken(){return $window.localStorage.getItem("auth-token");}function decodeToken(){var token=self.getToken();return token?jwtHelper.decodeToken(token):null;}function clearToken(){return $window.localStorage.removeItem("auth-token");}}
+"use strict";angular.module("noveList").factory("User",userFactory);userFactory.$inject=["API","$resource"];function userFactory(API,$resource){return $resource(API+"/users/:id",{id:"@_id"},{'query':{method:"GET",isArray:false},'register':{method:"POST",url:API+"/register"},'login':{method:"POST",url:API+"/login"}});}
