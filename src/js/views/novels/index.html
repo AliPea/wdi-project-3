@@ -1,6 +1,6 @@
 <h1>Novels</h1>
 <ul id="novelIndex">
-  <li class='novels' ng-repeat="novel in index.novels track by $index" ui-sref="Show({ id: novel._id })">
+  <li class='novels' ng-repeat="novel in index.novels track by $index" ui-sref="novelShow({ id: novel._id })">
     <h3>{{ novel.title }}</h3><br>
     <img ng-src="{{ novel.image }}" alt="" />
   </li>
