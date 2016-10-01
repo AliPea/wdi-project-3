@@ -11,11 +11,14 @@
   color: #363537;
 }
 
-h1, h2 {
+h1 {
   font-size: 48px;
   color: #363537;
   font-family: 'GoudyBookletter1911', serif;
   text-align: center;
+  span {
+    font-family: 'Dancing Script', cursive;
+  }
 }
 
 h2 {

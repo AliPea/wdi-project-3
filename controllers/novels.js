@@ -1,7 +1,7 @@
 module.exports = {
   index: novelsIndex,
   create: novelsCreate,
-  show: novelsShow,
+  show:   novelsShow,
   update: novelsUpdate,
   delete: novelsDelete
 };
