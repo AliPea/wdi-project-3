@@ -27,3 +27,10 @@ h2 {
   font-family: 'GoudyBookletter1911', serif;
   // text-align: center;
 }
+
+#logo {
+  height: 100vh;
+  background-image: url('https://source.unsplash.com/random');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
