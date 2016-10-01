@@ -10,20 +10,21 @@ Novel.collection.drop();
 
 const novels = [{
   title:      "Test Novel One",
-  image:      "http://fillmurray.com/400/200",
+  image:      "http://www.placecage.com/gif/400/200",
   entries:    [{body: "Hi, I'm the first entry!"},
                {body: "Hi, I'm the second entry!"}]
 },{
   title:      "Test Novel Two",
-  image:      "http://fillmurray.com/400/200",
-  entries:    [{body: "Hi, I'm the first entry!"}]
+  image:      "http://www.placecage.com/gif/400/200",
+  entries:    [{ body: "Hi, I'm the first entry!" }],
+  comments:   [{ body: "Hi, I'm a comment!" }]
 },{
   title:      "Test Novel Three",
-  image:      "http://fillmurray.com/400/200",
+  image:      "http://www.placecage.com/gif/400/200",
   entries:    [{body: "Hi, I'm the first entry!"}]
 },{
   title:      "Test Novel Four",
-  image:      "http://fillmurray.com/400/200",
+  image:      "http://www.placecage.com/gif/400/200",
   entries:    [{body: "Hi, I'm the first entry!"}]
 }
 ];
