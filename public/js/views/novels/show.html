@@ -4,11 +4,11 @@
 <img src="{{ show.novel.image }}">
 <h2>{{ show.novel.status }}</h2>
 <ul ng-repeat="entry in show.novel.entries">
-  <li>{{ entry.author.username }}</li>
+  <li>Novelist: {{ entry.author.username }}</li>
   <li>{{ entry.body }}</li>
 </ul>
 <ul ng-repeat="comment in show.novel.comments">
-  <li>{{ comment.author.username }}</li>
+  <li>Comment by: {{ comment.author.username }}</li>
   <li>{{ comment.body }}</li>
 </ul>
   <form>
