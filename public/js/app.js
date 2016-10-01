@@ -49944,15 +49944,32 @@ if (typeof jQuery === 'undefined') {
 "use strict";
 "use strict";
 "use strict";angular.module("noveList").controller("usersIndexCtrl",usersIndexCtrl);usersIndexCtrl.$inject=["User"];function usersIndexCtrl(User){var vm=this;User.query(function(data){vm.users=data.users;});}
+<<<<<<< HEAD
 "use strict";angular.module("noveList").controller("NovelIndexCtrl",NovelIndexCtrl);NovelIndexCtrl.$inject=["Novel",'$http'];function NovelIndexCtrl(Novel,$http){var vm=this;Novel.query().$promise.then(function(data){console.log('indexjs data',data);vm.novels=data.novels;});}
+=======
+<<<<<<< HEAD
+"use strict";
+>>>>>>> ec909fc599b7dc9da83585bf900a41b40f9b9831
 'use strict';angular.module("noveList").config(SetupInterceptor);SetupInterceptor.$inject=['$httpProvider'];function SetupInterceptor($httpProvider){return $httpProvider.interceptors.push('AuthInterceptor');}
+=======
+"use strict";angular.module("noveList").controller("NovelIndexCtrl",NovelIndexCtrl);NovelIndexCtrl.$inject=["Novel","$stateParams","$state"];function NovelIndexCtrl(Novel){var vm=this;Novel.query(function(data){vm.novel=data.novels;});}
+"use strict";
+>>>>>>> navbar
 "use strict";angular.module("noveList").controller("loginCtrl",loginCtrl);loginCtrl.$inject=["User","CurrentUserService"];function loginCtrl(User,CurrentUserService){var vm=this;vm.login=function(){User.login(vm.user).$promise.then(function(data){console.log(data);var user=data.user?data.user:null;if(user){CurrentUserService.saveUser(user);}});};}
 "use strict";angular.module("noveList").controller("mainCtrl",mainCtrl);mainCtrl.$inject=["$rootScope","CurrentUserService","$state"];function mainCtrl($rootScope,CurrentUserService,$state){var vm=this;vm.user=CurrentUserService.getUser();vm.logout=function(){event.preventDefault();CurrentUserService.clearUser();};$rootScope.$on("loggedIn",function(){vm.user=CurrentUserService.getUser();console.log(vm.user);$state.go("home");});$rootScope.$on("loggedOut",function(){vm.user=null;$state.go("home");});}
 "use strict";
 "use strict";angular.module("noveList").factory("Novel",Novel);Novel.$inject=["$resource","API"];function Novel($resource,API){return $resource(API+"/novels/:id",{id:"@_id"},{'query':{method:"GET",isArray:false},'update':{method:"PUT"}});}
 "use strict";angular.module("noveList").controller("registerCtrl",registerCtrl);registerCtrl.$inject=["User","CurrentUserService"];function registerCtrl(User,CurrentUserService){var vm=this;vm.register=function(){User.register({user:vm.user}).$promise.then(function(data){console.log('data',data);var user=data.user?data.user:null;if(user){CurrentUserService.saveUser(user);}});};}
 "use strict";angular.module("noveList").config(Router);Router.$inject=["$stateProvider","$locationProvider","$urlRouterProvider"];function Router($stateProvider,$locationProvider,$urlRouterProvider){$locationProvider.html5Mode(true);$stateProvider.state("home",{url:"/",templateUrl:"/js/views/home.html",controller:"mainCtrl as main"}).state("register",{url:"/register",templateUrl:"/js/views/register.html",controller:"registerCtrl as register"}).state("login",{url:"/login",templateUrl:"/js/views/login.html",controller:"loginCtrl as login"})//novels Router
+<<<<<<< HEAD
 .state('novelIndex',{url:"/novels/index",templateUrl:"/js/views/novels/index.html",controller:"NovelIndexCtrl as index"}).state('novelNew',{url:"/novels/new",templateUrl:"/js/views/novels/new.html",controller:"NovelNewCtrl as new"}).state('novelShow',{url:"/novels/show",templateUrl:"/js/views/novels/show.html",controller:"NovelShowCtrl as show"}).state('novelEdit',{url:"/novels/edit",templateUrl:"/js/views/novels/edit.html",controller:"NovelEditCtrl as edit"});$urlRouterProvider.otherwise("/");}
+=======
+<<<<<<< HEAD
+.state('novelIndex',{url:"/novels/index",templateUrl:"/js/views/novels/index.html",controller:"NovelNewCtrl as new"}).state('novelNew',{url:"/novels/new",templateUrl:"/js/views/novels/new.html",controller:"NovelIndexCtrl as index"}).state('novelShow',{url:"/novels/show",templateUrl:"/js/views/novels/show.html",controller:"NovelShowCtrl as show"}).state('novelEdit',{url:"/novels/edit",templateUrl:"/js/views/novels/edit.html",controller:"NovelEditCtrl as edit"});$urlRouterProvider.otherwise("/");}
+=======
+.state('novelIndex',{url:"/novels/index",templateUrl:"/js/views/novels/index.html",controller:"NovelIndexCtrl as nov"}).state('novelNew',{url:"/novels/new",templateUrl:"/js/views/novels/new.html",controller:"NovelNewCtrl as nov"}).state('novelShow',{url:"/novels/show",templateUrl:"/js/views/novels/show.html",controller:"NovelShowCtrl as nov"}).state('novelEdit',{url:"/novels/edit",templateUrl:"/js/views/novels/edit.html",controller:"NovelEditCtrl as nov"});$urlRouterProvider.otherwise("/");}
+>>>>>>> navbar
+>>>>>>> ec909fc599b7dc9da83585bf900a41b40f9b9831
 "use strict";
 "use strict";
 "use strict";angular.module("noveList").service("TokenService",TokenService);TokenService.$inject=["$window","jwtHelper"];function TokenService($window,jwtHelper){var self=this;self.setToken=setToken;self.getToken=getToken;self.decodeToken=decodeToken;self.clearToken=clearToken;function setToken(token){return $window.localStorage.setItem("auth-token",token);}function getToken(){return $window.localStorage.getItem("auth-token");}function decodeToken(){var token=self.getToken();return token?jwtHelper.decodeToken(token):null;}function clearToken(){return $window.localStorage.removeItem("auth-token");}}
