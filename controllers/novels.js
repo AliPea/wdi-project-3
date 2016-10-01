@@ -25,6 +25,7 @@ function novelsCreate( req, res ) {
 function novelsShow( req, res ) {
   Novel.findById(req.params.id)
   .populate('entries.author')
+  .populate('comments.author')
   .exec((err, novel) => {
     if(err) return res.status(500).json({ message: "Something went wrong"});
     return res.status(200).json({ novel });
