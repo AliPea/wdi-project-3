@@ -9,19 +9,20 @@
   font-family: 'NovaSlim', serif;
   text-align: right;
   color: #363537;
+  margin: 0;
 }
 
 h1 {
+  text-shadow: 1px 1px 1px white, 0 0 1em white, 0 0 0.2em white;
+  margin: 0;
   font-size: 48px;
   color: #363537;
   font-family: 'GoudyBookletter1911', serif;
   text-align: center;
-  span {
-    font-family: 'Dancing Script', cursive;
-  }
 }
 
 h2 {
+  text-shadow: 1px 1px 1px white, 0 0 1em white, 0 0 0.2em white;
   font-size: 30px;
   color: #363537;
   font-family: 'GoudyBookletter1911', serif;
