@@ -27,25 +27,25 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
   .state('novelIndex', {
     url: "/novels/index",
     templateUrl: "/js/views/novels/index.html",
-    controller: "NovelNewCtrl as nov"
+    controller: "NovelIndexCtrl as index"
   })
 
   .state('novelNew', {
     url: "/novels/new",
     templateUrl: "/js/views/novels/new.html",
-    controller: "NovelIndexCtrl as nov"
+    controller: "NovelNewCtrl as new"
   })
 
   .state('novelShow', {
-    url: "/novels/show",
+    url: "/novels/:id",
     templateUrl: "/js/views/novels/show.html",
-    controller: "NovelShowCtrl as nov"
+    controller: "NovelShowCtrl as show"
   })
 
   .state('novelEdit', {
     url: "/novels/edit",
     templateUrl: "/js/views/novels/edit.html",
-    controller: "NovelEditCtrl as nov"
+    controller: "NovelEditCtrl as edit"
   });
 
   $urlRouterProvider.otherwise("/");

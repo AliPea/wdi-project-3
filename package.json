@@ -1,5 +1,5 @@
 {
-  "name": "NoveList",
+  "name": "novelist",
   "version": "1.0.0",
   "description": "An app of group-written novels.",
   "main": "index.js",
