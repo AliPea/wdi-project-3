@@ -8,10 +8,15 @@ mongoose.connect(config.db);
 
 Novel.collection.drop();
 
+let user = {
+  _id: "57ee603e058110c915c61e51"
+};
+
 const novels = [{
   title:      "Test Novel One",
   image:      "http://www.placecage.com/gif/400/200",
-  entries:    [{body: "Hi, I'm the first entry!"},
+  entries:    [{author: '57ee603e058110c915c61e51',
+    body: "Hi, I'm the first entry!"},
                {body: "Hi, I'm the second entry!"}]
 },{
   title:      "Test Novel Two",
