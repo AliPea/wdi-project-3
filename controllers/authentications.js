@@ -10,6 +10,7 @@ const config = require("../config/config");
 
 function authenticationsRegister(req, res){
   User.create(req.body.user, (err, user) => {
+    console.log('body', req.body);
     if (err) return res.status(500).json(console.log(err));
 
     let token = jwt.sign({ id: user._id, username: user.username }, config.secret, { expiresIn: 60*60*24 });

@@ -46,7 +46,26 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
     url: "/novels/edit",
     templateUrl: "/js/views/novels/edit.html",
     controller: "NovelEditCtrl as edit"
-  });
+  })
+
+  //users Router
+  .state("usersIndex", {
+    url: "/users/index",
+    templateUrl:  "/js/views/users/index.html",
+    controller:   "usersIndexCtrl as usersIndex",
+  })
+
+  .state('usersShow', {
+			url: "/users/:id",
+			templateUrl: "/js/views/users/show.html",
+      controller: "usersShowCtrl as usersShow"
+		})
+
+    .state('usersEdit', {
+      url: "/novels/edit",
+      templateUrl: "/js/views/users/edit.html",
+      controller: "usersEditCtrl as usersEdit"
+    });
 
   $urlRouterProvider.otherwise("/");
 }

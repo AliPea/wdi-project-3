@@ -1,7 +1,7 @@
 module.exports = {
   index: novelsIndex,
   create: novelsCreate,
-  show: novelsShow,
+  show:   novelsShow,
   update: novelsUpdate,
   delete: novelsDelete
 };
@@ -9,6 +9,7 @@ module.exports = {
 const Novel = require('../models/novel');
 
 function novelsIndex (req, res ) {
+    console.log('index backend', req)
   Novel.find((err, novels) => {
     if (err) return res.status(500).json({ message: "Something went wrong" });
     return res.status(200).json({ novels });
