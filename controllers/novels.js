@@ -55,10 +55,13 @@ function novelsAddEntry(req, res) {
     if (err) return res.status(500).json({ message: "Something went wrong"});
     if (!novel) return res.status(404).json({ message: "Novel not found"});
 
-    novel.entries.addToSet({
+    let data = {
       body: req.body.entry,
-      author: req.user._id
-    });
+      author: req.user._id,
+      wordCount: req.body.wordCount
+    };
+
+    novel.entries.addToSet(data);
 
     novel.save((err, novel) => {
       if (err) return res.status(500).json({ message: "Something went wrong"});
