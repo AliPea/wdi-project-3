@@ -10,12 +10,13 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
   Novel.get($stateParams, data => {
     vm.novel = data.novel;
   });
-  // 
-  // vm.filter('reverse', function() {
-  //   return function(items) {
-  //     return items.slice().reverse();
-  //   };
-  // });
+
+  vm.countOf = countOf;
+
+  function countOf(text) {
+    var s = text ? text.split(/\s+/) : 0; // it splits the text on space/tab/enter
+    return s ? s.length : '';
+  }
 
   // Get formData & update the novel
   vm.submitEntry = () => {
