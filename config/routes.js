@@ -18,13 +18,16 @@ router.route('/users/:id')
   .patch(users.update)
   .delete(users.delete);
 
-  router.route("/novels")
+router.route("/novels")
   .get(novels.index)
   .post(novels.create);
 router.route("/novels/:id")
   .get(novels.show)
+  .post(novels.create)
   .put(novels.update)
   .patch(novels.update)
   .delete(novels.delete);
+router.route("/novels/:id/addentry")
+  .put(novels.addEntry);
 
 module.exports = router;

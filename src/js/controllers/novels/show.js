@@ -13,12 +13,13 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
 
   // Get formData & update the novel
   vm.submit = () => {
+    console.log(vm.novel.entries.body);
     Novel
-    .update($stateParams, { novel: vm.novel })
-    .$promise
-    .then(data => {
-      $state.go("novelShow", $stateParams);
-    });
+      .addEntry($stateParams, { entry: vm.novel.entries.body })
+      .$promise
+      .then(data => {
+        $state.go("novelShow", $stateParams);
+      });
   };
 
   vm.novelDelete = () => {
