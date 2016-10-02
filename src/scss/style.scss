@@ -1,7 +1,6 @@
 @import 'partials/_bower.scss';
 @import 'partials/_index.scss';
 @import 'partials/_navbar.scss';
-@import 'partials/_novel.scss';
 @import 'partials/_footer.scss';
 @import 'partials/_novelShow.scss';
 
@@ -85,7 +84,7 @@ a {
         border: dotted;
         margin: 50px 0;
         border: 0;
-        box-sizing: content-box;
+        // box-sizing: content-box;
         display: block;
         -webkit-margin-before: 0.5em;
         -webkit-margin-after: 0.5em;
