@@ -12,21 +12,29 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
   });
 
   vm.countOf = countOf;
+  vm.wordCount = 0;
 
   function countOf(text) {
     var s = text ? text.split(/\s+/) : 0; // it splits the text on space/tab/enter
+    vm.wordCount = s.length;
     return s ? s.length : '';
   }
 
   // Get formData & update the novel
   vm.submitEntry = () => {
-    console.log(vm.novel.entries.body);
+    let data = {
+      entry: vm.novel.entries.body,
+      wordCount: vm.wordCount
+    };
+
     Novel
-    .addEntry($stateParams, { entry: vm.novel.entries.body })
+    .addEntry($stateParams, data)
     .$promise
     .then(data => {
-      vm.novel.entries.push(data.novel.comments);
-      vm.novel.entries.body = null;
+      Novel.get($stateParams, data => {
+        vm.novel = data.novel;
+        vm.novel.entries.body = null;
+      });
     });
   };
 

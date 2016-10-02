@@ -15,46 +15,117 @@ let user = {
 const novels = [{
   title:      "Test Novel One",
   image:      "../images/image1.jpeg",
-  entries:    [{author: '57ee603e058110c915c61e51',
-    body: "Hi, I'm the first entry!"},
-               { author: '57ee603e058110c915c61e51', body: "Hi, I'm the second entry!"}]
+  entries:    [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm the first entry!",
+      wordCount: 4
+    },{
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm the second entry!",
+      wordCount: 3
+    }
+  ],
 },{
   title:      "Test Novel Two",
   image:      "../images/image2.jpeg",
-  entries:    [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm the first entry!" }],
-  comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
+  entries:    [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm the first entry!",
+      wordCount: 2
+    }
+  ],
+  comments:   [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm a comment!" ,
+    }
+  ],
 },{
   title:      "Test Novel Three",
   image:      "../images/image3.jpeg",
-  entries:    [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm the first entry!"}]
+  entries:    [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm the first entry!",
+      wordCount: 2
+    }
+  ]
 },{
   title:      "Test Novel Four",
   image:      "../images/image4.jpeg",
-  entries:    [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm the first entry!"}]
+  entries:    [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm the first entry!",
+      wordCount: 1
+    }
+  ]
 },{
   title:      "Test Novel Five",
   image:      "../images/image5.jpeg",
-  entries:    [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm the first entry!" }],
-  comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
+  entries:    [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm the first entry!" ,
+      wordCount: 2
+    }
+  ],
+  comments:   [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm a comment!",
+    }
+  ]
 },{
   title:      "Test Novel Six",
   image:      "../images/image6.jpeg",
-  entries:    [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm the first entry!" }],
-  comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
+  entries:    [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm the first entry!",
+      wordCount: 4
+    }
+  ],
+  comments:   [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm a comment!"
+    }
+  ]
 },{
   title:      "Test Novel Seven",
   image:      "../images/image7.jpeg",
-  entries:    [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm the first entry!" }],
+  entries:    [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm the first entry!",
+      wordCount: 2
+    }
+  ],
   comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
 },{
   title:      "Test Novel Eight",
   image:      "../images/image8.jpeg",
-  entries:    [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm the first entry!" }],
+  entries:    [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm the first entry!",
+      wordCount: 1
+    }
+  ],
   comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
 },{
   title:      "Test Novel Nine",
   image:      "../images/image9.jpeg",
-  entries:    [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm the first entry!" }],
+  entries:    [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm the first entry!",
+      wordCount: 5
+    }
+  ],
   comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
 }
 ];
