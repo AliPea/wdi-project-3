@@ -12,8 +12,7 @@ function NovelNewCtrl(Novel, $state, RandomImage){
   .query()
   .$promise
   .then(data => {
-    console.log(data.urls.full);
-    vm.novel.image = data.urls.full;
+    vm.novel.image = data.urls.custom;
   });
 
   vm.submit = () => {

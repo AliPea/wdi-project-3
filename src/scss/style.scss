@@ -27,9 +27,6 @@ a {
 }
 
 .navbar {
-  z-index: 1000;
-    margin-top: 0px;
-    position: absolute;
     width: 100%;
     top: 0;
     background-color: rgba(250, 250, 250, 0.9);
@@ -43,6 +40,7 @@ a {
       line-height: 50px;
       font-size: 35px;
       margin: 0;
+      margin-left: 21px;
       vertical-align: middle;
       cursor: pointer;
     }
@@ -121,6 +119,7 @@ a {
 }
 
 h1 {
+  text-align: center;
   text-shadow: 1px 1px 1px white, 0 0 1em white, 0 0 0.2em white;
   margin-top: 75px;
   font-size: 48px;
@@ -161,6 +160,7 @@ h1 {
   display: block;
 }
 .navbar-collapse {
+  text-align: right;
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
 }
@@ -169,6 +169,7 @@ h1 {
   border-width: 0 0 1px;
 }
 .navbar-collapse.collapse {
+
   display: none!important;
 }
 .navbar-nav {

@@ -43,8 +43,10 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
     .addComment($stateParams, { comment: vm.novel.comments.body })
     .$promise
     .then(data => {
-      vm.novel.comments.push(data.novel.comments);
-      vm.novel.comments.body = null;
+      Novel.get($stateParams, data => {
+        vm.novel = data.novel;
+        vm.novel.comments.body = null;
+        });
     });
   };
 
