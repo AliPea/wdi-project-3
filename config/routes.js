@@ -29,5 +29,7 @@ router.route("/novels/:id")
   .delete(novels.delete);
 router.route("/novels/:id/addentry")
   .put(novels.addEntry);
+router.route("/novels/:id/addcomment")
+  .put(novels.addComment);
 
 module.exports = router;

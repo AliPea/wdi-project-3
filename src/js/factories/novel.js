@@ -11,6 +11,11 @@ function Novel($resource, API) {
       method: "PUT",
       url: `${API}/novels/:id/addentry`,
       params: { id: "@_id" }
+    },
+    'addComment': {
+      method: "PUT",
+      url: `${API}/novels/:id/addcomment`,
+      params: { id: "@_id" }
     }
   });
 }

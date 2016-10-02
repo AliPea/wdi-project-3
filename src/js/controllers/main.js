@@ -23,5 +23,4 @@ function mainCtrl($rootScope, CurrentUserService, $state) {
     vm.user = null;
     $state.go("home");
   });
-
 }
