@@ -1,7 +1,13 @@
 <h1>Users</h1>
-<ul id="userIndex">
-  <li lass='users' ng-repeat="user in index.users track by $index" ui-sref="userShow({ id: user._id })">
-    <h3>{{ user.name }}<h3>
-    <img ng-src="{{ user.image }}" alt="" />
-  </li>
-</ul>
+<div class="media" ng-repeat="user in usersIndex.users">
+  <div class="media-body">
+    <h4 class="media-heading">{{ user.username }}</h4>
+    <div class="media-left">
+      <a ui-sref="#">
+        <img class="media-object" ng-src="{{ user.image }}">
+      </a>
+    </div>
+    <p>Full name: {{ user.firstName }} {{ user.lastName }}</p>
+    <p>Email: {{ user.email }}</p>
+  </div>
+</div>
