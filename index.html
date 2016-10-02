@@ -10,14 +10,16 @@
 <body ng-controller="mainCtrl as main">
   <header>
     <div class="navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
       <div class="navbar-left">
-        <a class="navbar-brand" ui-sref="home"><img src="http://ilikevision.com/wp-content/uploads/2016/03/vector_colourful_education_book_logo.png"></a>
+        <h4 ui-sref="home">Novelist</h4>
       </div>
-      <div class="navbar-center">
-        <a class="brand-name">Novelist</a>
-        <a class="brand-slogan">Creative Collective Stories</a>
-        <hr class="hidden-sm-down">
-      </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <div class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
           <li ng-if="!main.user">
