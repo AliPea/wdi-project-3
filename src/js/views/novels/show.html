@@ -31,8 +31,10 @@
         </span>
       </div>
     </form>
-    <h2>Comments</h2>
-    <ul ng-repeat="comments in show.novel.comments | orderBy:'-'">
-      <li>{{ comments.createdAt }} | {{ main.user.username }} > {{ comments.body }}</li>
-    </ul>
+
   </div>
+  <h2>Comments</h2>
+  <ul ng-repeat="comments in show.novel.comments | orderBy:'-'">
+    <li>{{ comments.createdAt }} | {{ main.user.username }} > {{ comments.body }}</li>
+  </ul>
+</div>
