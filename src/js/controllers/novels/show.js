@@ -6,16 +6,28 @@ NovelShowCtrl.$inject = ["Novel", "$stateParams", "$state"];
 function NovelShowCtrl(Novel, $stateParams, $state) {
   const vm = this;
 
+  // Get showNovels data
   Novel.get($stateParams, data => {
     vm.novel = data.novel;
   });
 
-  vm.novelDelete = () => {
+  // Get formData & update the novel
+  vm.submit = () => {
+    console.log(vm.novel.entries.body);
     Novel
-      .delete($stateParams)
+      .addEntry($stateParams, { entry: vm.novel.entries.body })
       .$promise
       .then(data => {
-        $state.go("novelIndex");
+        $state.go("novelShow", $stateParams);
       });
+  };
+
+  vm.novelDelete = () => {
+    Novel
+    .delete($stateParams)
+    .$promise
+    .then(data => {
+      $state.go("novelIndex");
+    });
   };
 }

@@ -112,7 +112,7 @@ gulp.task("copy:fonts", () => {
 });
 // copy images from src to dist
 gulp.task("copy:images", () => {
-  return gulp.src(`${src}/**/*.{png,gif,jpg,ico}`)
+  return gulp.src(`${src}/**/*.{png,gif,jpg,ico,jpeg}`)
     .pipe(gulp.dest(dist));
 });
 // copy html from src to dist

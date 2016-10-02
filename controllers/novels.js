@@ -1,22 +1,22 @@
 module.exports = {
-  index: novelsIndex,
-  create: novelsCreate,
-  show: novelsShow,
-  update: novelsUpdate,
-  delete: novelsDelete
+  index:    novelsIndex,
+  create:   novelsCreate,
+  show:     novelsShow,
+  update:   novelsUpdate,
+  delete:   novelsDelete,
+  addEntry: novelsAddEntry
 };
 
 const Novel = require('../models/novel');
 
 function novelsIndex (req, res ) {
-    console.log('index backend', req)
   Novel.find((err, novels) => {
     if (err) return res.status(500).json({ message: "Something went wrong" });
     return res.status(200).json({ novels });
   });
 }
 
-function novelsCreate( req, res ) {
+function novelsCreate(req, res) {
   Novel.create(req.body.novel, (err, novel) => {
     if(err) return res.status(500).json({ message: "Something went wrong"});
     return res.status(200).json({ novel });
@@ -24,7 +24,10 @@ function novelsCreate( req, res ) {
 }
 
 function novelsShow( req, res ) {
-  Novel.findById(req.params.id, (err, novel) => {
+  Novel.findById(req.params.id)
+  .populate('entries.author')
+  .populate('comments.author')
+  .exec((err, novel) => {
     if(err) return res.status(500).json({ message: "Something went wrong"});
     return res.status(200).json({ novel });
   });
@@ -33,7 +36,7 @@ function novelsShow( req, res ) {
 function novelsUpdate( req, res ) {
   Novel.findByIdAndUpdate(req.params.id, req.body.novel, {new: true}, (err, novel) => {
     if(err) return res.status(500).json({ message: "Something went wrong"});
-    if(!novel) return res.status(500).json({ message: "Novel not found"});
+    if(!novel) return res.status(404).json({ message: "Novel not found"});
     return res.status(200).json({ novel });
   });
 }
@@ -42,5 +45,22 @@ function novelsDelete( req, res ) {
   Novel.findByIdAndRemove(req.params.id, (err, novel) => {
     if(err) return res.status(500).json({ message: "Something went wrong"});
     return res.status(204).send();
+  });
+}
+
+function novelsAddEntry(req, res) {
+  Novel.findById(req.params.id, (err, novel) => {
+    if (err) return res.status(500).json({ message: "Something went wrong"});
+    if (!novel) return res.status(404).json({ message: "Novel not found"});
+
+    novel.entries.addToSet({
+      body: req.body.entry,
+      author: req.user._id
+    });
+
+    novel.save((err, novel) => {
+      if (err) return res.status(500).json({ message: "Something went wrong"});
+      return res.status(201).json({ novel });
+    });
   });
 }
