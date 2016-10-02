@@ -6,6 +6,16 @@ Novel.$inject = ["$resource", "API"];
 function Novel($resource, API) {
   return $resource(`${API}/novels/:id`, { id: "@_id" }, {
     'query':  { method: "GET", isArray: false },
-    'update': { method: "PUT" }
+    'update': { method: "PUT" },
+    'addEntry': {
+      method: "PUT",
+      url: `${API}/novels/:id/addentry`,
+      params: { id: "@_id" }
+    },
+    'addComment': {
+      method: "PUT",
+      url: `${API}/novels/:id/addcomment`,
+      params: { id: "@_id" }
+    }
   });
 }

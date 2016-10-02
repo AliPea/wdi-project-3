@@ -10,14 +10,32 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
   Novel.get($stateParams, data => {
     vm.novel = data.novel;
   });
+  // 
+  // vm.filter('reverse', function() {
+  //   return function(items) {
+  //     return items.slice().reverse();
+  //   };
+  // });
 
   // Get formData & update the novel
-  vm.submit = () => {
+  vm.submitEntry = () => {
+    console.log(vm.novel.entries.body);
     Novel
-    .update($stateParams, { novel: vm.novel })
+    .addEntry($stateParams, { entry: vm.novel.entries.body })
     .$promise
     .then(data => {
-      $state.go("novelShow", $stateParams);
+      vm.novel.entries.push(data.novel.comments);
+      vm.novel.entries.body = null;
+    });
+  };
+
+  vm.submitComment = () => {
+    Novel
+    .addComment($stateParams, { comment: vm.novel.comments.body })
+    .$promise
+    .then(data => {
+      vm.novel.comments.push(data.novel.comments);
+      vm.novel.comments.body = null;
     });
   };
 
