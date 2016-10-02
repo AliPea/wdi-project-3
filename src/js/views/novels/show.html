@@ -1,20 +1,19 @@
 <div class="novelShow">
   <h1>{{ show.novel.title }}</h1>
   <p>{{ show.novel.creator }}</p>
-  <img src="{{ show.novel.image }}">
-  <div class="input-group input-group-lg">
-    <h2 class="input-group-addon">Status: {{ show.novel.status }}</h2>
-  </div>
-  <ul class="list-group" ng-repeat="novelist in show.novel.entries">
-    {{ novelist.author.username }}
+  <img ng-src="{{ show.novel.image }}">
+  <h2>Status: {{ show.novel.status }}</h2>
+  <span class="list-group" ng-repeat="novelist in show.novel.entries">
+    {{ novelist.body }}
+    <!-- {{ novelist.author.username }}
     <li class="list-group-item">{{ novelist.author.username }}</li>
-    <li class="list-group-item">{{ novelist.body }}</li>
-  </ul>
-  <ul class="list-group" ng-repeat="comment in show.novel.comments">
+    <li class="list-group-item">{{ novelist.body }}</li> -->
+  </span>
+  <!-- <ul class="list-group" ng-repeat="comment in show.novel.comments">
     <li class="list-group-item">{{ comment.author.username }}</li>
     <li class="list-group-item">{{ comment.body }}</li>
-  </ul>
-  <li class="list-group-item">{{ show.novel.entries.body }}</li>    <!--may take this out later-->
+  </ul> -->
+  <span>{{ show.novel.entries.body }}</span>    <!--may take this out later-->
 
   <form ng-submit="show.submit()">
     <input type="hidden" id="novelUser" class="form-control" value="{{ main.user.id }}">
