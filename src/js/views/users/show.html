@@ -1,6 +1,10 @@
-<h1>{{ user.user.name }}</h1>
-<img ng-src="{{ user.user.image }}">
-<ul class="list-inline">
-  <li><a class="btn btn-default" ui-sref="userEdit({id: user.user._id})">Edit</a></li>
-  <li><a class="btn btn-default" ng-click="user.userDelete()">Delete</a></li>
-</ul>
+<div class="userShow">
+  <h1>{{ show.users.name }}</h1>
+  <img ng-src="{{ show.user.image }}">
+  <span class="list-group" ng-repeat="usersist in show.users.entries">
+    {{ usersist.body }}</span>
+    <h2>Comments</h2>
+    <ul ng-repeat="comments in show.user.comments | orderBy:'-'">
+      <li>{{ comments.createdAt }} | {{ main.user.username }} > {{ comments.body }}</li>
+    </ul>
+  </div>
