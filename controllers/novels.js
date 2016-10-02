@@ -19,6 +19,7 @@ function novelsIndex (req, res ) {
 
 function novelsCreate(req, res) {
   Novel.create(req.body.novel, (err, novel) => {
+    console.log(req.body.novel);
     if(err) return res.status(500).json({ message: "Something went wrong"});
     return res.status(200).json({ novel });
   });
