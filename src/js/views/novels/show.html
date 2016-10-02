@@ -12,6 +12,7 @@
       <label for="novelEntry">Continue Novel</label>
       <div class="input-group input-group-lg">
         <span class="input-group-addon">{{ main.user.username }}:</span>
+        <span class="input-group-addon">WordCount: <span ng-bind="show.countOf(show.novel.entries.body)"></span></span>
         <textarea id="novelEntry sizing-addon1" class="form-control" placeholder="and then...." ng-model="show.novel.entries.body"></textarea>
         <span class="input-group-btn">
           <input class="btn btn-default" aria-describedby="sizing-addon1" type="submit" value="Add">
@@ -22,11 +23,11 @@
     <form ng-submit="show.submitComment()">
       <input type="hidden" id="novelUser" class="form-control" value="{{ main.user.id }}">
       <label for="novelComment">Add Comment</label>
-      <div class="input-group input-group-lg">
+      <div class="input-group input-group-sm">
         <span class="input-group-addon">{{ main.user.username }}:</span>
-        <textarea id="novelComment sizing-addon1" class="form-control" placeholder="I think..." ng-model="show.novel.comments.body"></textarea>
+        <textarea id="novelComment sizing-addon3" class="form-control" placeholder="I think..." ng-model="show.novel.comments.body"></textarea>
         <span class="input-group-btn">
-          <input class="btn btn-default" aria-describedby="sizing-addon1" type="submit" value="Add">
+          <input class="btn btn-default" aria-describedby="sizing-addon3" type="submit" value="Add">
         </span>
       </div>
     </form>
