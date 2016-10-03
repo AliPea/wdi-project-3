@@ -11,7 +11,7 @@
 
   <span>{{ show.novel.entries.body }}</span>
 
-  <h3 ng-if="!show.lastEntry">Patience, you contributed to the novel last.</h3>
+  <h3 ng-if="!show.lastEntry" class="errorMessage">Patience, you contributed to the novel last.</h3>
 
   <form ng-submit="show.submitEntry()" name="novelEntriesForm" ng-if="show.novelStatus">
     <input type="hidden" id="novelUser" class="form-control" value="{{ main.user.id }}">

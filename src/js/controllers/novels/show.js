@@ -36,11 +36,13 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
   }
 
   function userStatus() {
-    if(vm.entriesCount !== 0) {
+    if(vm.entriesCount !== 0 && vm.novel.status === "active") {
       vm.lastPost = vm.novel.entries[vm.entriesCount-1].author._id;
-      vm.newAuthor = vm.novel.entries[vm.entriesCount-1].author;
+      // vm.newAuthor = vm.novel.entries[vm.entriesCount-1].author;
       vm.userId = vm.user.id;
-      if(vm.lastPost === vm.userId || vm.newAuthor === vm.userId) {
+      console.log(vm.novel.entries)
+      console.log(vm.userId)
+      if(vm.lastPost === vm.userId) {
         vm.novelStatus = false;
         vm.lastEntry = false;
       }
@@ -76,8 +78,12 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
     .addEntry($stateParams, data)
     .$promise
     .then(data => {
+      Novel.get($stateParams, data => {
         vm.novel = data.novel;
         vm.novel.entries.body = null;
+        novelStatus();
+        userStatus();
+      });
     });
 
     Novel
@@ -86,8 +92,6 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
     .then(data => {
       Novel.get($stateParams, data => {
         vm.entriesCount ++;
-        novelStatus();
-        userStatus();
       });
     });
   };

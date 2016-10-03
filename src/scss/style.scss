@@ -4,6 +4,7 @@
 @import 'partials/_footer.scss';
 @import 'partials/_novelShow.scss';
 @import 'partials/_novelNew.scss';
+@import "partials/_errorMessage.scss";
 
 @import 'mixins/_mixins.scss';
 
@@ -200,10 +201,6 @@ h2 {
 }
 .collapse.in{
   display:block !important;
-}
-
-.errorMessage {
-  color: red;
 }
 
 .novelnew {
