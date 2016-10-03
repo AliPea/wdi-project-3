@@ -52,19 +52,19 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
   .state("usersIndex", {
     url: "/users/index",
     templateUrl:  "/js/views/users/index.html",
-    controller:   "usersIndexCtrl as usersIndex",
+    controller:   "usersIndexCtrl as index",
   })
 
   .state('usersShow', {
 			url: "/users/:id",
 			templateUrl: "/js/views/users/show.html",
-      controller: "usersShowCtrl as usersShow"
+      controller: "usersShowCtrl as show"
 		})
 
     .state('usersEdit', {
       url: "/novels/edit",
       templateUrl: "/js/views/users/edit.html",
-      controller: "usersEditCtrl as usersEdit"
+      controller: "usersEditCtrl as edit"
     });
 
   $urlRouterProvider.otherwise("/");
