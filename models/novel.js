@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 const entrySchema = new mongoose.Schema({
   author: { type: mongoose.Schema.Types.ObjectId, ref: "User"},
-  body:   { type: String, minlength: 5, maxlength: 500 } // Might add number of words?
+  body:   { type: String, minlength: 5, maxlength: 500 },
+  wordCount: { type: Number, maxlength: 5, required: true } // Might add number of words?
 }, {
   timestamps: true
 });

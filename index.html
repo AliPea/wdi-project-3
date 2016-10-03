@@ -9,18 +9,18 @@
 </head>
 <body ng-controller="mainCtrl as main">
   <header>
-    <div class="navbar">
+    <div class="navbar navbar-fixed-top">
+      <div class="container">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
       <div class="navbar-left">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <a class="navbar-brand" ui-sref="home"><img src="http://ilikevision.com/wp-content/uploads/2016/03/vector_colourful_education_book_logo.png"></a>
+        <h4 ui-sref="home">Novelist</h4>
       </div>
-      <!-- App name -->
-      <div class="navbar-center">
-        <a class="brand-name">Novelist</a>
-        <a class="brand-slogan">Creative Collective Stories</a>
-        <hr class="hidden-sm-down">
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <div class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
           <li ng-if="!main.user">
@@ -48,20 +48,17 @@
         </ul>
       </div>
     </div>
-  </div><!-- /.navbar-collapse -->
-</div><!-- /.container-fluid -->
-</header>
-<main ui-view></main>
-<div class="footer">
-  <div class="container">
-    <p class="left">Contact Us<br />Say Hello</p>
-    <p class="right">Connect<br />Social Media Links</p>
-    <p class="centered">Visit Us<br />Address: The Relay Building, 1 Commercial Street, London E1 7PT</p>
-    <hr class="hidden-sm-down">
+    </div>
+    </div>
+  </header>
+  <main ui-view></main>
+  <div class="footer">
+    <div class="container">
+      <p class="left">Contact Us<br />Say Hello</p>
+      <p class="right">Connect<br />Social Media Links</p>
+      <p class="centered">Visit Us<br />Address: The Relay Building, 1 Commercial Street, London E1 7PT</p>
+      <hr class="hidden-sm-down">
+    </div>
   </div>
-</div>
-<<<<<<< HEAD
 </body>
-=======
->>>>>>> 2d877cafd5444aeec089ba0ff582fcbc84ea3062
 </html>

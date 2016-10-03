@@ -18,15 +18,33 @@ function novelsIndex (req, res ) {
 }
 
 function novelsCreate(req, res) {
-  Novel.create(req.body.novel, (err, novel) => {
-    console.log(req.body.novel);
+  Novel.create({
+    creator: req.user._id,
+    title:   req.body.novel.title,
+    image:   req.body.novel.image
+  }, (err, novel) => {
     if(err) return res.status(500).json({ message: "Something went wrong"});
+
+    let data = {
+      body: req.body.novel.entry,
+      author: req.user._id,
+      wordCount: req.body.novel.wordCount
+    };
+
+    novel.entries.addToSet(data);
+
+    novel.save((err, novel) => {
+      if (err) return res.status(500).json({ message: "Something went wrong"});
+      return res.status(201).json({ novel });
+    });
+
     return res.status(200).json({ novel });
   });
 }
 
 function novelsShow( req, res ) {
   Novel.findById(req.params.id)
+  .populate('creator')
   .populate('entries.author')
   .populate('comments.author')
   .exec((err, novel) => {
@@ -55,10 +73,13 @@ function novelsAddEntry(req, res) {
     if (err) return res.status(500).json({ message: "Something went wrong"});
     if (!novel) return res.status(404).json({ message: "Novel not found"});
 
-    novel.entries.addToSet({
+    let data = {
       body: req.body.entry,
-      author: req.user._id
-    });
+      author: req.user._id,
+      wordCount: req.body.wordCount
+    };
+
+    novel.entries.addToSet(data);
 
     novel.save((err, novel) => {
       if (err) return res.status(500).json({ message: "Something went wrong"});
