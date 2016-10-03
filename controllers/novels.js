@@ -9,6 +9,7 @@ module.exports = {
 };
 
 const Novel = require('../models/novel');
+const User  = require('../models/user');
 
 function novelsIndex (req, res ) {
   Novel.find((err, novels) => {
@@ -18,27 +19,20 @@ function novelsIndex (req, res ) {
 }
 
 function novelsCreate(req, res) {
-  Novel.create({
-    creator: req.user._id,
-    title:   req.body.novel.title,
-    image:   req.body.novel.image
-  }, (err, novel) => {
-    if(err) return res.status(500).json({ message: "Something went wrong"});
+  let novel = new Novel(req.body.novel);
+  novel.creator = req.user;
 
-    let data = {
-      body: req.body.novel.entry,
-      author: req.user._id,
-      wordCount: req.body.novel.wordCount
-    };
-
-    novel.entries.addToSet(data);
-
-    novel.save((err, novel) => {
-      if (err) return res.status(500).json({ message: "Something went wrong"});
-      return res.status(201).json({ novel });
+  User.findById(novel.creator, (err,user) => {
+    if (err) return res.status(500).send(err);
+    user.novels.push(novel);
+    user.save((err, user) => {
+      if (err) return res.status(500).send(err);
     });
+  });
 
-    return res.status(200).json({ novel });
+  novel.save((err, novel) => {
+    if (err) return res.status(500).send(err);
+    res.status(201).send(novel);
   });
 }
 
@@ -54,7 +48,7 @@ function novelsShow( req, res ) {
 }
 
 function novelsUpdate( req, res ) {
-  Novel.findByIdAndUpdate(req.params.id, req.body.novel, /*{new: true},*/ (err, novel) => {
+  Novel.findByIdAndUpdate(req.params.id, { status: req.body.status }, (err, novel) => {
     if(err) return res.status(500).json({ message: "Something went wrong"});
     if(!novel) return res.status(404).json({ message: "Novel not found"});
     return res.status(200).json({ novel });
@@ -76,7 +70,7 @@ function novelsAddEntry(req, res) {
     let data = {
       body: req.body.entry,
       author: req.user._id,
-      wordCount: req.body.wordCount,
+      wordCount: req.body.wordCount
     };
 
     novel.entries.addToSet(data);
