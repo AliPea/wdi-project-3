@@ -66,6 +66,7 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
     if(vm.entriesCount >= 4) {
       entryStatus = "finished";
     }
+
     let data = {
       entry: vm.novel.entries.body,
       wordCount: vm.wordCount
