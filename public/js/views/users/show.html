@@ -1,0 +1,10 @@
+<div class="userShow">
+  <h1>{{ show.users.name }}</h1>
+  <img ng-src="{{ show.user.image }}">
+  <span class="list-group" ng-repeat="usersist in show.users.entries">
+    {{ usersist.body }}</span>
+    <h2>Comments</h2>
+    <ul ng-repeat="comments in show.user.comments | orderBy:'-'">
+      <li>{{ comments.createdAt }} | {{ main.user.username }} > {{ comments.body }}</li>
+    </ul>
+  </div>
