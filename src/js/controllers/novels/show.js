@@ -14,24 +14,21 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
   vm.entriesCount = 0;
   vm.novelStatus = true;
 
-
-
   // If there are 5, then the novelEntriesForm disappears
   // and the status changes to Finished
   function novelStatus() {
-    if(vm.entriesCount > vm.maxEntriesCount && vm.novel.status === "active") {
+    console.log(vm.novel.status)
+    if(vm.entriesCount >= vm.maxEntriesCount) {
       vm.novelStatus = false;
     }
   }
 
-
   // Get showNovels data
   Novel.get($stateParams, data => {
     vm.novel = data.novel;
-    novelStatus();
     // Count how many entries there are on the page
     vm.entriesCount = vm.novel.entries.length;
-
+    novelStatus();
   });
 
   // Count the number of words in the entry box
@@ -52,7 +49,7 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
   vm.submitEntry = () => {
     let entryStatus = "active";
 
-    if(vm.entriesCount === 4) {
+    if(vm.entriesCount >= 4) {
       entryStatus = "finished";
     }
 
@@ -68,15 +65,13 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
       Novel.get($stateParams, data => {
         vm.novel = data.novel;
         vm.novel.entries.body = null;
-        // vm.novelStatus = false;
       });
     });
 
     Novel
-    .update($stateParams, {status: entryStatus})
+    .update($stateParams, { status: entryStatus })
     .$promise
     .then(data => {
-      console.log(data);
       vm.entriesCount ++;
       novelStatus();
     });

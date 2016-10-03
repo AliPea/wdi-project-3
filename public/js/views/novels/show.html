@@ -3,9 +3,13 @@
   <p>By {{ show.novel.creator.username }}</p>
   <img ng-src="{{ show.novel.image }}">
   <h2>Status: {{ show.novel.status }}</h2>
-  <span class="list-group" ng-repeat="novelist in show.novel.entries">
+
+
+  <span class="list-group entries" data-toggle="tooltip" data-placement="top" title="{{ novelist.author.username }}" ng-repeat="novelist in show.novel.entries" ui-sref="usersShow({ id: novelist.author._id })">
     {{ novelist.body }}
   </span>
+
+
   <span>{{ show.novel.entries.body }}</span>
 
   <form ng-submit="show.submitEntry()" name="novelEntriesForm" ng-if="show.novelStatus">
@@ -33,20 +37,19 @@
     Please enter a maximum of {{ show.maxWordCount }} words
   </p>
 </form>
-
-<form ng-submit="show.submitComment()" name="novelCommentForm">
-  <input type="hidden" id="novelUser" class="form-control" value="{{ main.user.id }}">
-  <label for="novelComment">Add Comment</label>
-  <div class="input-group input-group-sm">
-    <span class="input-group-addon">{{ main.user.username }}:</span>
-    <textarea id="novelComment sizing-addon3" class="form-control" placeholder="I think..." ng-model="show.novel.comments.body" required></textarea>
-    <span class="input-group-btn">
-      <input class="btn btn-default" aria-describedby="sizing-addon3" type="submit" value="Add" ng-disabled="novelCommentForm.$invalid">
-    </span>
-  </div>
-</form>
-<h3>Comments</h3>
-<ul ng-repeat="comments in show.novel.comments | orderBy:'-'">
-  <li>{{ comments.createdAt }} | {{ main.user.username }} > {{ comments.body }}</li>
-</ul>
+  <form ng-submit="show.submitComment()" name="novelCommentForm">
+    <input type="hidden" id="novelUser" class="form-control" value="{{ main.user.id }}">
+    <label for="novelComment">Add Comment</label>
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon">{{ main.user.username }}:</span>
+      <textarea id="novelComment sizing-addon3" class="form-control" placeholder="I think..." ng-model="show.novel.comments.body" required></textarea>
+      <span class="input-group-btn">
+        <input class="btn btn-default" aria-describedby="sizing-addon3" type="submit" value="Add" ng-disabled="novelCommentForm.$invalid">
+      </span>
+    </div>
+  </form>
+  <h3>Comments</h3>
+  <ul ng-repeat="comments in show.novel.comments | orderBy:'-'">
+    <li>{{ comments.createdAt }} | {{ comments.author.username }} > {{ comments.body }}</li>
+  </ul>
 </div>
