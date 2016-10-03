@@ -27,9 +27,9 @@ a {
 }
 
 .navbar {
-    width: 100%;
-    top: 0;
-    background-color: rgba(250, 250, 250, 0.9);
+  width: 100%;
+  top: 0;
+  background-color: rgba(250, 250, 250, 0.9);
   .navbar-left {
     font-size: 18px;
     font-family: 'GoudyBookletter1911', serif;
@@ -57,7 +57,7 @@ a {
       width: auto;
     }
   }
-.navbar-center {
+  .navbar-center {
     font-family: 'GoudyBookletter1911', serif;
     text-align: center;
     text-shadow: 1px 1px 1px white, 0 0 1em white, 0 0 0.2em white;
@@ -139,12 +139,12 @@ h2 {
   list-style: none;
   background-color: rgba(250, 250, 250, 0.7);
   -webkit-background-clip: padding-box;
-          background-clip: padding-box;
+  background-clip: padding-box;
   border: none;
   border: none;
   border-radius: 4px;
   -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 #logo {
@@ -157,10 +157,10 @@ h2 {
     position: absolute;
     bottom: 50px;
     left: 100px;
-}
-h1 {
-  bottom: 150px;
-}
+  }
+  h1 {
+    bottom: 150px;
+  }
 }
 
 .navbar-header {
