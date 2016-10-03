@@ -2,9 +2,10 @@ angular
 .module("noveList")
 .controller("NovelShowCtrl", NovelShowCtrl);
 
-NovelShowCtrl.$inject = ["Novel", "$stateParams", "$state"];
-function NovelShowCtrl(Novel, $stateParams, $state) {
+NovelShowCtrl.$inject = ["Novel", "$stateParams", "$state", "CurrentUserService"];
+function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
   const vm = this;
+  vm.user = CurrentUserService.getUser();
 
   $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
@@ -17,45 +18,30 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
   vm.maxEntriesCount = 5;
   vm.entriesCount = 0;
   vm.novelStatus = true;
+  vm.lastEntry = true;
 
-  // If there are 5, then the novelEntriesForm disappears
-  // and the status changes to Finished
+  function userStatus() {
+    vm.lastPost = vm.novel.entries[vm.entriesCount-1].author._id;
+    vm.userId = vm.user.id;
+    if(vm.lastPost === vm.userId) {
+      vm.novelStatus = false;
+      vm.lastEntry = false;
+    }
+  }
+
+  Novel.get($stateParams, data => {
+    vm.novel = data.novel;
+    // Count how many entries there are on the page
+    vm.entriesCount = vm.novel.entries.length;
+    novelStatus();
+    if(vm.entriesCount !== 0) userStatus();
+  });
+
   function novelStatus() {
     if(vm.entriesCount >= vm.maxEntriesCount) {
       vm.novelStatus = false;
     }
   }
-
-  // Get showNovels data
-  // Novel.get($stateParams, data => {
-  //   vm.novel = data.novel;
-  //   // Count how many entries there are on the page
-  //   vm.entriesCount = vm.novel.entries.length;
-  //   novelStatus();
-  // // Get showNovels data
-  // Novel.get($stateParams, data => {
-  //
-  //   $(document).ready(function(){
-  //       $('[data-toggle="tooltip"]').tooltip();
-  //   });
-  //
-  //   vm.novel = data.novel;
-  //   console.log(vm.novel);
-  // });
-  //
-
-  Novel.get($stateParams, data => {
-    vm.novel = data.novel;
-
-    // Count how many entries there are on the page
-    vm.entriesCount = vm.novel.entries.length;
-    novelStatus();
-
-  });
-
-  vm.countOf = countOf;
-  vm.wordCount = 0;
-  vm.wordCountStatus = true;
 
   function countOf(text) {
     var s = text ? text.split(/\s+/) : 0; // it splits the text on space/tab/enter
@@ -92,7 +78,6 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
         vm.novel.entries.body = null;
       });
     });
-
 
     Novel
     .update($stateParams, { status: entryStatus })

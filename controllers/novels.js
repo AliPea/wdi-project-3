@@ -19,20 +19,27 @@ function novelsIndex (req, res ) {
 }
 
 function novelsCreate(req, res) {
-  let novel = new Novel(req.body.novel);
-  novel.creator = req.user;
+  Novel.create({
+    creator: req.user._id,
+    title:   req.body.novel.title,
+    image:   req.body.novel.image
+  }, (err, novel) => {
+    if(err) return res.status(500).json({ message: "Something went wrong"});
 
-  User.findById(novel.creator, (err,user) => {
-    if (err) return res.status(500).send(err);
-    user.novels.push(novel);
-    user.save((err, user) => {
-      if (err) return res.status(500).send(err);
+    let data = {
+      body: req.body.novel.entry,
+      author: req.user._id,
+      wordCount: req.body.novel.wordCount
+    };
+
+    novel.entries.addToSet(data);
+
+    novel.save((err, novel) => {
+      if (err) return res.status(500).json({ message: "Something went wrong"});
+      return res.status(201).json({ novel });
     });
-  });
 
-  novel.save((err, novel) => {
-    if (err) return res.status(500).send(err);
-    res.status(201).send(novel);
+    return res.status(200).json({ novel });
   });
 }
 
