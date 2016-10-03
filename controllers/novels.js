@@ -41,7 +41,7 @@ function novelsShow( req, res ) {
 }
 
 function novelsUpdate( req, res ) {
-  Novel.findByIdAndUpdate(req.params.id, req.body.novel, {new: true}, (err, novel) => {
+  Novel.findByIdAndUpdate(req.params.id, req.body.novel, /*{new: true},*/ (err, novel) => {
     if(err) return res.status(500).json({ message: "Something went wrong"});
     if(!novel) return res.status(404).json({ message: "Novel not found"});
     return res.status(200).json({ novel });
@@ -63,7 +63,7 @@ function novelsAddEntry(req, res) {
     let data = {
       body: req.body.entry,
       author: req.user._id,
-      wordCount: req.body.wordCount
+      wordCount: req.body.wordCount,
     };
 
     novel.entries.addToSet(data);
