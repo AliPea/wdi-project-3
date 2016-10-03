@@ -50698,7 +50698,7 @@ vm.novel.wordCount=s.length;return s?s.length:'';}RandomImage.query().$promise.t
 .state("usersIndex",{url:"/users/index",templateUrl:"/js/views/users/index.html",controller:"usersIndexCtrl as usersIndex"}).state('usersShow',{url:"/users/:id",templateUrl:"/js/views/users/show.html",controller:"usersShowCtrl as usersShow"}).state('usersEdit',{url:"/novels/edit",templateUrl:"/js/views/users/edit.html",controller:"usersEditCtrl as usersEdit"});$urlRouterProvider.otherwise("/");}
 "use strict";angular.module("noveList").controller("NovelShowCtrl",NovelShowCtrl);NovelShowCtrl.$inject=["Novel","$stateParams","$state"];function NovelShowCtrl(Novel,$stateParams,$state){var vm=this;vm.countOf=countOf;vm.wordCount=0;vm.wordCountStatus=true;vm.maxWordCount=5;vm.maxEntriesCount=5;vm.entriesCount=0;vm.novelStatus=true;// If there are 5, then the novelEntriesForm disappears
 // and the status changes to Finished
-function novelStatus(){console.log(vm.novel.status);if(vm.entriesCount>=vm.maxEntriesCount){vm.novelStatus=false;}}// Get showNovels data
+function novelStatus(){if(vm.entriesCount>=vm.maxEntriesCount){vm.novelStatus=false;}}// Get showNovels data
 Novel.get($stateParams,function(data){vm.novel=data.novel;// Count how many entries there are on the page
 vm.entriesCount=vm.novel.entries.length;novelStatus();});// Count the number of words in the entry box
 function countOf(text){var s=text?text.split(/\s+/):0;// it splits the text on space/tab/enter

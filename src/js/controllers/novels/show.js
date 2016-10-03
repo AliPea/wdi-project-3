@@ -17,7 +17,6 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
   // If there are 5, then the novelEntriesForm disappears
   // and the status changes to Finished
   function novelStatus() {
-    console.log(vm.novel.status)
     if(vm.entriesCount >= vm.maxEntriesCount) {
       vm.novelStatus = false;
     }
