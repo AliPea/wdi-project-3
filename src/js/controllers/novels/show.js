@@ -2,9 +2,10 @@ angular
 .module("noveList")
 .controller("NovelShowCtrl", NovelShowCtrl);
 
-NovelShowCtrl.$inject = ["Novel", "$stateParams", "$state"];
-function NovelShowCtrl(Novel, $stateParams, $state) {
+NovelShowCtrl.$inject = ["Novel", "$stateParams", "$state", "CurrentUserService"];
+function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
   const vm = this;
+  vm.user = CurrentUserService.getUser();
 
 <<<<<<< HEAD
 =======
@@ -19,15 +20,18 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
   vm.maxEntriesCount = 5;
   vm.entriesCount = 0;
   vm.novelStatus = true;
+  vm.lastEntry = true;
 
-  // If there are 5, then the novelEntriesForm disappears
-  // and the status changes to Finished
-  function novelStatus() {
-    if(vm.entriesCount >= vm.maxEntriesCount) {
+  function userStatus() {
+    vm.lastPost = vm.novel.entries[vm.entriesCount-1].author._id;
+    vm.userId = vm.user.id;
+    if(vm.lastPost === vm.userId) {
       vm.novelStatus = false;
+      vm.lastEntry = false;
     }
   }
 
+<<<<<<< HEAD
 >>>>>>> b05a316f7d28725a4c234fc7d1fb767ad4400d71
   // Get showNovels data
   // Novel.get($stateParams, data => {
@@ -47,14 +51,16 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
   // });
   //
 
+=======
+>>>>>>> a691e1d90c7504143dc6d24c95724a3627e9561a
   Novel.get($stateParams, data => {
 <<<<<<< HEAD
 =======
     vm.novel = data.novel;
-
     // Count how many entries there are on the page
     vm.entriesCount = vm.novel.entries.length;
     novelStatus();
+<<<<<<< HEAD
 >>>>>>> b05a316f7d28725a4c234fc7d1fb767ad4400d71
 
     $(document).ready(function(){
@@ -63,11 +69,16 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
 
     vm.novel = data.novel;
     console.log(vm.novel);
+=======
+    if(vm.entriesCount !== 0) userStatus();
+>>>>>>> a691e1d90c7504143dc6d24c95724a3627e9561a
   });
 
-  vm.countOf = countOf;
-  vm.wordCount = 0;
-  vm.wordCountStatus = true;
+  function novelStatus() {
+    if(vm.entriesCount >= vm.maxEntriesCount) {
+      vm.novelStatus = false;
+    }
+  }
 
   function countOf(text) {
     var s = text ? text.split(/\s+/) : 0; // it splits the text on space/tab/enter
@@ -109,7 +120,6 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
     });
 <<<<<<< HEAD
 =======
-
 
     Novel
     .update($stateParams, { status: entryStatus })
