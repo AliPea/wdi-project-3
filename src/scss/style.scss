@@ -17,6 +17,8 @@ html {
   background-color: #fff;
   margin: 0 auto;
   color: black;
+  position: relative;
+  min-height: 100%;
 }
 a {
   color: black;
@@ -215,3 +217,7 @@ h2 {
     font-size: 100px;
   }
 }
+// body {
+// margin: 0 0 100px; /* bottom = footer height */
+// padding: 25px;
+// }
