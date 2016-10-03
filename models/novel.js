@@ -2,15 +2,15 @@ const mongoose = require("mongoose");
 
 const entrySchema = new mongoose.Schema({
   author: { type: mongoose.Schema.Types.ObjectId, ref: "User"},
-  body:   { type: String, minlength: 5, maxlength: 500 },
-  wordCount: { type: Number, maxlength: 5, required: true } // Might add number of words?
+  body:   { type: String },
+  wordCount: { type: Number, max: 100, required: true } // Might add number of words?
 }, {
   timestamps: true
 });
 
 const commentSchema = new mongoose.Schema({
   author: { type: mongoose.Schema.Types.ObjectId, ref: "User"},
-  body:   { type: String, minlength: 1, maxlength: 200 } // Might add number of words?
+  body:   { type: String } // Might add number of words?
 }, {
   timestamps: true
 });
