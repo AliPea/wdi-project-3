@@ -27,12 +27,9 @@ a {
 }
 
 .navbar {
-  z-index: 1000;
-    margin-top: 0px;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    background-color: rgba(250, 250, 250, 0.9);
+  width: 100%;
+  top: 0;
+  background-color: rgba(250, 250, 250, 0.9);
   .navbar-left {
     font-size: 18px;
     font-family: 'GoudyBookletter1911', serif;
@@ -43,6 +40,7 @@ a {
       line-height: 50px;
       font-size: 35px;
       margin: 0;
+      margin-left: 21px;
       vertical-align: middle;
       cursor: pointer;
     }
@@ -59,7 +57,7 @@ a {
       width: auto;
     }
   }
-.navbar-center {
+  .navbar-center {
     font-family: 'GoudyBookletter1911', serif;
     text-align: center;
     text-shadow: 1px 1px 1px white, 0 0 1em white, 0 0 0.2em white;
@@ -121,6 +119,7 @@ a {
 }
 
 h1 {
+  text-align: center;
   text-shadow: 1px 1px 1px white, 0 0 1em white, 0 0 0.2em white;
   margin-top: 75px;
   font-size: 48px;
@@ -135,9 +134,22 @@ h2 {
   font-family: 'GoudyBookletter1911', serif;
 }
 
+.dropdown-menu {
+  text-align: left;
+  list-style: none;
+  background-color: rgba(250, 250, 250, 0.7);
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: none;
+  border: none;
+  border-radius: 4px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 #logo {
   height: 100vh;
-  background-image: url('https://source.unsplash.com/random/');
+  background-image: url('https://source.unsplash.com/random/1050x700');
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -145,10 +157,10 @@ h2 {
     position: absolute;
     bottom: 50px;
     left: 100px;
-}
-h1 {
-  bottom: 150px;
-}
+  }
+  h1 {
+    bottom: 150px;
+  }
 }
 
 .navbar-header {
@@ -161,6 +173,7 @@ h1 {
   display: block;
 }
 .navbar-collapse {
+  text-align: right;
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
 }
@@ -169,6 +182,7 @@ h1 {
   border-width: 0 0 1px;
 }
 .navbar-collapse.collapse {
+
   display: none!important;
 }
 .navbar-nav {
@@ -184,4 +198,8 @@ h1 {
 }
 .collapse.in{
   display:block !important;
+}
+
+.errorMessage {
+  color: red;
 }

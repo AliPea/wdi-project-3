@@ -1,25 +1,12 @@
-<!-- <div class="userShow">
-  <h1>{{ usersShow.user.username }}</h1>
-  <img ng-src="{{ usersShow.user.image }}">
-  <span class="list-group" ng-repeat="usersist in show.users.entries">
-    {{ usersist.body }}</span>
-    <h2>Comments</h2>
-    <ul ng-repeat="comments in show.user.comments | orderBy:'-'">
-      <li>{{ comments.createdAt }} | {{ main.user.username }} > {{ comments.body }}</li>
-    </ul>
-  </div> -->
+<div class="userShow">
+  <img ng-src="{{ usersShow.user.image }}"/>
+  <h1>{{ usersShow.user.username}}</h1>
 
-
-
-  <div class="userShow">
-    <img ng-src="{{ usersShow.user.image }}"/>
-    <h1>{{ usersShow.user.username}}</h1>
-
-    <ul>
-      <li ng-repeat="novel in usersShow.user.novels">
-        <ul>
-          <li ui-sref="novelShow({ id: novel._id })">{{ novel.title }}</li>
-        </ul>
-      </li>
-    </ul>
-  </div>
+  <ul>
+    <li ng-repeat="novel in usersShow.user.novels">
+      <ul>
+        <li ui-sref="novelShow({ id: novel._id })">{{ novel.title }}</li>
+      </ul>
+    </li>
+  </ul>
+</div>
