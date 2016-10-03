@@ -23,8 +23,21 @@ function novelsCreate(req, res) {
     title:   req.body.novel.title,
     image:   req.body.novel.image
   }, (err, novel) => {
-    console.log(req.body.novel);
     if(err) return res.status(500).json({ message: "Something went wrong"});
+
+    let data = {
+      body: req.body.novel.entry,
+      author: req.user._id,
+      wordCount: req.body.novel.wordCount
+    };
+
+    novel.entries.addToSet(data);
+
+    novel.save((err, novel) => {
+      if (err) return res.status(500).json({ message: "Something went wrong"});
+      return res.status(201).json({ novel });
+    });
+
     return res.status(200).json({ novel });
   });
 }
