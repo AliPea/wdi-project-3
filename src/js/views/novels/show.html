@@ -4,6 +4,7 @@
   <img ng-src="{{ show.novel.image }}">
   <h2>Status: {{ show.novel.status }}</h2>
 
+
   <span class="list-group entries" data-toggle="tooltip" title="{{ novelist.author.username }}" ng-repeat="novelist in show.novel.entries" ui-sref="usersShow({ id: novelist.author._id })">
     {{ novelist.body }}
   </span>

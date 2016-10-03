@@ -7,6 +7,8 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
   const vm = this;
   vm.user = CurrentUserService.getUser();
 
+<<<<<<< HEAD
+=======
   $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
   });
@@ -29,12 +31,47 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
     }
   }
 
+<<<<<<< HEAD
+>>>>>>> b05a316f7d28725a4c234fc7d1fb767ad4400d71
+  // Get showNovels data
+  // Novel.get($stateParams, data => {
+  //   vm.novel = data.novel;
+  //   // Count how many entries there are on the page
+  //   vm.entriesCount = vm.novel.entries.length;
+  //   novelStatus();
+  // // Get showNovels data
+  // Novel.get($stateParams, data => {
+  //
+  //   $(document).ready(function(){
+  //       $('[data-toggle="tooltip"]').tooltip();
+  //   });
+  //
+  //   vm.novel = data.novel;
+  //   console.log(vm.novel);
+  // });
+  //
+
+=======
+>>>>>>> a691e1d90c7504143dc6d24c95724a3627e9561a
   Novel.get($stateParams, data => {
+<<<<<<< HEAD
+=======
     vm.novel = data.novel;
     // Count how many entries there are on the page
     vm.entriesCount = vm.novel.entries.length;
     novelStatus();
+<<<<<<< HEAD
+>>>>>>> b05a316f7d28725a4c234fc7d1fb767ad4400d71
+
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    vm.novel = data.novel;
+    console.log(vm.novel);
+=======
     if(vm.entriesCount !== 0) userStatus();
+>>>>>>> a691e1d90c7504143dc6d24c95724a3627e9561a
   });
 
   function novelStatus() {
@@ -58,12 +95,15 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
 
   // Get formData & update the novel
   vm.submitEntry = () => {
+<<<<<<< HEAD
+=======
     let entryStatus = "active";
 
     if(vm.entriesCount >= 4) {
       entryStatus = "finished";
     }
 
+>>>>>>> b05a316f7d28725a4c234fc7d1fb767ad4400d71
     let data = {
       entry: vm.novel.entries.body,
       wordCount: vm.wordCount
@@ -78,6 +118,8 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
         vm.novel.entries.body = null;
       });
     });
+<<<<<<< HEAD
+=======
 
     Novel
     .update($stateParams, { status: entryStatus })
@@ -86,6 +128,7 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
       vm.entriesCount ++;
       novelStatus();
     });
+>>>>>>> b05a316f7d28725a4c234fc7d1fb767ad4400d71
   };
 
   vm.submitComment = () => {

@@ -1,10 +1,12 @@
 .footer {
-  height: 30vh;
+  height: 0vh;
   border-top: 1px;
   background-color: white;
   font-family: 'GoudyBookletter1911', serif;
   color: #989898;
   margin: 50px 0;
+  position: absolute;
+  bottom: 0;
   hr{
     .hidden-sm-down {
       border-top: 1px solid rgba(87,87,87,.25);
