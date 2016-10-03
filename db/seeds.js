@@ -7,23 +7,37 @@ const User      = require("../models/user");
 mongoose.connect(config.db);
 
 Novel.collection.drop();
+User.collection.drop();
 
 let user = {
-  _id: "57ee603e058110c915c61e51"
+  username: "Admin",
+  email:  "admin@admin.com",
+  password: "password",
+  passwordConfirmation: "password",
 };
+
+let adminId = "";
+
+User.create(user, (err, user) => {
+  if(err) return console.log(err);
+  adminId = user._id;
+  return console.log(`${user} was created`);
+});
+
+
 
 const novels = [{
   title:      "Test Novel One",
   image:      "../images/image1.jpeg",
   entries:    [
     {
-      author: '57ee603e058110c915c61e51',
+      author: adminId,
       body: "Hi, I'm the first entry!",
-      wordCount: 4
+      wordCount: 100
     },{
       author: '57ee603e058110c915c61e51',
       body: "Hi, I'm the second entry!",
-      wordCount: 3
+      wordCount: 100
     }
   ],
 },{
