@@ -28,14 +28,26 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
     // Count how many entries there are on the page
     vm.entriesCount = vm.novel.entries.length;
     novelStatus();
+  // Get showNovels data
+  Novel.get($stateParams, data => {
+
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    vm.novel = data.novel;
+    console.log(vm.novel);
   });
 
-  // Count the number of words in the entry box
+  vm.countOf = countOf;
+  vm.wordCount = 0;
+  vm.wordCountStatus = true;
+
   function countOf(text) {
     var s = text ? text.split(/\s+/) : 0; // it splits the text on space/tab/enter
     vm.wordCount = s.length;
 
-    if(vm.wordCount > vm.maxWordCount) {
+    if(vm.wordCount > 5) {
       vm.wordCountStatus = false;
     } else {
       vm.wordCountStatus = true;
@@ -46,15 +58,18 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
 
   // Get formData & update the novel
   vm.submitEntry = () => {
+<<<<<<< HEAD
     let entryStatus = "active";
 
     if(vm.entriesCount >= 4) {
       entryStatus = "finished";
     }
 
+=======
+>>>>>>> development
     let data = {
       entry: vm.novel.entries.body,
-      wordCount: vm.wordCount,
+      wordCount: vm.wordCount
     };
 
     Novel
@@ -66,6 +81,7 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
         vm.novel.entries.body = null;
       });
     });
+<<<<<<< HEAD
 
     Novel
     .update($stateParams, { status: entryStatus })
@@ -74,9 +90,10 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
       vm.entriesCount ++;
       novelStatus();
     });
+=======
+>>>>>>> development
   };
 
-  // Submit a comment on the novel
   vm.submitComment = () => {
     Novel
     .addComment($stateParams, { comment: vm.novel.comments.body })
@@ -89,7 +106,6 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
     });
   };
 
-  // Currently not being used
   vm.novelDelete = () => {
     Novel
     .delete($stateParams)

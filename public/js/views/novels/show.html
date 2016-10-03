@@ -1,11 +1,15 @@
 <div class="novelShow">
   <h1>{{ show.novel.title }}</h1>
-  <p>By {{ show.novel.creator.username }}</p>
   <img ng-src="{{ show.novel.image }}">
   <h2>Status: {{ show.novel.status }}</h2>
+<<<<<<< HEAD
 
 
   <span class="list-group entries" data-toggle="tooltip" data-placement="top" title="{{ novelist.author.username }}" ng-repeat="novelist in show.novel.entries" ui-sref="usersShow({ id: novelist.author._id })">
+=======
+  
+  <span class="list-group entries" data-toggle="tooltip" title="{{ novelist.author.username }}" ng-repeat="novelist in show.novel.entries" ui-sref="usersShow({ id: novelist.author._id })">
+>>>>>>> development
     {{ novelist.body }}
   </span>
 
