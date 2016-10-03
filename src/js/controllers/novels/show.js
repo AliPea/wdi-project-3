@@ -13,10 +13,18 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
 
   vm.countOf = countOf;
   vm.wordCount = 0;
+  vm.wordCountStatus = true;
 
   function countOf(text) {
     var s = text ? text.split(/\s+/) : 0; // it splits the text on space/tab/enter
     vm.wordCount = s.length;
+
+    if(vm.wordCount > 5) {
+      vm.wordCountStatus = false;
+    } else {
+      vm.wordCountStatus = true;
+    }
+
     return s ? s.length : '';
   }
 
@@ -43,8 +51,10 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
     .addComment($stateParams, { comment: vm.novel.comments.body })
     .$promise
     .then(data => {
-      vm.novel.comments.push(data.novel.comments);
-      vm.novel.comments.body = null;
+      Novel.get($stateParams, data => {
+        vm.novel = data.novel;
+        vm.novel.comments.body = null;
+      });
     });
   };
 
