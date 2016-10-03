@@ -20,50 +20,52 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
   vm.novelStatus = true;
   vm.lastEntry = true;
 
-  function userStatus() {
-    vm.lastPost = vm.novel.entries[vm.entriesCount-1].author._id;
-    vm.userId = vm.user.id;
-    if(vm.lastPost === vm.userId) {
-      vm.novelStatus = false;
-      vm.lastEntry = false;
-    }
-  }
-
   Novel.get($stateParams, data => {
     vm.novel = data.novel;
     // Count how many entries there are on the page
     vm.entriesCount = vm.novel.entries.length;
     novelStatus();
-    if(vm.entriesCount !== 0) userStatus();
+    userStatus();
   });
 
   function novelStatus() {
     if(vm.entriesCount >= vm.maxEntriesCount) {
       vm.novelStatus = false;
     }
+    return;
+  }
+
+  function userStatus() {
+    if(vm.entriesCount !== 0) {
+      vm.lastPost = vm.novel.entries[vm.entriesCount-1].author._id;
+      vm.newAuthor = vm.novel.entries[vm.entriesCount-1].author;
+      vm.userId = vm.user.id;
+      if(vm.lastPost === vm.userId || vm.newAuthor === vm.userId) {
+        vm.novelStatus = false;
+        vm.lastEntry = false;
+      }
+      return;
+    }
+    return;
   }
 
   function countOf(text) {
     var s = text ? text.split(/\s+/) : 0; // it splits the text on space/tab/enter
     vm.wordCount = s.length;
-
     if(vm.wordCount > 5) {
       vm.wordCountStatus = false;
     } else {
       vm.wordCountStatus = true;
     }
-
     return s ? s.length : '';
   }
 
   // Get formData & update the novel
   vm.submitEntry = () => {
     let entryStatus = "active";
-
     if(vm.entriesCount >= 4) {
       entryStatus = "finished";
     }
-
     let data = {
       entry: vm.novel.entries.body,
       wordCount: vm.wordCount
@@ -73,18 +75,19 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
     .addEntry($stateParams, data)
     .$promise
     .then(data => {
-      Novel.get($stateParams, data => {
         vm.novel = data.novel;
         vm.novel.entries.body = null;
-      });
     });
 
     Novel
     .update($stateParams, { status: entryStatus })
     .$promise
     .then(data => {
-      vm.entriesCount ++;
-      novelStatus();
+      Novel.get($stateParams, data => {
+        vm.entriesCount ++;
+        novelStatus();
+        userStatus();
+      });
     });
   };
 
