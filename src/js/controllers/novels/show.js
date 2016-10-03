@@ -6,6 +6,10 @@ NovelShowCtrl.$inject = ["Novel", "$stateParams", "$state"];
 function NovelShowCtrl(Novel, $stateParams, $state) {
   const vm = this;
 
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+
   vm.countOf = countOf;
   vm.wordCount = 0;
   vm.wordCountStatus = true;
@@ -23,20 +27,30 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
   }
 
   // Get showNovels data
+  // Novel.get($stateParams, data => {
+  //   vm.novel = data.novel;
+  //   // Count how many entries there are on the page
+  //   vm.entriesCount = vm.novel.entries.length;
+  //   novelStatus();
+  // // Get showNovels data
+  // Novel.get($stateParams, data => {
+  //
+  //   $(document).ready(function(){
+  //       $('[data-toggle="tooltip"]').tooltip();
+  //   });
+  //
+  //   vm.novel = data.novel;
+  //   console.log(vm.novel);
+  // });
+  //
+
   Novel.get($stateParams, data => {
     vm.novel = data.novel;
+
     // Count how many entries there are on the page
     vm.entriesCount = vm.novel.entries.length;
     novelStatus();
-  // Get showNovels data
-  Novel.get($stateParams, data => {
 
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-
-    vm.novel = data.novel;
-    console.log(vm.novel);
   });
 
   vm.countOf = countOf;
@@ -58,15 +72,12 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
 
   // Get formData & update the novel
   vm.submitEntry = () => {
-<<<<<<< HEAD
     let entryStatus = "active";
 
     if(vm.entriesCount >= 4) {
       entryStatus = "finished";
     }
 
-=======
->>>>>>> development
     let data = {
       entry: vm.novel.entries.body,
       wordCount: vm.wordCount
@@ -81,7 +92,7 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
         vm.novel.entries.body = null;
       });
     });
-<<<<<<< HEAD
+
 
     Novel
     .update($stateParams, { status: entryStatus })
@@ -90,8 +101,6 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
       vm.entriesCount ++;
       novelStatus();
     });
-=======
->>>>>>> development
   };
 
   vm.submitComment = () => {
