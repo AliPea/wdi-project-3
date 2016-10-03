@@ -1,7 +1,13 @@
 .novelShow {
   margin: 0 auto;
   width: 800px;
-
+  span.entries {
+    &:hover{
+      color: #FFFFFF;
+      background-color: #000000;
+      cursor: pointer;
+    }
+  }
   img {
     max-width: 100%;
     max-height: 350px;
