@@ -3,16 +3,6 @@
   <form ng-submit="new.submit()">
     <input type="hidden" id="novelUser" class="form-control" value="{{ main.user.id }}">
     <div class="input-group input-group-lg">
-<<<<<<< HEAD
-      <span class="input-group-addon">{{ main.user.username }}:</span>
-      <textarea id="novelEntry sizing-addon1" class="form-control" placeholder="Title" ng-model="new.novel.title"></textarea>
-      <span class="input-group-btn">
-        <input class="btn btn-default" aria-describedby="sizing-addon1" type="submit" value="Add">
-      </span>
-    </div>
-  </form>
-<img ng-src="{{ new.novel.image }}" alt="" />
-=======
       <textarea id="novelTitle" class="form-control" placeholder="Choose a title for your story!" ng-model="new.novel.title"></textarea>
     </div>
     <img ng-src="{{ new.novel.image }}" alt="" />
@@ -26,5 +16,4 @@
     <input type="hidden" id="wordCount" ng-model="new.novel.wordCount" value="{{ new.novel.wordCount }}">
     <p ng-if="new.novel.title.length>4" class="input-group input-group-lg">WordCount: <span ng-bind="new.countOf(new.novel.entry)"></span></p>
   </form>
->>>>>>> development
 </div>

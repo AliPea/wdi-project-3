@@ -47559,8 +47559,6 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-<<<<<<< HEAD
-=======
 /**
  * @license AngularJS v1.5.8
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -48301,7 +48299,6 @@ function ngMessageDirectiveFactory() {
 
 })(window, window.angular);
 
->>>>>>> development
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -50680,11 +50677,7 @@ if (typeof jQuery === 'undefined') {
 
 }(jQuery);
 
-<<<<<<< HEAD
-"use strict";angular.module("noveList",["ui.router","ngResource","angular-jwt"]);$(document).on('click','.navbar-collapse.in',function(e){if($(e.target).is('a')){$(this).collapse('hide');}});
-=======
-"use strict";angular.module("noveList",["ui.router","ngResource","angular-jwt","ngMessages"]);$(document).on('click','.navbar-collapse.in',function(e){if($(e.target).is('a')){$(this).collapse('hide');}});$(document).ready(function(){$('[data-toggle="tooltip"]').tooltip({placement:'top'});});
->>>>>>> development
+"use strict";angular.module("noveList",["ui.router","ngResource","angular-jwt","ngMessages"]);$(document).on('click','.navbar-collapse.in',function(e){if($(e.target).is('a')){$(this).collapse('hide');}});
 "use strict";angular.module("noveList").constant("API",window.location.origin+"/api");
 "use strict";angular.module("noveList").factory("AuthInterceptor",AuthInterceptor);AuthInterceptor.$inject=['API','TokenService'];function AuthInterceptor(API,TokenService){return{request:function request(config){var token=TokenService.getToken();if(config.url.indexOf(API)===0&&token){config.headers.Authorization="Bearer "+token;}return config;},response:function response(res){if(res.config.url.indexOf(API)===0&&res.data.token){TokenService.setToken(res.data.token);}return res;}};}
 "use strict";angular.module("noveList").service("CurrentUserService",CurrentUserService);CurrentUserService.$inject=["$rootScope","TokenService"];function CurrentUserService($rootScope,TokenService){var currentUser=TokenService.decodeToken();return{user:currentUser,saveUser:function saveUser(user){currentUser=user;$rootScope.$broadcast("loggedIn");},getUser:function getUser(){return currentUser;},clearUser:function clearUser(){currentUser=null;TokenService.clearToken();$rootScope.$broadcast("loggedOut");}};}
@@ -50695,19 +50688,6 @@ if (typeof jQuery === 'undefined') {
 'use strict';angular.module("noveList").config(SetupInterceptor);SetupInterceptor.$inject=['$httpProvider'];function SetupInterceptor($httpProvider){return $httpProvider.interceptors.push('AuthInterceptor');}
 "use strict";angular.module("noveList").controller("loginCtrl",loginCtrl);loginCtrl.$inject=["User","CurrentUserService"];function loginCtrl(User,CurrentUserService){var vm=this;vm.login=function(){User.login(vm.user).$promise.then(function(data){console.log(data);var user=data.user?data.user:null;if(user){CurrentUserService.saveUser(user);}});};}
 "use strict";angular.module("noveList").controller("mainCtrl",mainCtrl);mainCtrl.$inject=["$rootScope","CurrentUserService","$state"];function mainCtrl($rootScope,CurrentUserService,$state){var vm=this;vm.user=CurrentUserService.getUser();vm.logout=function(){event.preventDefault();CurrentUserService.clearUser();};$rootScope.$on("loggedIn",function(){vm.user=CurrentUserService.getUser();console.log(vm.user);$state.go("home");});$rootScope.$on("loggedOut",function(){vm.user=null;$state.go("home");});}
-<<<<<<< HEAD
-"use strict";angular.module("noveList").controller("NovelNewCtrl",NovelNewCtrl);NovelNewCtrl.$inject=["Novel","$state",'RandomImage'];function NovelNewCtrl(Novel,$state,RandomImage){var vm=this;vm.novel={};RandomImage.query().$promise.then(function(data){console.log(data.urls.full);vm.novel.image=data.urls.full;});vm.submit=function(){Novel.save({novel:vm.novel}).$promise.then(function(data){console.log(data);$state.go("novelIndex");});};}
-"use strict";angular.module("noveList").factory("Novel",Novel);Novel.$inject=["$resource","API"];function Novel($resource,API){return $resource(API+"/novels/:id",{id:"@_id"},{'query':{method:"GET",isArray:false},'update':{method:"PUT"},'addEntry':{method:"PUT",url:API+"/novels/:id/addentry",params:{id:"@_id"}},'addComment':{method:"PUT",url:API+"/novels/:id/addcomment",params:{id:"@_id"}}});}
-"use strict";angular.module("noveList").factory("RandomImage",RandomImage);RandomImage.$inject=["$resource"];function RandomImage($resource){return $resource('https://api.unsplash.com/photos/random?client_id=19e34e75471ee865d7276aade14a9c897fe6dc4ba68d8d2058c627ed81ac0bb0',null,{'query':{method:"GET",isArray:false}});}
-"use strict";angular.module("noveList").controller("registerCtrl",registerCtrl);registerCtrl.$inject=["User","CurrentUserService"];function registerCtrl(User,CurrentUserService){var vm=this;vm.register=function(){User.register({user:vm.user}).$promise.then(function(data){console.log('data',data);var user=data.user?data.user:null;if(user){CurrentUserService.saveUser(user);}});};}
-"use strict";angular.module("noveList").config(Router);Router.$inject=["$stateProvider","$locationProvider","$urlRouterProvider"];function Router($stateProvider,$locationProvider,$urlRouterProvider){$locationProvider.html5Mode(true);$stateProvider.state("home",{url:"/",templateUrl:"/js/views/home.html",controller:"mainCtrl as main"}).state("register",{url:"/register",templateUrl:"/js/views/register.html",controller:"registerCtrl as register"}).state("login",{url:"/login",templateUrl:"/js/views/login.html",controller:"loginCtrl as login"})//novels Router
-.state('novelIndex',{url:"/novels/index",templateUrl:"/js/views/novels/index.html",controller:"NovelIndexCtrl as index"}).state('novelNew',{url:"/novels/new",templateUrl:"/js/views/novels/new.html",controller:"NovelNewCtrl as new"}).state('novelShow',{url:"/novels/:id",templateUrl:"/js/views/novels/show.html",controller:"NovelShowCtrl as show"}).state('novelEdit',{url:"/novels/edit",templateUrl:"/js/views/novels/edit.html",controller:"NovelEditCtrl as edit"})//users Router
-.state("usersIndex",{url:"/users/index",templateUrl:"/js/views/users/index.html",controller:"usersIndexCtrl as usersIndex"}).state('usersShow',{url:"/users/:id",templateUrl:"/js/views/users/show.html",controller:"usersShowCtrl as usersShow"}).state('usersEdit',{url:"/novels/edit",templateUrl:"/js/views/users/edit.html",controller:"usersEditCtrl as usersEdit"});$urlRouterProvider.otherwise("/");}
-"use strict";angular.module("noveList").controller("NovelShowCtrl",NovelShowCtrl);NovelShowCtrl.$inject=["Novel","$stateParams","$state"];function NovelShowCtrl(Novel,$stateParams,$state){var vm=this;// Get showNovels data
-Novel.get($stateParams,function(data){vm.novel=data.novel;console.log(vm.novel);});vm.countOf=countOf;vm.wordCount=0;function countOf(text){var s=text?text.split(/\s+/):0;// it splits the text on space/tab/enter
-vm.wordCount=s.length;return s?s.length:'';}// Get formData & update the novel
-vm.submitEntry=function(){var data={entry:vm.novel.entries.body,wordCount:vm.wordCount};Novel.addEntry($stateParams,data).$promise.then(function(data){Novel.get($stateParams,function(data){vm.novel=data.novel;vm.novel.entries.body=null;});});};vm.submitComment=function(){Novel.addComment($stateParams,{comment:vm.novel.comments.body}).$promise.then(function(data){vm.novel.comments.push(data.novel.comments);vm.novel.comments.body=null;});};vm.novelDelete=function(){Novel.delete($stateParams).$promise.then(function(data){$state.go("novelIndex");});};}
-=======
 "use strict";angular.module("noveList").controller("NovelNewCtrl",NovelNewCtrl);NovelNewCtrl.$inject=["Novel","$state",'RandomImage'];function NovelNewCtrl(Novel,$state,RandomImage){var vm=this;vm.novel={};vm.novel.wordCount=0;vm.countOf=countOf;function countOf(text){var s=text?text.split(/\s+/):0;// it splits the text on space/tab/enter
 vm.novel.wordCount=s.length;return s?s.length:'';}RandomImage.query().$promise.then(function(data){vm.novel.image=data.urls.custom;});vm.submit=function(){Novel.save({novel:vm.novel}).$promise.then(function(data){$state.go("novelIndex");});};}
 "use strict";angular.module("noveList").factory("Novel",Novel);Novel.$inject=["$resource","API"];function Novel($resource,API){return $resource(API+"/novels/:id",{id:"@_id"},{'query':{method:"GET",isArray:false},'update':{method:"PUT"},'addEntry':{method:"PUT",url:API+"/novels/:id/addentry",params:{id:"@_id"}},'addComment':{method:"PUT",url:API+"/novels/:id/addcomment",params:{id:"@_id"}}});}
@@ -50717,10 +50697,9 @@ vm.novel.wordCount=s.length;return s?s.length:'';}RandomImage.query().$promise.t
 .state('novelIndex',{url:"/novels/index",templateUrl:"/js/views/novels/index.html",controller:"NovelIndexCtrl as index"}).state('novelNew',{url:"/novels/new",templateUrl:"/js/views/novels/new.html",controller:"NovelNewCtrl as new"}).state('novelShow',{url:"/novels/:id",templateUrl:"/js/views/novels/show.html",controller:"NovelShowCtrl as show"}).state('novelEdit',{url:"/novels/edit",templateUrl:"/js/views/novels/edit.html",controller:"NovelEditCtrl as edit"})//users Router
 .state("usersIndex",{url:"/users/index",templateUrl:"/js/views/users/index.html",controller:"usersIndexCtrl as index"}).state('usersShow',{url:"/users/:id",templateUrl:"/js/views/users/show.html",controller:"usersShowCtrl as show"}).state('usersEdit',{url:"/novels/edit",templateUrl:"/js/views/users/edit.html",controller:"usersEditCtrl as edit"});$urlRouterProvider.otherwise("/");}
 "use strict";angular.module("noveList").controller("NovelShowCtrl",NovelShowCtrl);NovelShowCtrl.$inject=["Novel","$stateParams","$state"];function NovelShowCtrl(Novel,$stateParams,$state){var vm=this;// Get showNovels data
-Novel.get($stateParams,function(data){vm.novel=data.novel;console.log(vm.novel);});vm.countOf=countOf;vm.wordCount=0;vm.wordCountStatus=true;function countOf(text){var s=text?text.split(/\s+/):0;// it splits the text on space/tab/enter
+Novel.get($stateParams,function(data){$(document).ready(function(){$('[data-toggle="tooltip"]').tooltip();});vm.novel=data.novel;console.log(vm.novel);});vm.countOf=countOf;vm.wordCount=0;vm.wordCountStatus=true;function countOf(text){var s=text?text.split(/\s+/):0;// it splits the text on space/tab/enter
 vm.wordCount=s.length;if(vm.wordCount>5){vm.wordCountStatus=false;}else{vm.wordCountStatus=true;}return s?s.length:'';}// Get formData & update the novel
 vm.submitEntry=function(){var data={entry:vm.novel.entries.body,wordCount:vm.wordCount};Novel.addEntry($stateParams,data).$promise.then(function(data){Novel.get($stateParams,function(data){vm.novel=data.novel;vm.novel.entries.body=null;});});};vm.submitComment=function(){Novel.addComment($stateParams,{comment:vm.novel.comments.body}).$promise.then(function(data){Novel.get($stateParams,function(data){vm.novel=data.novel;vm.novel.comments.body=null;});});};vm.novelDelete=function(){Novel.delete($stateParams).$promise.then(function(data){$state.go("novelIndex");});};}
->>>>>>> development
 "use strict";angular.module("noveList").controller("usersShowCtrl",usersShowCtrl);usersShowCtrl.$inject=["User","$stateParams","$state"];function usersShowCtrl(User,$stateParams,$state){var vm=this;User.get($stateParams,function(data){vm.user=data.user;});vm.userDelete=function(){User.delete($stateParams).$promise.then(function(data){$state.go("userIndex");});};}
 "use strict";angular.module("noveList").service("TokenService",TokenService);TokenService.$inject=["$window","jwtHelper"];function TokenService($window,jwtHelper){var self=this;self.setToken=setToken;self.getToken=getToken;self.decodeToken=decodeToken;self.clearToken=clearToken;function setToken(token){return $window.localStorage.setItem("auth-token",token);}function getToken(){return $window.localStorage.getItem("auth-token");}function decodeToken(){var token=self.getToken();return token?jwtHelper.decodeToken(token):null;}function clearToken(){return $window.localStorage.removeItem("auth-token");}}
 "use strict";angular.module("noveList").factory("User",userFactory);userFactory.$inject=["API","$resource"];function userFactory(API,$resource){return $resource(API+"/users/:id",{id:"@_id"},{'query':{method:"GET",isArray:false},'register':{method:"POST",url:API+"/register"},'login':{method:"POST",url:API+"/login"}});}
