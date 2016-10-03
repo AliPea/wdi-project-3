@@ -54,7 +54,6 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
     templateUrl:  "/js/views/users/index.html",
     controller:   "usersIndexCtrl as usersIndex",
   })
-
   .state('usersShow', {
 			url: "/users/:id",
 			templateUrl: "/js/views/users/show.html",

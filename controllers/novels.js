@@ -9,6 +9,7 @@ module.exports = {
 };
 
 const Novel = require('../models/novel');
+const User  = require('../models/user');
 
 function novelsIndex (req, res ) {
   Novel.find((err, novels) => {
@@ -18,15 +19,33 @@ function novelsIndex (req, res ) {
 }
 
 function novelsCreate(req, res) {
-  Novel.create(req.body.novel, (err, novel) => {
-    console.log(req.body.novel);
-    if(err) return res.status(500).json({ message: "Something went wrong"});
-    return res.status(200).json({ novel });
+  let novel = new Novel(req.body.novel);
+  novel.creator = req.user;
+
+  User.findById(novel.creator, (err,user) => {
+    if (err) return res.status(500).send(err);
+    user.novels.push(novel);
+    user.save((err, user) => {
+      if (err) return res.status(500).send(err);
+    });
   });
+
+  novel.save((err, novel) => {
+    if (err) return res.status(500).send(err);
+    res.status(201).send(novel);
+  });
+
+  // Novel.create(req.body.novel, (err, novel) => {
+  //   novel.creator = req.user._id;
+  //   console.log("NOVELLLLLL", novel);
+  //   if(err) return res.status(500).json({ message: "Something went wrong"});
+  //   return res.status(200).json({ novel });
+  // });
 }
 
 function novelsShow( req, res ) {
   Novel.findById(req.params.id)
+  .populate('creator')
   .populate('entries.author')
   .populate('comments.author')
   .exec((err, novel) => {
@@ -57,7 +76,7 @@ function novelsAddEntry(req, res) {
 
     let data = {
       body: req.body.entry,
-      author: req.user._id,
+      author: req.user,
       wordCount: req.body.wordCount
     };
 

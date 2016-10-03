@@ -9,6 +9,7 @@ function NovelShowCtrl(Novel, $stateParams, $state) {
   // Get showNovels data
   Novel.get($stateParams, data => {
     vm.novel = data.novel;
+    console.log(vm.novel);
   });
 
   vm.countOf = countOf;
