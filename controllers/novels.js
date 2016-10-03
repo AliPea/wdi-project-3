@@ -18,7 +18,11 @@ function novelsIndex (req, res ) {
 }
 
 function novelsCreate(req, res) {
-  Novel.create(req.body.novel, (err, novel) => {
+  Novel.create({
+    creator: req.user._id,
+    title:   req.body.novel.title,
+    image:   req.body.novel.image
+  }, (err, novel) => {
     console.log(req.body.novel);
     if(err) return res.status(500).json({ message: "Something went wrong"});
     return res.status(200).json({ novel });
@@ -27,6 +31,7 @@ function novelsCreate(req, res) {
 
 function novelsShow( req, res ) {
   Novel.findById(req.params.id)
+  .populate('creator')
   .populate('entries.author')
   .populate('comments.author')
   .exec((err, novel) => {

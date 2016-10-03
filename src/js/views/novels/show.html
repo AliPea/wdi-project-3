@@ -1,6 +1,6 @@
 <div class="novelShow">
   <h1>{{ show.novel.title }}</h1>
-  <p>{{ show.novel.creator }}</p>
+  <p>By {{ show.novel.creator.username }}</p>
   <img ng-src="{{ show.novel.image }}">
   <h2>Status: {{ show.novel.status }}</h2>
   <span class="list-group" ng-repeat="novelist in show.novel.entries">
