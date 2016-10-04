@@ -142,5 +142,8 @@
   .comments {
     border-top: 5px solid #000;
     padding: 30px 0;
+    .commentDetails {
+      color: lighten(black, 60%);
+    }
   }
 }

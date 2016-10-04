@@ -80,7 +80,7 @@
 
           <h3>Comments</h3>
           <ul ng-repeat="comments in show.novel.comments | orderBy:'-'">
-            <li> {{ comments.body }} by {{ comments.author.username }} <time am-time-ago="comments.createdAt"></time></li>
+            <li> {{ comments.body }}<span class="commentDetails"> by {{ comments.author.username }} <time am-time-ago="comments.createdAt"></time></span></li>
           </ul>
         </div>
       </div>
