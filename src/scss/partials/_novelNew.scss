@@ -59,12 +59,16 @@ button {
   font-size: 30px;
   font-weight: 300;
   text-transform: uppercase;
+<<<<<<< HEAD
   letter-spacing: 2px;
   transition: background 0.5s linear;
 
   &:hover {
     background: rgba(108, 136, 74, 0.6);
   }
+=======
+  font-family: $header-font-stack;
+>>>>>>> 5d99f2f982d85d5ce593831330fe1f5b88ba48c0
 }
 .form-control, .form-control:focus {
     border-color: #cccccc;

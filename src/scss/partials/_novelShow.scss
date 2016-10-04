@@ -3,13 +3,14 @@
     position: relative;
     width: 100%;
     height: 100vh;
+    overflow: hidden;
 
     img {
       position: fixed;
       top: 0;
-      width: 100%;
+      width: inherit;
       height: inherit;
-
+      
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
@@ -33,11 +34,11 @@
         font-weight: 100;
         text-transform: uppercase;
         letter-spacing: 20px;
-        font-family: 'Quicksand', sans-serif;
+        font-family: $header-font-stack;
       }
 
       h4 {
-        margin-top: -10px;
+        margin: -10px 0 -50px;
         font-size: 30px;
         color: #f5f5f5;
         font-weight: 100;
@@ -52,11 +53,11 @@
       }
 
       button {
-        font-family: 'Lato', sans-serif;
+        font-family: $body-font-stack;
         background: rgba(0, 0, 0, 0.3);
         margin: 5px;
         border: none;
-        width: 125px;
+        width: 150px;
         height: 40px;
         color: #fff;
         font-size: 15px;
@@ -75,10 +76,12 @@
   margin: 0 auto;
   color: black;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   background: white;
-
+  ul.ng-scope {
+    padding: 0 20px;
+  }
   .novel {
     padding: 60px 0;
 
@@ -86,7 +89,6 @@
       background: #f9f9f9;
       border-left: 10px solid #ccc;
       padding: 0.5em 10px;
-      // quotes: "\201C""\201D""\2018""\2019";
     }
 
     blockquote p {
@@ -94,20 +96,45 @@
     }
   }
 
+  p {
+    line-height: 20px;
+    .novelContributor {
+      cursor: pointer;
+      .novelistUnderline {
+        transition: all .2s ease-in-out;
+        &:hover {
+          color: $secondary-color;
+          border-bottom: 1px solid $primary-color;
+        }
+      }
+    }
+  }
+
+  .input-group-addon, .btn-default {
+    font-family: $body-font-stack;
+    font-weight: 300;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
   .btn-default {
+    width: 150px;
+    height: 50px;
     background: black;
     border-radius: 0;
     color: white;
-    border: 2px solid black;
     &:hover {
-      color: black;
-      background: white;
+      color: white;
+      background: $secondary-color;
     }
   }
 
   .prevEntry, .nextEntry {
     font-size: 30px;
     line-height: 40px;
+    font-family: $body-font-stack;
+    font-weight: 400;
   }
 
   .prevEntry {
@@ -123,21 +150,53 @@
     outline: none;
     margin-bottom: 20px;
     background: white;
+    cursor: text;
   }
 
   .nextEntry[contenteditable] {
-      display: inline-block;
+    display: inline-block;
   }
   .nextEntry[contenteditable]:empty::before {
-      content: attr(data-placeholder);
-      display: inline-block;
+    content: attr(data-placeholder);
+    display: inline-block;
   }
   .nextEntry[contenteditable]:empty:focus::before {
-      content: attr(data-focused-advice);
+    content: attr(data-focused-advice);
+  }
+
+  h3 {
+    margin-bottom: 30px;
   }
 
   .comments {
     border-top: 5px solid #000;
     padding: 30px 0;
+    font-size: 18px;
+    .commentWrap{
+      font-family: $body-font-stack;
+      font-weight: 300;
+      .commentDetails {
+        font-size: 15px;
+        color: lighten(black, 60%);
+      }
+    }
+
   }
+}
+
+.commentsContainer {
+  padding: 0;
+  .commentForm {
+    text-align: center;
+    #novelComment {
+      width: 100%;
+      height: 80px;
+      margin: 0 0 30px;
+      text-align: center;
+    }
+  }
+}
+
+.submit {
+  text-align: center;
 }

@@ -11,7 +11,7 @@ let users = [{
   username: "Alfredo",
   firstName: "Alfredo Maria",
   lastName: "Milano",
-  image: "https://s-media-cache-ak0.pinimg.com/originals/bf/07/e9/bf07e920f55347726bb9d9273cfc8d2c.gif",
+  image: "../images/alfredo.jpg",
   email:  "alfredo@alfredo.com",
   password: "password",
   passwordConfirmation: "password",
@@ -19,7 +19,7 @@ let users = [{
   username: "Alicia",
   firstName: "Alicia",
   lastName: "Pearse",
-  image: "https://s-media-cache-ak0.pinimg.com/originals/bf/07/e9/bf07e920f55347726bb9d9273cfc8d2c.gif",
+  image: "../images/alicia.jpg",
   email:  "alicia@alicia.com",
   password: "password",
   passwordConfirmation: "password",
@@ -27,7 +27,7 @@ let users = [{
   username: "Sam",
   firstName: "Sam",
   lastName: "Younger",
-  image: "https://s-media-cache-ak0.pinimg.com/originals/bf/07/e9/bf07e920f55347726bb9d9273cfc8d2c.gif",
+  image: "../images/sam.jpg",
   email:  "sam@sam.com",
   password: "password",
   passwordConfirmation: "password",
@@ -35,7 +35,7 @@ let users = [{
   username: "Ajay",
   firstName: "Ajay",
   lastName: "Lard",
-  image: "https://s-media-cache-ak0.pinimg.com/originals/bf/07/e9/bf07e920f55347726bb9d9273cfc8d2c.gif",
+  image: "../images/ajay.jpg",
   email:  "ajay@ajay.com",
   password: "password",
   passwordConfirmation: "password",
@@ -47,18 +47,79 @@ users.forEach(user => User.create(user, (err, user) => {
   return console.log(`${user.username} was created`);
 }));
 setTimeout(()=>{
+
 const novels = [{
+  creator:    seed[1],
+  title:      "The grass",
+  image:      "../images/1.jpeg",
+},{
+  creator:    seed[2],
+  title:      "The sunset",
+  image:      "../images/2.jpeg",
+},{
+  creator:    seed[3],
+  title:      "The stars",
+  image:      "../images/3.jpeg",
+},{
   creator:    seed[0],
-  title:      "Test Novel One",
-  image:      "../images/image1.jpeg",
+  title:      "The woods",
+  image:      "../images/4.jpeg",
+},{
+  creator:    seed[1],
+  title:      "The panorama",
+  image:      "../images/5.jpeg"
+},{
+  creator:    seed[2],
+  title:      "The fire-guy",
+  image:      "../images/6.jpeg",
+},{
+  creator:    seed[3],
+  title:      "The sky",
+  image:      "../images/7.jpeg",
+},{
+  creator:    seed[2],
+  title:      "The children",
+  image:      "../images/8.jpeg",
+},{
+  creator:    seed[2],
+  title:      "The fog",
+  image:      "../images/9.jpeg",
+},{
+  creator:    seed[3],
+  title:      "The friends",
+  image:      "../images/10.jpeg",
+},{
+  creator:    seed[0],
+  title:      "The lovers",
+  image:      "../images/11.jpeg",
+},{
+  creator:    seed[0],
+  title:      "The deers",
+  image:      "../images/12.jpeg",
+},{
+  creator:    seed[2],
+  title:      "The car",
+  image:      "../images/13.jpeg",
+},{
+  creator:    seed[0],
+  title:      "The rain",
+  image:      "../images/14.jpeg",
+}, {
+  creator:    seed[1],
+  title:      "The DJ",
+  image:      "../images/15.jpeg",
   entries:    [
     {
       author: seed[0],
-      body: "Hi, I'm the first entry!",
+      body: "Facete impetus has at, has ex movet accusata. Quas vidisse facilisis per at, eu tantas malorum nostrud vim. Eum congue deseruisse et, in mel assum regione. Per ut agam labitur, ei mediocrem posidonium percipitur nec, has labores necessitatibus ex. Sit nostro noluisse delectus ut, no mei eleifend qualisque, quas falli eos ex. Illum mazim volutpat ut vis, qui congue nominati eu. Ea eum modus veniam phaedrum, nec amet eloquentiam ex.",
       wordCount: 100
     },{
       author: seed[1],
-      body: "Hi, I'm the second entry!",
+      body: "Facete impetus has at, has ex movet accusata. Quas vidisse facilisis per at, eu tantas malorum nostrud vim. Eum congue deseruisse et, in mel assum regione. Per ut agam labitur, ei mediocrem posidonium percipitur nec, has labores necessitatibus ex. Sit nostro noluisse delectus ut, no mei eleifend qualisque, quas falli eos ex. Illum mazim volutpat ut vis, qui congue nominati eu. Ea eum modus veniam phaedrum, nec amet eloquentiam ex.",
+      wordCount: 100
+    }, {
+      author: seed[2],
+      body: "Facete impetus has at, has ex movet accusata. Quas vidisse facilisis per at, eu tantas malorum nostrud vim. Eum congue deseruisse et, in mel assum regione. Per ut agam labitur, ei mediocrem posidonium percipitur nec, has labores necessitatibus ex. Sit nostro noluisse delectus ut, no mei eleifend qualisque, quas falli eos ex. Illum mazim volutpat ut vis, qui congue nominati eu. Ea eum modus veniam phaedrum, nec amet eloquentiam ex.",
       wordCount: 100
     }
   ],
@@ -66,109 +127,17 @@ const novels = [{
     {
       author: seed[1],
       body: "Cool story bro!!" ,
+    } , {
+      author: seed[2],
+      body: "Yep, definitely!"
+    }, {
+      author: seed[4],
+      body: "Hi mom!!" ,
+    } , {
+      author: seed[3],
+      body: "coolio!"
     }
   ]
-}, {
-  title:      "Test Novel Two",
-  image:      "../images/image2.jpeg",
-  entries:    [
-    {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm the first entry!",
-      wordCount: 2
-    }
-  ],
-  comments:   [
-    {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm a comment!" ,
-    }
-  ],
-},{
-  title:      "Test Novel Three",
-  image:      "../images/image3.jpeg",
-  entries:    [
-    {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm the first entry!",
-      wordCount: 2
-    }
-  ]
-},{
-  title:      "Test Novel Four",
-  image:      "../images/image4.jpeg",
-  entries:    [
-    {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm the first entry!",
-      wordCount: 1
-    }
-  ]
-},{
-  title:      "Test Novel Five",
-  image:      "../images/image5.jpeg",
-  entries:    [
-    {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm the first entry!" ,
-      wordCount: 2
-    }
-  ],
-  comments:   [
-    {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm a comment!",
-    }
-  ]
-},{
-  title:      "Test Novel Six",
-  image:      "../images/image6.jpeg",
-  entries:    [
-    {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm the first entry!",
-      wordCount: 4
-    }
-  ],
-  comments:   [
-    {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm a comment!"
-    }
-  ]
-},{
-  title:      "Test Novel Seven",
-  image:      "../images/image7.jpeg",
-  entries:    [
-    {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm the first entry!",
-      wordCount: 2
-    }
-  ],
-  comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
-},{
-  title:      "Test Novel Eight",
-  image:      "../images/image8.jpeg",
-  entries:    [
-    {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm the first entry!",
-      wordCount: 1
-    }
-  ],
-  comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
-},{
-  title:      "Test Novel Nine",
-  image:      "../images/image9.jpeg",
-  entries:    [
-    {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm the first entry!",
-      wordCount: 5
-    }
-  ],
-  comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
 }
 ];
 novels.forEach(novel => Novel.create(novel, (err, novel) => {

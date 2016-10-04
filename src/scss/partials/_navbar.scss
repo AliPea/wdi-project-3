@@ -1,19 +1,15 @@
 .navbar {
   position: absolute;
-  font-family: 'Lato', sans-serif;
+  font-family: $body-font-stack;
   font-size: 18px;
   letter-spacing: 3px;
   text-transform: uppercase;
   margin-bottom: 0px !important;
   border-radius: none !important;
   background-color: rgba(0, 0, 0, 0.1);
- //  background-color: transparent;
- // background: transparent;
- // border-color: transparent;
 }
 
 .navbar-default {
-  // background: none;
   border: none;
   border-radius: none;
   color: #fff;
@@ -23,14 +19,10 @@
   }
 }
 
-
-
 .navbar-default .navbar-nav>li>a, .navbar-default .navbar-text {
   color: #fff;
   font-weight: 300;
-
-
   &:hover {
-    color: #e2e2e2;
+    color: $secondary-color;
   }
 }
