@@ -6,7 +6,7 @@
     <div class="content">
       <h1>{{ show.novel.title }}</h1>
       <h4>Started by <span ui-sref="usersShow({ id: show.novel.creator._id })">{{ show.novel.creator.username }}</span></h4>
-      <button id="novelStatus"><a href="#" id="novelContainer">{{ show.novel.status }}</a></button>
+      <button id="novelStatus">{{ show.novel.status }}</button>
     </div>
   </div>
 
@@ -14,7 +14,7 @@
     <div class="container">
       <div class="novel row">
         <div class="col-md-12">
-          <h4 ng-if="!show.lastEntry" class="errorMessage">Patience, you contributed to the novel last.</h4>
+          <h4 ng-if="!show.lastEntry" class="errorMessage">You're a badass novelist, wait buddy</h4>
           <blockquote>
             <span
             data-toggle="tooltip"
@@ -25,11 +25,10 @@
           </blockquote>
 
           <p>Contributors to the novel
-            <span class="novelContributor" ng-repeat="contributors in show.novel.entries" ui-sref="usersShow({ id: novelist.author._id })">
+            <span class="novelContributor" ng-repeat="contributors in show.novel.entries" ui-sref="usersShow({ id: contributors.author._id })">
               | <span class="novelistUnderline"> {{ contributors.author.username }} </span>
             </span>
           </p>
-
 
           <form ng-submit="show.submitEntry()" name="novelEntriesForm" ng-if="show.novelStatus">
 
@@ -43,12 +42,6 @@
               data-focused-advice="Start typing"></span>
             </div>
 
-            <!-- <input
-            type="hidden"
-            id="novelUser"
-            class="form-control"
-            value="{{ main.user.id }}"> -->
-
             <p>WordCount: <span ng-bind="show.countOf(show.entry)"></span>
               EntryCount: {{ show.entriesCount }}</p>
 
@@ -57,26 +50,27 @@
                 Please enter a maximum of {{ show.maxWordCount }} words
               </p>
 
-              <input
-              class="btn btn-default pull-right novelSubmitBtn"
-              aria-describedby="sizing-addon1"
-              type="submit"
-              value="Contribute"
-              ng-disabled="novelEntriesForm.$invalid || !show.wordCountStatus">
+              <div class="submit">
+                <input
+                class="btn btn-default novelSubmitBtn"
+                aria-describedby="sizing-addon1"
+                type="submit"
+                value="Publish"
+                ng-disabled="novelEntriesForm.$invalid || !show.wordCountStatus">
+              </div>
             </form>
           </div>
         </div>
 
       <div class="comments row">
-        <div class="col-md-12">
-          <form ng-submit="show.submitComment()" name="novelCommentForm">
-            <input type="hidden" id="novelUser" class="form-control" value="{{ main.user.id }}">
+        <div class="col-md-12 commentsContainer">
+          <form ng-submit="show.submitComment()" class="commentForm" name="novelCommentForm">
+            <input type="hidden" id="novelUser" value="{{ main.user.id }}">
             <h3>Comment on the novel</h3>
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon">{{ main.user.username }}:</span>
-              <input type="text" id="novelComment sizing-addon3" class="form-control" placeholder="I think..." ng-model="show.novel.comments.body" required>
+            <div>
+              <input type="text" id="novelComment" placeholder="Comment here..." ng-model="show.novel.comments.body" required>
               <span class="input-group-btn">
-                <input class="btn btn-default" aria-describedby="sizing-addon3" type="submit" value="Add" ng-disabled="novelCommentForm.$invalid">
+                <input class="btn btn-default" type="submit" value="Submit" ng-disabled="novelCommentForm.$invalid">
               </span>
             </div>
           </form>

@@ -28,7 +28,8 @@ function NovelNewCtrl(Novel, $state, RandomImage){
     .save({ novel: vm.novel })
     .$promise
     .then(data => {
-      $state.go("novelIndex");
+      console.log(data);
+      $state.go('novelShow',{"id":data.novel._id});
     });
   };
 }

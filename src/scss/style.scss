@@ -19,6 +19,8 @@
 @import 'partials/login.scss';
 @import 'partials/register.scss';
 
+html, body { overflow-x: hidden; }
+
 body {
   font-family: $body-font-stack;
   font-weight: 300;
@@ -41,5 +43,12 @@ body {
   letter-spacing: 10px;
   text-transform: uppercase;
   text-align: center;
-  margin-top: 60px;
+  margin-top: calc(30px + 50px);
+  margin-bottom: 30px;
+}
+
+.form-control, .form-control:focus {
+    border-color: #cccccc;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }

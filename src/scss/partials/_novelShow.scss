@@ -56,7 +56,7 @@
         background: rgba(0, 0, 0, 0.3);
         margin: 5px;
         border: none;
-        width: 125px;
+        width: 150px;
         height: 40px;
         color: #fff;
         font-size: 15px;
@@ -100,12 +100,10 @@
     .novelContributor {
       cursor: pointer;
       .novelistUnderline {
-        vertical-align: middle;
-        border-bottom: 1px solid black;
         transition: all .2s ease-in-out;
         &:hover {
-          font-size: 20px;
-          transform: scale(1.1);
+          color: $secondary-color;
+          border-bottom: 1px solid $primary-color;
         }
       }
     }
@@ -120,12 +118,11 @@
   }
 
   .btn-default {
-    width: 120px;
+    width: 150px;
     height: 50px;
     background: black;
     border-radius: 0;
     color: white;
-    border: 2px solid black;
     &:hover {
       color: white;
       background: $secondary-color;
@@ -135,6 +132,8 @@
   .prevEntry, .nextEntry {
     font-size: 30px;
     line-height: 40px;
+    font-family: $body-font-stack;
+    font-weight: 400;
   }
 
   .prevEntry {
@@ -184,6 +183,19 @@
   }
 }
 
-#novelContainer {
-  background: blue;
+.commentsContainer {
+  padding: 0;
+  .commentForm {
+    text-align: center;
+    #novelComment {
+      width: 100%;
+      height: 80px;
+      margin: 0 0 30px;
+      text-align: center;
+    }
+  }
+}
+
+.submit {
+  text-align: center;
 }
