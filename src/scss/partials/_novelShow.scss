@@ -3,13 +3,14 @@
     position: relative;
     width: 100%;
     height: 100vh;
+    overflow: hidden;
 
     img {
       position: fixed;
       top: 0;
-      width: 100%;
+      width: inherit;
       height: inherit;
-
+      
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
