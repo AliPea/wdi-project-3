@@ -11,7 +11,6 @@ function registerCtrl(User, CurrentUserService){
       .register({ user: vm.user })
       .$promise
       .then(data => {
-        console.log('data', data)
         const user = data.user ? data.user : null;
         if (user) {
           CurrentUserService.saveUser(user);

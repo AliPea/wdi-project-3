@@ -3,6 +3,7 @@
 @import 'partials/_navbar.scss';
 @import 'partials/_footer.scss';
 @import 'partials/_novelShow.scss';
+@import 'partials/_userShow.scss';
 @import 'partials/_novelNew.scss';
 @import "partials/_errorMessage.scss";
 
@@ -213,8 +214,4 @@ h2 {
     transform: translate(-50%,-50%);
     font-size: 100px;
   }
-}
-body {
-margin: 0 0 100px; /* bottom = footer height */
-padding: 25px;
 }
