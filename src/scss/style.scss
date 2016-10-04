@@ -4,6 +4,7 @@
 @import 'partials/_footer.scss';
 @import 'partials/_novelShow.scss';
 @import 'partials/_novelNew.scss';
+@import "partials/_errorMessage.scss";
 
 @import 'mixins/_mixins.scss';
 
@@ -17,6 +18,8 @@ html {
   background-color: #fff;
   margin: 0 auto;
   color: black;
+  position: relative;
+  min-height: 100%;
 }
 a {
   color: black;
@@ -121,7 +124,7 @@ a {
 h1 {
   text-align: center;
   text-shadow: 1px 1px 1px white, 0 0 1em white, 0 0 0.2em white;
-  margin-top: 75px;
+  margin-top: 90px;
   font-size: 48px;
   color: #363537;
   font-family: 'GoudyBookletter1911', serif;
@@ -200,10 +203,6 @@ h2 {
   display:block !important;
 }
 
-.errorMessage {
-  color: red;
-}
-
 .novelnew {
   position: relative;
 
@@ -214,4 +213,8 @@ h2 {
     transform: translate(-50%,-50%);
     font-size: 100px;
   }
+}
+body {
+margin: 0 0 100px; /* bottom = footer height */
+padding: 25px;
 }

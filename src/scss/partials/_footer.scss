@@ -1,10 +1,12 @@
 .footer {
-  height: 30vh;
+  height: 0vh;
   border-top: 1px;
   background-color: white;
   font-family: 'GoudyBookletter1911', serif;
   color: #989898;
   margin: 50px 0;
+  position: absolute;
+  bottom: 0;
   hr{
     .hidden-sm-down {
       border-top: 1px solid rgba(87,87,87,.25);
@@ -20,14 +22,31 @@
     }
   }
   .left{
-    text-align:left;
-    float:left;
+    text-align: left;
+    float: left;
   }
   .right{
-    float:right;
-    text-align:right;
+    float: right;
+    text-align: right;
+  }
+  .fa-facebook, .fa-twitter, .fa-instagram, .fa-github {
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+    color: #989898;
   }
   .centered{
-    text-align:center;
+    text-align: center;
+    p {
+      margin: 20px 10px 0px;
+    }
+  }
+  .fa-map-marker, .fa-envelope, .fa-phone{
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+    color: #989898;
   }
 }
