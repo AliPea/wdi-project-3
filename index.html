@@ -3,62 +3,53 @@
 <head>
   <meta charset="utf-8">
   <title>noveList</title>
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <script src="/js/app.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" media="screen">
   <base href="/" />
 </head>
 <body ng-controller="mainCtrl as main">
   <header>
-    <div class="navbar navbar-fixed-top">
-      <div class="container">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <div class="navbar-left">
-          <h4 ui-sref="home">Novelist</h4>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a ui-sref="home" class="navbar-brand" href="#">Novelist</a>
         </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <div class="navbar-right">
-            <ul class="nav navbar-nav navbar-right">
-              <li ng-if="!main.user">
-                <a ui-sref="register">Register</a>
-              </li>
-              <li ng-if="!main.user">
-                <a ui-sref="login">Login</a>
-              </li>
-              <ul class="nav navbar-nav navbar-login" ng-if='main.user'>
-                <li><a ui-sref-active ui-sref="novelNew">Add novel</a></li>
-                <li><a ui-sref-active ui-sref="novelIndex">Novels</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ main.user.username }} <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a ui-sref="usersIndex" ng-if='main.user'>Users</a>
-                    </li>
-                    <li role="separator" class="divider"></li>
-                    <li>
-                      <a href='#' ng-click="main.logout()"  ng-if='main.user'>Logout</a>
-                    </li>
-                  </ul>
-                </li>
+          <ul class="nav navbar-nav navbar-right">
+            <li ng-if="!main.user">
+              <a ui-sref="register">Register</a>
+            </li>
+            <li ng-if="!main.user">
+              <a ui-sref="login">Login</a>
+            </li>
+            <li ng-if="main.user">
+              <a ui-sref="novelIndex">Novels</a>
+            </li>
+            <li ng-if="main.user" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profle<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a ui-sref="usersShow({ id: main.user._id })" href="#">My Profile</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a ng-click="main.logout()" href="#">Logout</a></li>
               </ul>
-            </ul>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
+    </nav>
   </header>
   <main ui-view></main>
-  <div class="footer">
-    <div class="container">
-      <p class="left">Contact Us<br />Say Hello</p>
-      <p class="right">Connect<br />Social Media Links</p>
-      <p class="centered">Visit Us<br />Address: The Relay Building, 1 Commercial Street, London E1 7PT</p>
-      <hr class="hidden-sm-down">
-    </div>
-  </div>
+  <!-- <div class="footer">
+  <div class="container">
+  <hr class="hidden-sm-down">
+  <p class="left">Contact Us<br />Say Hello</p>
+  <p class="right">Connect<br />Social Media Links</p>
+  <p class="centered">Visit Us<br />Address: The Relay Building, 1 Commercial Street, London E1 7PT</p>
+</div>
+</div> -->
 </body>
 </html>
