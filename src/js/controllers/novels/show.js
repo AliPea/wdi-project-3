@@ -54,6 +54,7 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
     if (text){
       text = text.replace(/^\&nbsp\;|<br?\>*/gi, " ").replace(/\&nbsp\;|<br?\>$/gi, " ").trim();
     }
+    let words = text ? text.split(/\s+/) : 0;
 
     vm.wordCount = words.length;
 
