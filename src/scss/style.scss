@@ -17,25 +17,29 @@
 @import 'partials/novelNew.scss';
 @import 'partials/footer.scss';
 @import 'partials/login.scss';
+@import 'partials/register.scss';
 
 body {
   font-family: $body-font-stack;
   font-weight: 300;
 }
 
+*:focus {
+  outline: none;
+}
 
-  .centered {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    font-size: 100px;
-  }
+.centered {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 100px;
+}
 
-   .headers, h3 {
-     font-family: $header-font-stack;
-     letter-spacing: 10px;
-     text-transform: uppercase;
-     text-align: center;
-     margin-top: 60px;
-   }
+.headers, h3 {
+  font-family: $header-font-stack;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 60px;
+}
