@@ -9,6 +9,7 @@ function CurrentUserService($rootScope, TokenService){
   return {
     user: currentUser,
     saveUser(user) {
+      user.id = user._id ? user._id : user.id;
       currentUser = user;
       $rootScope.$broadcast("loggedIn");
     },
