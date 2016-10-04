@@ -10,8 +10,11 @@ Novel.collection.drop();
 User.collection.drop();
 
 let user = {
-  username: "Admin",
-  email:  "admin@admin.com",
+  username: "Novelist",
+  firstName: "Nove",
+  lastName: "List",
+  image: "https://s-media-cache-ak0.pinimg.com/originals/bf/07/e9/bf07e920f55347726bb9d9273cfc8d2c.gif",
+  email:  "novelist@novelist.com",
   password: "password",
   passwordConfirmation: "password",
 };
