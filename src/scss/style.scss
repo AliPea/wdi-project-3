@@ -1,6 +1,7 @@
 @import 'partials/_bower.scss';
 
 @import "variables/fonts.scss";
+@import "variables/colors.scss";
 
 @import 'partials/_index.scss';
 @import 'partials/_navbar.scss';
@@ -17,6 +18,11 @@
 @import 'partials/footer.scss';
 @import 'partials/login.scss';
 
+body {
+  font-family: $body-font-stack;
+  font-weight: 300;
+}
+
 
   .centered {
     position: absolute;
@@ -26,7 +32,7 @@
     font-size: 100px;
   }
 
-   .headers {
+   .headers, h3 {
      font-family: $header-font-stack;
      letter-spacing: 10px;
      text-transform: uppercase;

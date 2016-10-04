@@ -14,7 +14,7 @@
     <div class="container">
       <div class="novel row">
         <div class="col-md-12">
-          <h3 ng-if="!show.lastEntry" class="errorMessage">Patience, you contributed to the novel last.</h3>
+          <h4 ng-if="!show.lastEntry" class="errorMessage">Patience, you contributed to the novel last.</h4>
           <blockquote>
             <span
             data-toggle="tooltip"
@@ -83,7 +83,7 @@
 
           <h3>Comments</h3>
           <ul ng-repeat="comments in show.novel.comments | orderBy:'-'">
-            <i class="fa fa-comment" aria-hidden="true"> {{ comments.body }}<span class="commentDetails"> by {{ comments.author.username }} <time am-time-ago="comments.createdAt"></time></span></i>
+            <i class="fa fa-comment" aria-hidden="true"> <span class="commentWrap">{{ comments.body }}<span class="commentDetails"> by {{ comments.author.username }} <time am-time-ago="comments.createdAt"></time></span></span></i>
           </ul>
         </div>
       </div>
