@@ -10,6 +10,7 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
   $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
     $("[autofocus]").focus();
+    $(this).scrollTop(0);
   });
 
   vm.countOf = countOf;
