@@ -1,4 +1,8 @@
 @import 'partials/_bower.scss';
+
+@import "variables/fonts.scss";
+@import "variables/colors.scss";
+
 @import 'partials/_index.scss';
 @import 'partials/_navbar.scss';
 @import 'partials/_footer.scss';
@@ -13,19 +17,29 @@
 @import 'partials/novelNew.scss';
 @import 'partials/footer.scss';
 @import 'partials/login.scss';
+@import 'partials/register.scss';
 
-  .centered {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    font-size: 100px;
-  }
+body {
+  font-family: $body-font-stack;
+  font-weight: 300;
+}
 
-   .headers {
-     font-family: 'Quicksand', sans-serif;
-     letter-spacing: 10px;
-     text-transform: uppercase;
-     text-align: center;
-     margin-top: 60px;
-   }
+*:focus {
+  outline: none;
+}
+
+.centered {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 100px;
+}
+
+.headers, h3 {
+  font-family: $header-font-stack;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 60px;
+}
