@@ -4,7 +4,8 @@ angular
     "ngResource",
     "angular-jwt",
     "ngMessages",
-    "contenteditable"
+    "contenteditable",
+    "angularMoment"
   ]);
 
   $(document).on('click','.navbar-collapse.in',function(e) {
