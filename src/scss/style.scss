@@ -13,14 +13,21 @@
 @import 'partials/novelNew.scss';
 @import 'partials/footer.scss';
 @import 'partials/login.scss';
+@import 'partials/register.scss';
 
-  .centered {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    font-size: 100px;
-  }
+  // .centered {
+  //   position: absolute;
+  //   left: 50%;
+  //   top: 50%;
+  //   transform: translate(-50%,-50%);
+  //   font-size: 100px;
+  // }
+
+
+*:focus {
+    outline: none;
+}
+
 
    .headers {
      font-family: 'Quicksand', sans-serif;
