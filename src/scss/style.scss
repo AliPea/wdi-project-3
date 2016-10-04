@@ -1,11 +1,30 @@
-@import 'mixins/_mixins.scss';
-
-@import 'partials/bower.scss';
-@import "partials/errorMessage.scss";
+@import 'partials/_bower.scss';
+@import 'partials/_index.scss';
+@import 'partials/_navbar.scss';
+@import 'partials/_footer.scss';
+@import 'partials/_novelShow.scss';
+@import 'partials/_userShow.scss';
+@import 'partials/_novelNew.scss';
+@import "partials/_errorMessage.scss";
 @import 'partials/navbar.scss';
-
 @import "partials/homepage";
 @import 'partials/index.scss';
 @import 'partials/novelShow.scss';
 @import 'partials/novelNew.scss';
 @import 'partials/footer.scss';
+
+  .centered {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 100px;
+  }
+
+   .headers {
+     font-family: 'Quicksand', sans-serif;
+     letter-spacing: 10px;
+     text-transform: uppercase;
+     text-align: center;
+     margin-top: 60px;
+   }

@@ -1,7 +1,8 @@
 const mongoose  = require("mongoose");
 const config    = require("../config/config");
 
-const Novel     = require("../models/novel");
+const Require   = require("../models/novel");
+const Novel     = Require.novel;
 const User      = require("../models/user");
 
 mongoose.connect(config.db);
@@ -9,32 +10,59 @@ mongoose.connect(config.db);
 Novel.collection.drop();
 User.collection.drop();
 
-let user = {
-  username: "Novelist",
-  firstName: "Nove",
-  lastName: "List",
+setTimeout(()=>{
+
+let users = [{
+  username: "Alfredo",
+  firstName: "Alfredo Maria",
+  lastName: "Milano",
   image: "https://s-media-cache-ak0.pinimg.com/originals/bf/07/e9/bf07e920f55347726bb9d9273cfc8d2c.gif",
-  email:  "novelist@novelist.com",
+  email:  "alfredo@alfredo.com",
   password: "password",
   passwordConfirmation: "password",
-};
+}, {
+  username: "Alicia",
+  firstName: "Alicia",
+  lastName: "Pearse",
+  image: "https://s-media-cache-ak0.pinimg.com/originals/bf/07/e9/bf07e920f55347726bb9d9273cfc8d2c.gif",
+  email:  "alicia@alicia.com",
+  password: "password",
+  passwordConfirmation: "password",
+}, {
+  username: "Sam",
+  firstName: "Sam",
+  lastName: "Younger",
+  image: "https://s-media-cache-ak0.pinimg.com/originals/bf/07/e9/bf07e920f55347726bb9d9273cfc8d2c.gif",
+  email:  "sam@sam.com",
+  password: "password",
+  passwordConfirmation: "password",
+}, {
+  username: "Ajay",
+  firstName: "Ajay",
+  lastName: "Lard",
+  image: "https://s-media-cache-ak0.pinimg.com/originals/bf/07/e9/bf07e920f55347726bb9d9273cfc8d2c.gif",
+  email:  "ajay@ajay.com",
+  password: "password",
+  passwordConfirmation: "password",
+}];
 
-let adminId = "";
+let seed = [];
 
-User.create(user, (err, user) => {
+users.forEach(user => User.create(user, (err, user) => {
   if(err) return console.log(err);
-  adminId = user._id;
-  return console.log(`${user} was created`);
-});
+  seed.push(user._id);
+  return console.log(`${user.username} was created`);
+}));
 
-
-
+setTimeout(()=>{
+  
 const novels = [{
+  creator:    seed[0],
   title:      "Test Novel One",
   image:      "../images/image1.jpeg",
   entries:    [
     {
-      author: adminId,
+      author: seed[0],
       body: "Hi, I'm the first entry!",
       wordCount: 100
     },{
@@ -151,3 +179,7 @@ novels.forEach(novel => Novel.create(novel, (err, novel) => {
   if(err) return console.log(err);
   return console.log(`${novel.title} was created`);
 }));
+
+}, 1000);
+
+}, 1000);

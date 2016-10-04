@@ -1,7 +1,7 @@
 <div class="userShow">
-  <h1>{{ show.user.username }}</h1>
+  <h1 class="headers">{{ show.user.username }}</h1>
   <img src="{{ show.user.image }}"/>
-<h3>My novels</h3>
+  <h3>My novels</h3>
   <ul>
     <img ng-repeat="novel in show.novels" ui-sref="novelShow({ id: novel._id })" ng-src='{{ novel.image }}'>
   </ul>
