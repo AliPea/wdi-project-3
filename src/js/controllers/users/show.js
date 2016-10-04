@@ -10,7 +10,6 @@ function usersShowCtrl(User, $stateParams, $state){
     vm.user    = data.user;
     vm.novels  = data.novels;
     vm.entries = data.entries;
-    console.log(data);
   });
 
   vm.userDelete = () => {

@@ -1,152 +1,179 @@
 const mongoose  = require("mongoose");
 const config    = require("../config/config");
-const Novel     = require("../models/novel");
+const Require   = require("../models/novel");
+const Novel     = Require.novel;
 const User      = require("../models/user");
-
 mongoose.connect(config.db);
-
 Novel.collection.drop();
 User.collection.drop();
-
-let user = {
-  username: "Novelist",
-  firstName: "Nove",
-  lastName: "List",
+setTimeout(()=>{
+let users = [{
+  username: "Alfredo",
+  firstName: "Alfredo Maria",
+  lastName: "Milano",
   image: "https://s-media-cache-ak0.pinimg.com/originals/bf/07/e9/bf07e920f55347726bb9d9273cfc8d2c.gif",
-  email:  "novelist@novelist.com",
+  email:  "alfredo@alfredo.com",
   password: "password",
   passwordConfirmation: "password",
-};
-
-let adminId = "";
-
-User.create(user, (err, user) => {
+}, {
+  username: "Alicia",
+  firstName: "Alicia",
+  lastName: "Pearse",
+  image: "https://s-media-cache-ak0.pinimg.com/originals/bf/07/e9/bf07e920f55347726bb9d9273cfc8d2c.gif",
+  email:  "alicia@alicia.com",
+  password: "password",
+  passwordConfirmation: "password",
+}, {
+  username: "Sam",
+  firstName: "Sam",
+  lastName: "Younger",
+  image: "https://s-media-cache-ak0.pinimg.com/originals/bf/07/e9/bf07e920f55347726bb9d9273cfc8d2c.gif",
+  email:  "sam@sam.com",
+  password: "password",
+  passwordConfirmation: "password",
+}, {
+  username: "Ajay",
+  firstName: "Ajay",
+  lastName: "Lard",
+  image: "https://s-media-cache-ak0.pinimg.com/originals/bf/07/e9/bf07e920f55347726bb9d9273cfc8d2c.gif",
+  email:  "ajay@ajay.com",
+  password: "password",
+  passwordConfirmation: "password",
+}];
+let seed = [];
+users.forEach(user => User.create(user, (err, user) => {
   if(err) return console.log(err);
-  adminId = user._id;
-  return console.log(`${user} was created`);
-});
-
+  seed.push(user._id);
+  return console.log(`${user.username} was created`);
+}));
+setTimeout(()=>{
 const novels = [{
-  title:      "The Pilgrim’s Progress",
-  image:      "../images/image3.jpeg",
-  entries:    [
-    {
-      author: adminId,
-      body: "A story of a man in search of truth told with the simple clarity and beauty of Bunyan’s prose make this the ultimate English classic.",
-      wordCount: 25
-    },{
-      author: adminId,
-      body: "Christian is weighed down by a great burden—the knowledge of his sin—which he believed came from his reading the book in his hand the Bible",
-      wordCount: 27
-    }
-  ],
-},
-
-{
-  title:      "Robinson Crusoe",
-  image:      "../images/image2.jpeg",
-  entries:    [
-    {
-      author: adminId,
-      body: "By the end of the 19th century, no book in English literary history had enjoyed more editions, spin-offs and translations.",
-      wordCount: 20
-    }
-  ],
-  comments:   [
-    {
-      author: adminId,
-      body: "Crusoe’s world-famous novel is a complex literary confection, and it’s irresistible." ,
-    }
-  ],
-},{
-  title:      "Emma",
+  creator:    seed[0],
+  title:      "Test Novel One",
   image:      "../images/image1.jpeg",
   entries:    [
     {
-      author: adminId,
-      body: "The book begins with a preamble in which Lemuel Gulliver gives an outline of his life and history before his voyages",
-      wordCount: 116
-    }
-  ]
-},{
-  title:      "Tom Jones",
-  image:      "../images/image4.jpeg",
-  entries:    [
-    {
-      author: adminId,
-      body: "The distinguished country gentleman Allworthy, who lives in Somersetshire with his unmarried sister Bridget Allworthy...",
-      wordCount: 120
-    }
-  ]
-},{
-  title:      "Clarissa",
-  image:      "../images/image5.jpeg",
-  entries:    [
-    {
-      author: adminId,
-      body: "Clarissa Harlowe is a beautiful and virtuous young lady whose family has become wealthy and now desires to become part of the aristocracy." ,
-      wordCount: 138
+      author: seed[0],
+      body: "Hi, I'm the first entry!",
+      wordCount: 100
+    },{
+      author: seed[1],
+      body: "Hi, I'm the second entry!",
+      wordCount: 100
     }
   ],
   comments:   [
     {
-      author: adminId,
+      author: seed[1],
+      body: "Cool story bro!!" ,
+    }
+  ]
+}, {
+  title:      "Test Novel Two",
+  image:      "../images/image2.jpeg",
+  entries:    [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm the first entry!",
+      wordCount: 2
+    }
+  ],
+  comments:   [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm a comment!" ,
+    }
+  ],
+},{
+  title:      "Test Novel Three",
+  image:      "../images/image3.jpeg",
+  entries:    [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm the first entry!",
+      wordCount: 2
+    }
+  ]
+},{
+  title:      "Test Novel Four",
+  image:      "../images/image4.jpeg",
+  entries:    [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm the first entry!",
+      wordCount: 1
+    }
+  ]
+},{
+  title:      "Test Novel Five",
+  image:      "../images/image5.jpeg",
+  entries:    [
+    {
+      author: '57ee603e058110c915c61e51',
+      body: "Hi, I'm the first entry!" ,
+      wordCount: 2
+    }
+  ],
+  comments:   [
+    {
+      author: '57ee603e058110c915c61e51',
       body: "Hi, I'm a comment!",
     }
   ]
 },{
-  title:      "Frankenstein",
+  title:      "Test Novel Six",
   image:      "../images/image6.jpeg",
   entries:    [
     {
-      author: adminId,
+      author: '57ee603e058110c915c61e51',
       body: "Hi, I'm the first entry!",
       wordCount: 4
     }
   ],
   comments:   [
     {
-      author: adminId,
+      author: '57ee603e058110c915c61e51',
       body: "Hi, I'm a comment!"
     }
   ]
 },{
-  title:      "Nightmare Abbey",
+  title:      "Test Novel Seven",
   image:      "../images/image7.jpeg",
   entries:    [
     {
-      author: adminId,
+      author: '57ee603e058110c915c61e51',
       body: "Hi, I'm the first entry!",
       wordCount: 2
     }
   ],
-  comments:   [{ author: adminId, body: "Hi, I'm a comment!" }]
+  comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
 },{
-  title:      "The Narrative of Arthur Gordon Pym of Nantucket",
+  title:      "Test Novel Eight",
   image:      "../images/image8.jpeg",
   entries:    [
     {
-      author: adminId,
+      author: '57ee603e058110c915c61e51',
       body: "Hi, I'm the first entry!",
       wordCount: 1
     }
   ],
-  comments:   [{ author: adminId, body: "Hi, I'm a comment!" }]
+  comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
 },{
-  title:      "Sybil",
+  title:      "Test Novel Nine",
   image:      "../images/image9.jpeg",
   entries:    [
     {
-      author: adminId,
+      author: '57ee603e058110c915c61e51',
       body: "Hi, I'm the first entry!",
       wordCount: 5
     }
   ],
-  comments:   [{ author: adminId, body: "Hi, I'm a comment!" }]
+  comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
 }
 ];
-
 novels.forEach(novel => Novel.create(novel, (err, novel) => {
   if(err) return console.log(err);
   return console.log(`${novel.title} was created`);
 }));
+}, 1000);
+}, 1000);

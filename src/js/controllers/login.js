@@ -10,7 +10,6 @@ function loginCtrl(User, CurrentUserService) {
       .login(vm.user)
       .$promise
       .then(data => {
-        console.log(data)
         const user = data.user ? data.user : null;
         if (user) {
           CurrentUserService.saveUser(user);
