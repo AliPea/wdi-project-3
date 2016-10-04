@@ -16,20 +16,24 @@
 @import 'partials/novelNew.scss';
 @import 'partials/footer.scss';
 @import 'partials/login.scss';
+@import 'partials/register.scss';
 
+*:focus {
+  outline: none;
+}
 
-  .centered {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    font-size: 100px;
-  }
+.centered {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 100px;
+}
 
-   .headers {
-     font-family: $header-font-stack;
-     letter-spacing: 10px;
-     text-transform: uppercase;
-     text-align: center;
-     margin-top: 60px;
-   }
+.headers {
+  font-family: $header-font-stack;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 60px;
+}
