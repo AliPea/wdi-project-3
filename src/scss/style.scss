@@ -1,4 +1,7 @@
 @import 'partials/_bower.scss';
+
+@import "variables/fonts.scss";
+
 @import 'partials/_index.scss';
 @import 'partials/_navbar.scss';
 @import 'partials/_footer.scss';
@@ -13,6 +16,7 @@
 @import 'partials/novelNew.scss';
 @import 'partials/footer.scss';
 
+
   .centered {
     position: absolute;
     left: 50%;
@@ -22,7 +26,7 @@
   }
 
    .headers {
-     font-family: 'Quicksand', sans-serif;
+     font-family: $header-font-stack;
      letter-spacing: 10px;
      text-transform: uppercase;
      text-align: center;

@@ -33,11 +33,11 @@
         font-weight: 100;
         text-transform: uppercase;
         letter-spacing: 20px;
-        font-family: 'Quicksand', sans-serif;
+        font-family: $header-font-stack;
       }
 
       h4 {
-        margin-top: -10px;
+        margin: -10px 0 -50px;
         font-size: 30px;
         color: #f5f5f5;
         font-weight: 100;
@@ -52,7 +52,7 @@
       }
 
       button {
-        font-family: 'Lato', sans-serif;
+        font-family: $body-font-stack;
         background: rgba(0, 0, 0, 0.3);
         margin: 5px;
         border: none;
@@ -78,10 +78,12 @@
   margin: 0 auto;
   color: black;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   background: white;
-
+  ul.ng-scope {
+    padding: 0 20px;
+  }
   .novel {
     padding: 60px 0;
 
@@ -89,7 +91,6 @@
       background: #f9f9f9;
       border-left: 10px solid #ccc;
       padding: 0.5em 10px;
-      // quotes: "\201C""\201D""\2018""\2019";
     }
 
     blockquote p {
@@ -97,7 +98,27 @@
     }
   }
 
+  p {
+    line-height: 20px;
+    .novelContributor {
+      cursor: pointer;
+      .novelistUnderline {
+        vertical-align: middle;
+        border-bottom: 1px solid black;
+        transition: all .2s ease-in-out;
+        &:hover {
+          font-size: 20px;
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+
   .btn-default {
+    width: 120px;
+    height: 50px;
+    font-size: 20px;
     background: black;
     border-radius: 0;
     color: white;
@@ -126,24 +147,31 @@
     outline: none;
     margin-bottom: 20px;
     background: white;
+    cursor: text;
   }
 
   .nextEntry[contenteditable] {
-      display: inline-block;
+    display: inline-block;
   }
   .nextEntry[contenteditable]:empty::before {
-      content: attr(data-placeholder);
-      display: inline-block;
+    content: attr(data-placeholder);
+    display: inline-block;
   }
   .nextEntry[contenteditable]:empty:focus::before {
-      content: attr(data-focused-advice);
+    content: attr(data-focused-advice);
   }
 
   .comments {
     border-top: 5px solid #000;
     padding: 30px 0;
+    font-size: 18px;
     .commentDetails {
+      font-size: 15px;
       color: lighten(black, 60%);
     }
   }
+}
+
+#novelContainer {
+  background: blue;
 }
