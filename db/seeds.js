@@ -1,17 +1,12 @@
 const mongoose  = require("mongoose");
 const config    = require("../config/config");
-
 const Require   = require("../models/novel");
 const Novel     = Require.novel;
 const User      = require("../models/user");
-
 mongoose.connect(config.db);
-
 Novel.collection.drop();
 User.collection.drop();
-
 setTimeout(()=>{
-
 let users = [{
   username: "Alfredo",
   firstName: "Alfredo Maria",
@@ -45,17 +40,13 @@ let users = [{
   password: "password",
   passwordConfirmation: "password",
 }];
-
 let seed = [];
-
 users.forEach(user => User.create(user, (err, user) => {
   if(err) return console.log(err);
   seed.push(user._id);
   return console.log(`${user.username} was created`);
 }));
-
 setTimeout(()=>{
-  
 const novels = [{
   creator:    seed[0],
   title:      "Test Novel One",
@@ -66,12 +57,18 @@ const novels = [{
       body: "Hi, I'm the first entry!",
       wordCount: 100
     },{
-      author: '57ee603e058110c915c61e51',
+      author: seed[1],
       body: "Hi, I'm the second entry!",
       wordCount: 100
     }
   ],
-},{
+  comments:   [
+    {
+      author: seed[1],
+      body: "Cool story bro!!" ,
+    }
+  ]
+}, {
   title:      "Test Novel Two",
   image:      "../images/image2.jpeg",
   entries:    [
@@ -174,12 +171,9 @@ const novels = [{
   comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
 }
 ];
-
 novels.forEach(novel => Novel.create(novel, (err, novel) => {
   if(err) return console.log(err);
   return console.log(`${novel.title} was created`);
 }));
-
 }, 1000);
-
 }, 1000);
