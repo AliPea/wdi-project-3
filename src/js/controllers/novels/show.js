@@ -50,16 +50,19 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
   }
 
   function countOf(text) {
-    let s = text ? text.split(/\s+/) : 0;
+    if (text){
+      text = text.replace(/^\&nbsp\;|<br?\>*/gi, " ").replace(/\&nbsp\;|<br?\>$/gi, " ").trim();
+    }
+    let words = text ? text.split(/\s+/) : 0;
 
-    vm.wordCount = s.length;
+    vm.wordCount = words.length;
 
     if (vm.wordCount > 5) {
       vm.wordCountStatus = false;
     } else {
       vm.wordCountStatus = true;
     }
-    return s ? s.length : 0;
+    return words ? words.length : 0;
   }
 
   // Get formData & update the novel

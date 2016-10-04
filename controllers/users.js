@@ -37,7 +37,6 @@ function usersShow(req, res) {
       .find({'entries.author': req.params.id})
       .exec((err, entries) => {
         if (err) return res.status(500).json({ message: "Something went wrong."});
-        console.log(entries);
         storage.entries = entries;
       });
 
