@@ -27,4 +27,8 @@ const novelSchema = new mongoose.Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model("Novel", novelSchema);
+module.exports = {
+  novel: mongoose.model("Novel", novelSchema),
+  entry: mongoose.model("Entry", entrySchema),
+  comment: mongoose.model("Comment", commentSchema)
+};
