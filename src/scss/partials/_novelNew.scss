@@ -1,43 +1,73 @@
 .novelNew {
-  margin: 0 auto;
-  width: 800px;
-  text-align: center;
-  div {
-    margin: 0 auto;
-    #novelTitle {
-      font-size: 30px;
-      text-align: center;
-      vertical-align: middle;
-      width: 525px;
-      height: 50px;
-      border: none;
-      line-height: 50px;
-      overflow: hidden;
-      outline: none;
-      resize: none;
-      padding: 0px;
+  font-family: 'Lato', sans-serif;
+  .picture-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
 
-      -webkit-box-shadow: none;
-      -moz-box-shadow: none;
-      box-shadow: none;
+    img {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: inherit;
+
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
     }
   }
-
-
-  img {
-    max-width: 100%;
-    max-height: 350px;
-    display: block;
-    margin: 0 auto;
+  .centered {
+    z-index: 5;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+  }
+  .content {
+    h2 {
+      margin-top: -10px;
+      font-size: 50px;
+      color: #f5f5f5;
+      letter-spacing: 2px;
+    }
+    span {
+      &:hover {
+        border-bottom: 1px solid #f2f2f2;
+        cursor: pointer;
+      }
+    }
+    .input-group {
+      position: relative;
+      display: table;
+      border-collapse: separate;
+      font-size: 16px;
+      width: 100%;
+      border: none;
+      outline: none;
+    }
   }
 }
-
-.list-group-item {
-  overflow-wrap: normal;
-}
-
-#new {
-  position: relative;
+button {
+  background: rgba(0, 0, 0, 0.3);
+  margin: 5px;
+  border: none;
+  width: 300px;
+  height: 50px;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 300;
   text-transform: uppercase;
-  font-family: 'Quicksand', sans-serif;
+  letter-spacing: 2px;
+  transition: background 0.5s linear;
+
+  &:hover {
+    background: rgba(108, 136, 74, 0.6);
+  }
 }
+.form-control, .form-control:focus {
+    border-color: #cccccc;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
