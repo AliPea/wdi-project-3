@@ -1,8 +1,14 @@
 .userShow {
   text-align: center;
-  img {
-    width: 100px;
-    height: auto;
+
+  div.userImage{
+    width: 150px;
+    max-height: 150px;
+    display: inline-block;
+    overflow: hidden;
+    img.userImage {
+      width: 125px;
+    }
   }
   h3 {
     text-align: center;
