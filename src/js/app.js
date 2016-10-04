@@ -3,7 +3,9 @@ angular
     "ui.router",
     "ngResource",
     "angular-jwt",
-    "ngMessages"
+    "ngMessages",
+    "contenteditable",
+    "angularMoment"
   ]);
 
   $(document).on('click','.navbar-collapse.in',function(e) {
