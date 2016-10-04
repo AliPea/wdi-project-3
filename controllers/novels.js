@@ -8,8 +8,11 @@ module.exports = {
   addComment: novelsAddComment
 };
 
-const Novel = require('../models/novel');
-const User  = require('../models/user');
+const Require   = require('../models/novel');
+const Novel     = Require.novel;
+const Entry     = Require.entry;
+const Comment   = Require.comment;
+const User      = require('../models/user');
 
 function novelsIndex (req, res ) {
   Novel.find((err, novels) => {

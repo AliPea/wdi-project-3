@@ -39,7 +39,6 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
   function userStatus() {
     if (vm.entriesCount !== 0 && vm.novel.status === "active") {
       vm.lastPost = vm.novel.entries[vm.entriesCount-1].author._id;
-      // vm.newAuthor = vm.novel.entries[vm.entriesCount-1].author;
       vm.userId = vm.user.id;
       if (vm.lastPost === vm.userId) {
         vm.novelStatus = false;
