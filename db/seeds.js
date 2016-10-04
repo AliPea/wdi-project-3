@@ -1,6 +1,5 @@
 const mongoose  = require("mongoose");
 const config    = require("../config/config");
-
 const Novel     = require("../models/novel");
 const User      = require("../models/user");
 
@@ -24,123 +23,123 @@ User.create(user, (err, user) => {
   return console.log(`${user} was created`);
 });
 
-
-
 const novels = [{
-  title:      "Test Novel One",
+  title:      "The Pilgrim’s Progress",
+  image:      "../images/image3.jpeg",
+  entries:    [
+    {
+      author: adminId,
+      body: "A story of a man in search of truth told with the simple clarity and beauty of Bunyan’s prose make this the ultimate English classic.",
+      wordCount: 25
+    },{
+      author: adminId,
+      body: "Christian is weighed down by a great burden—the knowledge of his sin—which he believed came from his reading the book in his hand the Bible",
+      wordCount: 27
+    }
+  ],
+},
+
+{
+  title:      "Robinson Crusoe",
+  image:      "../images/image2.jpeg",
+  entries:    [
+    {
+      author: adminId,
+      body: "By the end of the 19th century, no book in English literary history had enjoyed more editions, spin-offs and translations.",
+      wordCount: 20
+    }
+  ],
+  comments:   [
+    {
+      author: adminId,
+      body: "Crusoe’s world-famous novel is a complex literary confection, and it’s irresistible." ,
+    }
+  ],
+},{
+  title:      "Emma",
   image:      "../images/image1.jpeg",
   entries:    [
     {
       author: adminId,
-      body: "Hi, I'm the first entry!",
-      wordCount: 100
-    },{
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm the second entry!",
-      wordCount: 100
-    }
-  ],
-},{
-  title:      "Test Novel Two",
-  image:      "../images/image2.jpeg",
-  entries:    [
-    {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm the first entry!",
-      wordCount: 2
-    }
-  ],
-  comments:   [
-    {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm a comment!" ,
-    }
-  ],
-},{
-  title:      "Test Novel Three",
-  image:      "../images/image3.jpeg",
-  entries:    [
-    {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm the first entry!",
-      wordCount: 2
+      body: "The book begins with a preamble in which Lemuel Gulliver gives an outline of his life and history before his voyages",
+      wordCount: 116
     }
   ]
 },{
-  title:      "Test Novel Four",
+  title:      "Tom Jones",
   image:      "../images/image4.jpeg",
   entries:    [
     {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm the first entry!",
-      wordCount: 1
+      author: adminId,
+      body: "The distinguished country gentleman Allworthy, who lives in Somersetshire with his unmarried sister Bridget Allworthy...",
+      wordCount: 120
     }
   ]
 },{
-  title:      "Test Novel Five",
+  title:      "Clarissa",
   image:      "../images/image5.jpeg",
   entries:    [
     {
-      author: '57ee603e058110c915c61e51',
-      body: "Hi, I'm the first entry!" ,
-      wordCount: 2
+      author: adminId,
+      body: "Clarissa Harlowe is a beautiful and virtuous young lady whose family has become wealthy and now desires to become part of the aristocracy." ,
+      wordCount: 138
     }
   ],
   comments:   [
     {
-      author: '57ee603e058110c915c61e51',
+      author: adminId,
       body: "Hi, I'm a comment!",
     }
   ]
 },{
-  title:      "Test Novel Six",
+  title:      "Frankenstein",
   image:      "../images/image6.jpeg",
   entries:    [
     {
-      author: '57ee603e058110c915c61e51',
+      author: adminId,
       body: "Hi, I'm the first entry!",
       wordCount: 4
     }
   ],
   comments:   [
     {
-      author: '57ee603e058110c915c61e51',
+      author: adminId,
       body: "Hi, I'm a comment!"
     }
   ]
 },{
-  title:      "Test Novel Seven",
+  title:      "Nightmare Abbey",
   image:      "../images/image7.jpeg",
   entries:    [
     {
-      author: '57ee603e058110c915c61e51',
+      author: adminId,
       body: "Hi, I'm the first entry!",
       wordCount: 2
     }
   ],
-  comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
+  comments:   [{ author: adminId, body: "Hi, I'm a comment!" }]
 },{
-  title:      "Test Novel Eight",
+  title:      "The Narrative of Arthur Gordon Pym of Nantucket",
   image:      "../images/image8.jpeg",
   entries:    [
     {
-      author: '57ee603e058110c915c61e51',
+      author: adminId,
       body: "Hi, I'm the first entry!",
       wordCount: 1
     }
   ],
-  comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
+  comments:   [{ author: adminId, body: "Hi, I'm a comment!" }]
 },{
-  title:      "Test Novel Nine",
+  title:      "Sybil",
   image:      "../images/image9.jpeg",
   entries:    [
     {
-      author: '57ee603e058110c915c61e51',
+      author: adminId,
       body: "Hi, I'm the first entry!",
       wordCount: 5
     }
   ],
-  comments:   [{ author: '57ee603e058110c915c61e51', body: "Hi, I'm a comment!" }]
+  comments:   [{ author: adminId, body: "Hi, I'm a comment!" }]
 }
 ];
 
