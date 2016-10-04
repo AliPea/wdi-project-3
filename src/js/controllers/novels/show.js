@@ -20,7 +20,7 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
   vm.novelStatus = true;
   vm.lastEntry = true;
 
-<<<<<<< HEAD
+
   function userStatus() {
     vm.lastPost = vm.novel.entries[vm.entriesCount-1].author._id;
     vm.userId = vm.user.id;
@@ -51,20 +51,15 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
 
   Novel.get($stateParams, data => {
 
-=======
   Novel.get($stateParams, data => {
->>>>>>> 223cee31adb634fb6153876fee6b0c4d424be43b
     vm.novel = data.novel;
     // Count how many entries there are on the page
     vm.entriesCount = vm.novel.entries.length;
     novelStatus();
-<<<<<<< HEAD
 
     if(vm.entriesCount !== 0) userStatus();
 
-=======
     userStatus();
->>>>>>> 223cee31adb634fb6153876fee6b0c4d424be43b
   });
 
   function novelStatus() {
@@ -108,10 +103,7 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
       entryStatus = "finished";
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 223cee31adb634fb6153876fee6b0c4d424be43b
     let data = {
       entry: vm.novel.entries.body,
       wordCount: vm.wordCount
@@ -128,8 +120,6 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
         userStatus();
       });
     });
-<<<<<<< HEAD
-=======
 
     Novel
     .update($stateParams, { status: entryStatus })
@@ -139,7 +129,6 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
         vm.entriesCount ++;
       });
     });
->>>>>>> 223cee31adb634fb6153876fee6b0c4d424be43b
   };
 
   vm.submitComment = () => {
