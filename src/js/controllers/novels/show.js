@@ -9,6 +9,7 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
 
   $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
+    $("[autofocus]").focus();
   });
 
   vm.countOf = countOf;
@@ -29,20 +30,18 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
   });
 
   function novelStatus() {
-    if(vm.entriesCount >= vm.maxEntriesCount) {
+    if (vm.entriesCount >= vm.maxEntriesCount) {
       vm.novelStatus = false;
     }
     return;
   }
 
   function userStatus() {
-    if(vm.entriesCount !== 0 && vm.novel.status === "active") {
+    if (vm.entriesCount !== 0 && vm.novel.status === "active") {
       vm.lastPost = vm.novel.entries[vm.entriesCount-1].author._id;
       // vm.newAuthor = vm.novel.entries[vm.entriesCount-1].author;
       vm.userId = vm.user.id;
-      console.log(vm.novel.entries)
-      console.log(vm.userId)
-      if(vm.lastPost === vm.userId) {
+      if (vm.lastPost === vm.userId) {
         vm.novelStatus = false;
         vm.lastEntry = false;
       }
@@ -52,25 +51,27 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
   }
 
   function countOf(text) {
-    var s = text ? text.split(/\s+/) : 0; // it splits the text on space/tab/enter
+    let s = text ? text.split(/\s+/) : 0;
+
     vm.wordCount = s.length;
-    if(vm.wordCount > 5) {
+
+    if (vm.wordCount > 5) {
       vm.wordCountStatus = false;
     } else {
       vm.wordCountStatus = true;
     }
-    return s ? s.length : '';
+    return s ? s.length : 0;
   }
 
   // Get formData & update the novel
   vm.submitEntry = () => {
     let entryStatus = "active";
-    if(vm.entriesCount >= 4) {
+    if (vm.entriesCount >= 4) {
       entryStatus = "finished";
     }
 
     let data = {
-      entry: vm.novel.entries.body,
+      entry: vm.entry,
       wordCount: vm.wordCount
     };
 
@@ -80,7 +81,7 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
     .then(data => {
       Novel.get($stateParams, data => {
         vm.novel = data.novel;
-        vm.novel.entries.body = null;
+        vm.entry = null;
         novelStatus();
         userStatus();
       });

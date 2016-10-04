@@ -48299,6 +48299,105 @@ function ngMessageDirectiveFactory() {
 
 })(window, window.angular);
 
+/**
+ * @see http://docs.angularjs.org/guide/concepts
+ * @see http://docs.angularjs.org/api/ng.directive:ngModel.NgModelController
+ * @see https://github.com/angular/angular.js/issues/528#issuecomment-7573166
+ */
+
+angular.module('contenteditable', [])
+  .directive('contenteditable', ['$timeout', function($timeout) { return {
+    restrict: 'A',
+    require: '?ngModel',
+    link: function(scope, element, attrs, ngModel) {
+      // don't do anything unless this is actually bound to a model
+      if (!ngModel) {
+        return
+      }
+
+      // options
+      var opts = {}
+      angular.forEach([
+        'stripBr',
+        'noLineBreaks',
+        'selectNonEditable',
+        'moveCaretToEndOnChange',
+      ], function(opt) {
+        var o = attrs[opt]
+        opts[opt] = o && o !== 'false'
+      })
+
+      // view -> model
+      element.bind('input', function(e) {
+        scope.$apply(function() {
+          var html, html2, rerender
+          html = element.html()
+          rerender = false
+          if (opts.stripBr) {
+            html = html.replace(/<br>$/, '')
+          }
+          if (opts.noLineBreaks) {
+            html2 = html.replace(/<div>/g, '').replace(/<br>/g, '').replace(/<\/div>/g, '')
+            if (html2 !== html) {
+              rerender = true
+              html = html2
+            }
+          }
+          ngModel.$setViewValue(html)
+          if (rerender) {
+            ngModel.$render()
+          }
+          if (html === '') {
+            // the cursor disappears if the contents is empty
+            // so we need to refocus
+            $timeout(function(){
+              element[0].blur()
+              element[0].focus()
+            })
+          }
+        })
+      })
+
+      // model -> view
+      var oldRender = ngModel.$render
+      ngModel.$render = function() {
+        var el, el2, range, sel
+        if (!!oldRender) {
+          oldRender()
+        }
+        element.html(ngModel.$viewValue || '')
+        if (opts.moveCaretToEndOnChange) {
+          el = element[0]
+          range = document.createRange()
+          sel = window.getSelection()
+          if (el.childNodes.length > 0) {
+            el2 = el.childNodes[el.childNodes.length - 1]
+            range.setStartAfter(el2)
+          } else {
+            range.setStartAfter(el)
+          }
+          range.collapse(true)
+          sel.removeAllRanges()
+          sel.addRange(range)
+        }
+      }
+      if (opts.selectNonEditable) {
+        element.bind('click', function(e) {
+          var range, sel, target
+          target = e.toElement
+          if (target !== this && angular.element(target).attr('contenteditable') === 'false') {
+            range = document.createRange()
+            sel = window.getSelection()
+            range.setStartBefore(target)
+            range.setEndAfter(target)
+            sel.removeAllRanges()
+            sel.addRange(range)
+          }
+        })
+      }
+    }
+  }}]);
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -50677,14 +50776,14 @@ if (typeof jQuery === 'undefined') {
 
 }(jQuery);
 
-"use strict";angular.module("noveList",["ui.router","ngResource","angular-jwt","ngMessages"]);$(document).on('click','.navbar-collapse.in',function(e){if($(e.target).is('a')){$(this).collapse('hide');}});
+"use strict";angular.module("noveList",["ui.router","ngResource","angular-jwt","ngMessages","contenteditable"]);$(document).on('click','.navbar-collapse.in',function(e){if($(e.target).is('a')){$(this).collapse('hide');}});
 "use strict";angular.module("noveList").constant("API",window.location.origin+"/api");
 "use strict";angular.module("noveList").factory("AuthInterceptor",AuthInterceptor);AuthInterceptor.$inject=['API','TokenService'];function AuthInterceptor(API,TokenService){return{request:function request(config){var token=TokenService.getToken();if(config.url.indexOf(API)===0&&token){config.headers.Authorization="Bearer "+token;}return config;},response:function response(res){if(res.config.url.indexOf(API)===0&&res.data.token){TokenService.setToken(res.data.token);}return res;}};}
 "use strict";angular.module("noveList").service("CurrentUserService",CurrentUserService);CurrentUserService.$inject=["$rootScope","TokenService"];function CurrentUserService($rootScope,TokenService){var currentUser=TokenService.decodeToken();return{user:currentUser,saveUser:function saveUser(user){user.id=user._id?user._id:user.id;currentUser=user;$rootScope.$broadcast("loggedIn");},getUser:function getUser(){return currentUser;},clearUser:function clearUser(){currentUser=null;TokenService.clearToken();$rootScope.$broadcast("loggedOut");}};}
-"use strict";angular.module("noveList").controller("userEditCtrl",userEditCtrl);userEditCtrl.$inject=["User","$stateParams","$state"];function userEditCtrl(User,$stateParams,$state){var vm=this;User.get($stateParams,function(data){vm.user=data.user;});vm.submit=function(){User.update($stateParams,{user:vm.user}).$promise.then(function(data){$state.go("userShow",$stateParams);});};}
 "use strict";angular.module("noveList").controller("NovelEditCtrl",NovelEditCtrl);NovelEditCtrl.$inject=["Novel","$stateParams","$state"];function NovelEditCtrl(Novel,$stateParams,$state){var vm=this;Novel.get($stateParams,function(data){vm.novel=data.novel;});vm.submit=function(){Novel.update($stateParams,{novel:vm.novel}).$promise.then(function(data){$state.go("novelShow",$stateParams);});};}
-"use strict";angular.module("noveList").controller("NovelIndexCtrl",NovelIndexCtrl);NovelIndexCtrl.$inject=["Novel"];function NovelIndexCtrl(Novel){var vm=this;Novel.query().$promise.then(function(data){vm.novels=data.novels;});}
+"use strict";angular.module("noveList").controller("userEditCtrl",userEditCtrl);userEditCtrl.$inject=["User","$stateParams","$state"];function userEditCtrl(User,$stateParams,$state){var vm=this;User.get($stateParams,function(data){vm.user=data.user;});vm.submit=function(){User.update($stateParams,{user:vm.user}).$promise.then(function(data){$state.go("userShow",$stateParams);});};}
 "use strict";angular.module("noveList").controller("usersIndexCtrl",usersIndexCtrl);usersIndexCtrl.$inject=["User"];function usersIndexCtrl(User){var vm=this;User.query().$promise.then(function(data){vm.users=data.users;});}
+"use strict";angular.module("noveList").controller("NovelIndexCtrl",NovelIndexCtrl);NovelIndexCtrl.$inject=["Novel"];function NovelIndexCtrl(Novel){var vm=this;Novel.query().$promise.then(function(data){vm.novels=data.novels;});}
 'use strict';angular.module("noveList").config(SetupInterceptor);SetupInterceptor.$inject=['$httpProvider'];function SetupInterceptor($httpProvider){return $httpProvider.interceptors.push('AuthInterceptor');}
 "use strict";angular.module("noveList").controller("loginCtrl",loginCtrl);loginCtrl.$inject=["User","CurrentUserService"];function loginCtrl(User,CurrentUserService){var vm=this;vm.login=function(){User.login(vm.user).$promise.then(function(data){console.log(data);var user=data.user?data.user:null;if(user){CurrentUserService.saveUser(user);}});};}
 "use strict";angular.module("noveList").controller("mainCtrl",mainCtrl);mainCtrl.$inject=["$rootScope","CurrentUserService","$state"];function mainCtrl($rootScope,CurrentUserService,$state){var vm=this;vm.user=CurrentUserService.getUser();vm.logout=function(){event.preventDefault();CurrentUserService.clearUser();};$rootScope.$on("loggedIn",function(){vm.user=CurrentUserService.getUser();console.log(vm.user);$state.go("home");});$rootScope.$on("loggedOut",function(){vm.user=null;$state.go("home");});}
@@ -50692,15 +50791,15 @@ if (typeof jQuery === 'undefined') {
 vm.novel.wordCount=s.length;return s?s.length:'';}RandomImage.query().$promise.then(function(data){vm.novel.image=data.urls.custom;});vm.submit=function(){Novel.save({novel:vm.novel}).$promise.then(function(data){$state.go("novelIndex");});};}
 "use strict";angular.module("noveList").factory("Novel",Novel);Novel.$inject=["$resource","API"];function Novel($resource,API){return $resource(API+"/novels/:id",{id:"@_id"},{'query':{method:"GET",isArray:false},'update':{method:"PUT"},'addEntry':{method:"PUT",url:API+"/novels/:id/addentry",params:{id:"@_id"}},'addComment':{method:"PUT",url:API+"/novels/:id/addcomment",params:{id:"@_id"}}});}
 "use strict";angular.module("noveList").factory("RandomImage",RandomImage);RandomImage.$inject=["$resource"];function RandomImage($resource){return $resource('https://api.unsplash.com/photos/random?w=1050&h=700&client_id=19e34e75471ee865d7276aade14a9c897fe6dc4ba68d8d2058c627ed81ac0bb0',null,{'query':{method:"GET",isArray:false}});}
+'use strict';angular.module("noveList").filter('rawHtml',rawHtml);rawHtml.$inject=['$sce'];function rawHtml($sce){return function(val){return $sce.trustAsHtml(val);};}
 "use strict";angular.module("noveList").controller("registerCtrl",registerCtrl);registerCtrl.$inject=["User","CurrentUserService"];function registerCtrl(User,CurrentUserService){var vm=this;vm.register=function(){User.register({user:vm.user}).$promise.then(function(data){console.log('data',data);var user=data.user?data.user:null;if(user){CurrentUserService.saveUser(user);}});};}
 "use strict";angular.module("noveList").config(Router);Router.$inject=["$stateProvider","$locationProvider","$urlRouterProvider"];function Router($stateProvider,$locationProvider,$urlRouterProvider){$locationProvider.html5Mode(true);$stateProvider.state("home",{url:"/",templateUrl:"/js/views/home.html",controller:"mainCtrl as main"}).state("register",{url:"/register",templateUrl:"/js/views/register.html",controller:"registerCtrl as register"}).state("login",{url:"/login",templateUrl:"/js/views/login.html",controller:"loginCtrl as login"})//novels Router
 .state('novelIndex',{url:"/novels/index",templateUrl:"/js/views/novels/index.html",controller:"NovelIndexCtrl as index"}).state('novelNew',{url:"/novels/new",templateUrl:"/js/views/novels/new.html",controller:"NovelNewCtrl as new"}).state('novelShow',{url:"/novels/:id",templateUrl:"/js/views/novels/show.html",controller:"NovelShowCtrl as show"}).state('novelEdit',{url:"/novels/edit",templateUrl:"/js/views/novels/edit.html",controller:"NovelEditCtrl as edit"})//users Router
 .state("usersIndex",{url:"/users/index",templateUrl:"/js/views/users/index.html",controller:"usersIndexCtrl as index"}).state('usersShow',{url:"/users/:id",templateUrl:"/js/views/users/show.html",controller:"usersShowCtrl as show"}).state('usersEdit',{url:"/novels/edit",templateUrl:"/js/views/users/edit.html",controller:"usersEditCtrl as edit"});$urlRouterProvider.otherwise("/");}
-"use strict";angular.module("noveList").controller("NovelShowCtrl",NovelShowCtrl);NovelShowCtrl.$inject=["Novel","$stateParams","$state","CurrentUserService"];function NovelShowCtrl(Novel,$stateParams,$state,CurrentUserService){var vm=this;vm.user=CurrentUserService.getUser();$(document).ready(function(){$('[data-toggle="tooltip"]').tooltip();});vm.countOf=countOf;vm.wordCount=0;vm.wordCountStatus=true;vm.maxWordCount=5;vm.maxEntriesCount=5;vm.entriesCount=0;vm.novelStatus=true;vm.lastEntry=true;Novel.get($stateParams,function(data){vm.novel=data.novel;// Count how many entries there are on the page
+"use strict";angular.module("noveList").controller("NovelShowCtrl",NovelShowCtrl);NovelShowCtrl.$inject=["Novel","$stateParams","$state","CurrentUserService"];function NovelShowCtrl(Novel,$stateParams,$state,CurrentUserService){var vm=this;vm.user=CurrentUserService.getUser();$(document).ready(function(){$('[data-toggle="tooltip"]').tooltip();$("[autofocus]").focus();});vm.countOf=countOf;vm.wordCount=0;vm.wordCountStatus=true;vm.maxWordCount=5;vm.maxEntriesCount=5;vm.entriesCount=0;vm.novelStatus=true;vm.lastEntry=true;Novel.get($stateParams,function(data){vm.novel=data.novel;// Count how many entries there are on the page
 vm.entriesCount=vm.novel.entries.length;novelStatus();userStatus();});function novelStatus(){if(vm.entriesCount>=vm.maxEntriesCount){vm.novelStatus=false;}return;}function userStatus(){if(vm.entriesCount!==0&&vm.novel.status==="active"){vm.lastPost=vm.novel.entries[vm.entriesCount-1].author._id;// vm.newAuthor = vm.novel.entries[vm.entriesCount-1].author;
-vm.userId=vm.user.id;console.log(vm.novel.entries);console.log(vm.userId);if(vm.lastPost===vm.userId){vm.novelStatus=false;vm.lastEntry=false;}return;}return;}function countOf(text){var s=text?text.split(/\s+/):0;// it splits the text on space/tab/enter
-vm.wordCount=s.length;if(vm.wordCount>5){vm.wordCountStatus=false;}else{vm.wordCountStatus=true;}return s?s.length:'';}// Get formData & update the novel
-vm.submitEntry=function(){var entryStatus="active";if(vm.entriesCount>=4){entryStatus="finished";}var data={entry:vm.novel.entries.body,wordCount:vm.wordCount};Novel.addEntry($stateParams,data).$promise.then(function(data){Novel.get($stateParams,function(data){vm.novel=data.novel;vm.novel.entries.body=null;novelStatus();userStatus();});});Novel.update($stateParams,{status:entryStatus}).$promise.then(function(data){Novel.get($stateParams,function(data){vm.entriesCount++;});});};vm.submitComment=function(){Novel.addComment($stateParams,{comment:vm.novel.comments.body}).$promise.then(function(data){Novel.get($stateParams,function(data){vm.novel=data.novel;vm.novel.comments.body=null;});});};vm.novelDelete=function(){Novel.delete($stateParams).$promise.then(function(data){$state.go("novelIndex");});};}
+vm.userId=vm.user.id;if(vm.lastPost===vm.userId){vm.novelStatus=false;vm.lastEntry=false;}return;}return;}function countOf(text){var s=text?text.split(/\s+/):0;vm.wordCount=s.length;if(vm.wordCount>5){vm.wordCountStatus=false;}else{vm.wordCountStatus=true;}return s?s.length:0;}// Get formData & update the novel
+vm.submitEntry=function(){var entryStatus="active";if(vm.entriesCount>=4){entryStatus="finished";}var data={entry:vm.entry,wordCount:vm.wordCount};Novel.addEntry($stateParams,data).$promise.then(function(data){Novel.get($stateParams,function(data){vm.novel=data.novel;vm.entry=null;novelStatus();userStatus();});});Novel.update($stateParams,{status:entryStatus}).$promise.then(function(data){Novel.get($stateParams,function(data){vm.entriesCount++;});});};vm.submitComment=function(){Novel.addComment($stateParams,{comment:vm.novel.comments.body}).$promise.then(function(data){Novel.get($stateParams,function(data){vm.novel=data.novel;vm.novel.comments.body=null;});});};vm.novelDelete=function(){Novel.delete($stateParams).$promise.then(function(data){$state.go("novelIndex");});};}
 "use strict";angular.module("noveList").controller("usersShowCtrl",usersShowCtrl);usersShowCtrl.$inject=["User","$stateParams","$state"];function usersShowCtrl(User,$stateParams,$state){var vm=this;User.get($stateParams,function(data){vm.user=data.user;});vm.userDelete=function(){User.delete($stateParams).$promise.then(function(data){$state.go("userIndex");});};}
 "use strict";angular.module("noveList").service("TokenService",TokenService);TokenService.$inject=["$window","jwtHelper"];function TokenService($window,jwtHelper){var self=this;self.setToken=setToken;self.getToken=getToken;self.decodeToken=decodeToken;self.clearToken=clearToken;function setToken(token){return $window.localStorage.setItem("auth-token",token);}function getToken(){return $window.localStorage.getItem("auth-token");}function decodeToken(){var token=self.getToken();return token?jwtHelper.decodeToken(token):null;}function clearToken(){return $window.localStorage.removeItem("auth-token");}}
 "use strict";angular.module("noveList").factory("User",userFactory);userFactory.$inject=["API","$resource"];function userFactory(API,$resource){return $resource(API+"/users/:id",{id:"@_id"},{'query':{method:"GET",isArray:false},'register':{method:"POST",url:API+"/register"},'login':{method:"POST",url:API+"/login"}});}

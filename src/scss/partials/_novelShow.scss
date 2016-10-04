@@ -129,3 +129,20 @@
 .comments {
   background: blue;
 }
+
+.prevEntry {
+  color: black;
+  display: block;
+  line-height: 20px;
+}
+
+.nextEntry {
+  line-height: 20px;
+  display: inline-block;
+  min-width: 50px;
+  font-weight: 600;
+  border-bottom: 1px solid black;
+  color: black;
+  outline: none;
+  margin-bottom: 20px
+}
