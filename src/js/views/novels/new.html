@@ -7,7 +7,7 @@
       <form ng-submit="new.submit()">
         <input type="hidden" id="novelUser" class="form-control" value="{{ main.user.id }}">
         <div class="input-group input-group-lg">
-          <textarea autofocus id="novelTitle" class="form-control" placeholder="Write your title" ng-model="new.novel.title"></textarea>
+          <input type="text" autofocus id="novelTitle" class="form-control newNovelTitle" placeholder="Write your title" ng-model="new.novel.title">
         </div>
         <button class="btn btn-default" aria-describedby="sizing-addon1" type="submit" value="Start a new novel!">start a new novel</button>
       </form>
