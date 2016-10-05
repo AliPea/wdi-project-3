@@ -31,6 +31,7 @@
           </p>
 
           <form ng-submit="show.submitEntry()" name="novelEntriesForm" ng-if="show.novelStatus">
+            <input type="hidden" ng-model="show.entry" required>
 
             <div>
               <span
@@ -62,24 +63,47 @@
           </div>
         </div>
 
-      <div class="comments row">
-        <div class="col-md-12 commentsContainer">
-          <form ng-submit="show.submitComment()" class="commentForm" name="novelCommentForm">
-            <input type="hidden" id="novelUser" value="{{ main.user.id }}">
-            <h3>Comment on the novel</h3>
-            <div>
-              <input type="text" id="novelComment" placeholder="Comment here..." ng-model="show.novel.comments.body" required>
-              <span class="input-group-btn">
-                <input class="btn btn-default" type="submit" value="Submit" ng-disabled="novelCommentForm.$invalid">
-              </span>
-            </div>
-          </form>
+        <div class="comments row">
+          <div class="submit">
+            <a href="#"
+            socialshare
+            socialshare-provider="email"
+            socialshare-subject="Please contribute to this novel on Novelist"
+            socialshare-body="Have a look at this novel on Novelist - {{ show.location }}"
+            class="btn btn-default">
+            <i class="fa fa-envelope-o"></i>
+            Share me
+          </a>
 
-          <h3>Comments</h3>
-          <ul ng-repeat="comments in show.novel.comments | orderBy:'-'">
-            <i class="fa fa-comment" aria-hidden="true"> <span class="commentWrap">{{ comments.body }}<span class="commentDetails"> by {{ comments.author.username }} <time am-time-ago="comments.createdAt"></time></span></span></i>
-          </ul>
-        </div>
+          <a href="#"
+          socialshare
+          socialshare-provider="twitter"
+          socialshare-url="{{  show.location }}"
+          socialshare-text="Please contribute to this novel   on Novelist"
+          socialshare-via="{{ main.user.username }}"
+          socialshare-hashtags="novelist"
+          class="btn btn-default">
+          <i class="fa fa-twitter"></i>
+          Twitter me
+        </a>
+      </div>
+
+      <div class="col-md-12 commentsContainer">
+        <form ng-submit="show.submitComment()" class="commentForm" name="novelCommentForm">
+          <input type="hidden" id="novelUser" value="{{ main.user.id }}">
+          <h3>Comment on the novel</h3>
+          <div>
+            <input type="text" id="novelComment" placeholder="Comment here..." ng-model="show.novel.comments.body" required>
+            <span class="input-group-btn">
+              <input class="btn btn-default" type="submit" value="Submit" ng-disabled="novelCommentForm.$invalid">
+            </span>
+          </div>
+        </form>
+
+        <h3>Comments</h3>
+        <ul ng-repeat="comments in show.novel.comments | orderBy:'-'">
+          <i class="fa fa-comment" aria-hidden="true"> <span class="commentWrap">{{ comments.body }}<span class="commentDetails"> by {{ comments.author.username }} <time am-time-ago="comments.createdAt"></time></span></span></i>
+        </ul>
       </div>
     </div>
   </div>

@@ -2,8 +2,8 @@ angular
 .module("noveList")
 .controller("NovelShowCtrl", NovelShowCtrl);
 
-NovelShowCtrl.$inject = ["Novel", "$stateParams", "$state", "CurrentUserService"];
-function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
+NovelShowCtrl.$inject = ["Novel", "$stateParams", "$state", "CurrentUserService", "$location"];
+function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService, $location) {
   const vm = this;
   vm.user = CurrentUserService.getUser();
 
@@ -13,6 +13,7 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService) {
     $(this).scrollTop(0);
   });
 
+  vm.location = $location.absUrl();
   vm.countOf = countOf;
   vm.wordCount = 0;
   vm.wordCountStatus = true;
