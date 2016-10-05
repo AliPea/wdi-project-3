@@ -1,17 +1,16 @@
 <div class="novelNew">
-  <!-- <h1 class="headers">Start a new novel...</h1> -->
   <div class="picture-container jumbotron">
     <img ng-src="{{ new.novel.image }}" alt="" />
   </div>
   <div class="centered">
     <div class="content">
-  <form ng-submit="new.submit()">
-    <input type="hidden" id="novelUser" class="form-control" value="{{ main.user.id }}">
-    <div class="input-group input-group-lg">
-      <textarea autofocus id="novelTitle" class="form-control" placeholder="Write your title" ng-model="new.novel.title"></textarea>
+      <form ng-submit="new.submit()">
+        <input type="hidden" id="novelUser" class="form-control" value="{{ main.user.id }}">
+        <div class="input-group input-group-lg">
+          <textarea autofocus id="novelTitle" class="form-control" placeholder="Write your title" ng-model="new.novel.title"></textarea>
+        </div>
+        <button class="btn btn-default" aria-describedby="sizing-addon1" type="submit" value="Start a new novel!">start a new novel</button>
+      </form>
     </div>
-      <button class="btn btn-default" aria-describedby="sizing-addon1" type="submit" value="Start a new novel!">start a new novel</button>
-  </form>
-</div>
-</div>
+  </div>
 </div>

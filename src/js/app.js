@@ -5,7 +5,8 @@ angular
     "angular-jwt",
     "ngMessages",
     "contenteditable",
-    "angularMoment"
+    "angularMoment",
+    "720kb.socialshare"
   ]);
 
   $(document).on('click','.navbar-collapse.in',function(e) {

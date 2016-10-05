@@ -22,6 +22,11 @@ const bower            = mainBowerFiles({
         "dist/css/bootstrap.css",
         "dist/js/bootstrap.js"
       ]
+    },
+    "angular-socialshare": {
+      "main": [
+        "dist/angular-socialshare.js"
+      ]
     }
   }
 });
