@@ -8,8 +8,8 @@
 }
 
 .form-control:hover{
-  border-left: 2px solid $secondary-color;
   outline: none;
+  color: lighten($secondary-color, 100%);
 }
 
 .formpic{
