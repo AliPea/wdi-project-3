@@ -26,9 +26,9 @@ body {
   font-weight: 300;
 }
 
-*:focus {
-  outline: none;
-}
+// *:focus {
+//   outline: none;
+// }
 
 .centered {
   position: absolute;
@@ -48,7 +48,10 @@ body {
 }
 
 .form-control, .form-control:focus {
-    border-color: #cccccc;
     -webkit-box-shadow: none;
     box-shadow: none;
+}
+
+.form-control:hover {
+  color: #333;
 }
