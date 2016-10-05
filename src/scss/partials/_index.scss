@@ -3,11 +3,22 @@
   text-align: center;
   padding: 0;
   .novels {
+    position: relative;
     display: inline-block;
     padding: 5px;
     img {
       width: 350px;
       height: auto;
+    }
+
+    .centered {
+      margin-top: -20px;
+      font-family: Quicksand,sans-serif;
+      text-transform: uppercase;
+
+      h5 {
+        margin-top: -20px;
+      }
     }
   }
 }

@@ -7,10 +7,10 @@
 
     img {
       position: fixed;
-      top: 0;
-      width: inherit;
-      height: inherit;
-      
+      bottom: 0;
+      width: 100%;
+      height: auto;
+
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
