@@ -17,7 +17,7 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService, $locatio
   vm.countOf = countOf;
   vm.wordCount = 0;
   vm.wordCountStatus = true;
-  vm.maxWordCount = 5;
+  vm.maxWordCount = 200;
   vm.maxEntriesCount = 5;
   vm.entriesCount = 0;
   vm.novelStatus = true;
@@ -59,7 +59,7 @@ function NovelShowCtrl(Novel, $stateParams, $state, CurrentUserService, $locatio
 
     vm.wordCount = words.length;
 
-    if (vm.wordCount > 5) {
+    if (vm.wordCount > vm.maxWordCount) {
       vm.wordCountStatus = false;
     } else {
       vm.wordCountStatus = true;
