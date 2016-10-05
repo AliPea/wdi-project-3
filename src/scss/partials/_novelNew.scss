@@ -32,20 +32,7 @@
     text-align: center;
 
     .content {
-      textarea {
-        width: 75vw;
-        padding: 0;
-        height:100px;
-        line-height: 100px;
-        border-bottom: 1px solid #FFF;
-        overflow: hidden;
-        font-size: 100px;
-        color: #FFF;
-        font-family: $header-font-stack;
-        text-transform: uppercase;
-        vertical-align: bottom;
-        text-align: center;
-      }
+
       input {
         font-family: $body-font-stack;
         background: rgba(0, 0, 0, 0.3);
@@ -62,6 +49,22 @@
         outline: none;
 
         transition: background 0.5s linear;
+      }
+
+      .newNovelTitle {
+        background: transparent;
+        width: 75vw;
+        padding: 0;
+        height:100px;
+        line-height: 100px;
+        border-bottom: 1px solid #FFF;
+        overflow: hidden;
+        font-size: 100px;
+        color: #FFF;
+        font-family: $header-font-stack;
+        text-transform: uppercase;
+        vertical-align: bottom;
+        text-align: center;
       }
 
       .btn-default {
