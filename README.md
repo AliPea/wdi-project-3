@@ -1,8 +1,2 @@
-# wdi-project-3
-Alicia
-NAV BAR
-hey
-SamY
-This is name
-
-BIG BUTTON YAY
+# wdi-project-3 Novelist
+Group Project. Developers: Sam Younger, Ajay Lard, Alfredo Maria Milano
