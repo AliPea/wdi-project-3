@@ -1,2 +1,2 @@
 # wdi-project-3 Novelist
-Group Project. Developers: Sam Younger, Ajay Lard, Alfredo Maria Milano
+Group Project. Developers: Ajay Lard, Alfredo Maria Milano, Alicia Pearse and Sam Younger
